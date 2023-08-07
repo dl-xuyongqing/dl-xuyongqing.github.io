@@ -4,6 +4,63 @@
   
     
     <entry>
+      <title>阅读源码</title>
+      <link href="/2023/08/07/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81/"/>
+      <url>/2023/08/07/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81/</url>
+      
+        <content type="html"><![CDATA[<ol><li>@DubboComponentScan<ol><li>@Import(DubboComponentScanRegistrar.class)<ol><li>DubboComponentScanRegistrar implements ImportBeanDefinitionRegistrar<ol><li>Overrid public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry);<ol><li>AnnotationAttributes attributes &#x3D; AnnotationAttributes.fromMap( metadata.getAnnotationAttributes( <strong>DubboComponentScan</strong>.class.getName()));</li><li></li></ol></li><li></li></ol></li></ol></li></ol></li><li></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 源码 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>rpc-learn</title>
+      <link href="/2023/08/07/rpc-learn/"/>
+      <url>/2023/08/07/rpc-learn/</url>
+      
+        <content type="html"><![CDATA[<p>1.自定义扫描注解</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE, ElementType.METHOD&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Import(CustomScannerRegistrar.class)</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RpcScan &#123;</span><br><span class="line"></span><br><span class="line">    String[] basePackage();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> rpc-learn </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Learn </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Learn</title>
+      <link href="/2023/08/07/Learn/"/>
+      <url>/2023/08/07/Learn/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>XXL-JOB</title>
       <link href="/2023/08/07/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/XXL-JOB/"/>
       <url>/2023/08/07/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/XXL-JOB/</url>
