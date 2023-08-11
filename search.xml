@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>How to use LocalDateTime</title>
+      <link href="/2023/08/11/how-use-LocalDateTime/"/>
+      <url>/2023/08/11/how-use-LocalDateTime/</url>
+      
+        <content type="html"><![CDATA[<h1 id="LocalDateTime"><a href="#LocalDateTime" class="headerlink" title="LocalDateTime"></a>LocalDateTime</h1><h2 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DateTimeFormatter</span> <span class="variable">format</span> <span class="operator">=</span> DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line"><span class="type">LocalDate</span> <span class="variable">a</span> <span class="operator">=</span> LocalDate.parse(<span class="string">&quot;2022-01-01&quot;</span>,format);</span><br><span class="line"><span class="type">LocalDate</span> <span class="variable">b</span> <span class="operator">=</span> LocalDate.parse(<span class="string">&quot;2022-01-01&quot;</span>, format);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">System.err.println(a.isBefore(b));</span><br><span class="line">System.err.println(a.isAfter(b));</span><br><span class="line">System.err.println(a.isEqual(b));</span><br><span class="line"></span><br><span class="line"><span class="comment">//结果打印</span></span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="comment">//false</span></span><br><span class="line"><span class="comment">//true</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>How to use Stream</title>
+      <link href="/2023/08/11/use-stream-way/"/>
+      <url>/2023/08/11/use-stream-way/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h1><h2 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DateTimeFormatter</span> <span class="variable">dateTimeFormatter</span> <span class="operator">=</span> DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd&quot;</span>);</span><br><span class="line"><span class="type">LocalDate</span> <span class="variable">beginLocalDate</span> <span class="operator">=</span> LocalDate.parse(<span class="string">&quot;2022-01-01&quot;</span>, dateTimeFormatter);</span><br><span class="line"><span class="type">LocalDate</span> <span class="variable">endLocalDate</span> <span class="operator">=</span> LocalDate.parse(<span class="string">&quot;2023-12-31&quot;</span>, dateTimeFormatter);</span><br><span class="line"></span><br><span class="line">List&lt;YearMonthDayDTO&gt; yearMonthDayDTOList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (beginLocalDate.isBefore(endLocalDate))&#123;</span><br><span class="line">    beginLocalDate.format(DateTimeFormatter.ofPattern(<span class="string">&quot;yyyy-MM-dd&quot;</span>));</span><br><span class="line"></span><br><span class="line">    <span class="type">YearMonthDayDTO</span> <span class="variable">yearMonthDayDTO</span> <span class="operator">=</span> YearMonthDayDTO</span><br><span class="line">        .builder()</span><br><span class="line">        .year(String.valueOf(beginLocalDate.getYear()))</span><br><span class="line">        .month(String.valueOf(beginLocalDate.getMonth().getValue()))</span><br><span class="line">        .day(String.valueOf(beginLocalDate.getDayOfMonth()))</span><br><span class="line">        .build();</span><br><span class="line">    yearMonthDayDTOList.add(yearMonthDayDTO);</span><br><span class="line"></span><br><span class="line">    beginLocalDate = beginLocalDate.plusDays(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Set&lt;String&gt;&gt; monthDayMap = yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.collectingAndThen(Collectors.toSet(), list -&gt; list.stream().filter(obj -&gt; Integer.valueOf(obj.getDay()) &lt; <span class="number">2</span>).map(YearMonthDayDTO::getDay).collect(Collectors.toSet()))));</span><br><span class="line"></span><br><span class="line">        yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.mapping(Function.identity(), Collectors.toSet())));</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="Collectors-collectingAndThen"><a href="#Collectors-collectingAndThen" class="headerlink" title="Collectors.collectingAndThen"></a>Collectors.collectingAndThen</h3><p>​解释：对已经收集起来的数据进行处理</p><h3 id="Collectors-mapping"><a href="#Collectors-mapping" class="headerlink" title="Collectors.mapping"></a>Collectors.mapping</h3><p>​解释：对正在收集的数据进行处理</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>阅读源码</title>
       <link href="/2023/08/07/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81/"/>
       <url>/2023/08/07/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81/</url>
@@ -32,7 +70,7 @@
       
       <categories>
           
-          <category> rpc-learn </category>
+          <category> java </category>
           
       </categories>
       
