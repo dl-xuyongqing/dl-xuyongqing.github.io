@@ -16,20 +16,21 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   
-    <meta name="description" content="@DubboComponentScan @Import(DubboComponentScanRegistrar.class) DubboComponentScanRegistrar implements ImportBeanDefinitionRegistrar Overrid public void registerBeanDefinitions(AnnotationMetadata impo">
+    <meta name="description" content="1.自定义扫描注解 12345678910@Target(&amp;#123;ElementType.TYPE, ElementType.METHOD&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Import(CustomScannerRegistrar.class)@Documentedpublic @interface RpcScan &amp;#123;    Str">
 <meta property="og:type" content="article">
-<meta property="og:title" content="阅读源码">
-<meta property="og:url" content="http://example.com/2023/08/07/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81/index.html">
+<meta property="og:title" content="learn-rpc">
+<meta property="og:url" content="http://example.com/2023/08/07/learn-rpc/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="@DubboComponentScan @Import(DubboComponentScanRegistrar.class) DubboComponentScanRegistrar implements ImportBeanDefinitionRegistrar Overrid public void registerBeanDefinitions(AnnotationMetadata impo">
+<meta property="og:description" content="1.自定义扫描注解 12345678910@Target(&amp;#123;ElementType.TYPE, ElementType.METHOD&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Import(CustomScannerRegistrar.class)@Documentedpublic @interface RpcScan &amp;#123;    Str">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-07T08:41:34.000Z">
-<meta property="article:modified_time" content="2023-08-07T09:20:22.498Z">
+<meta property="article:published_time" content="2023-08-07T05:29:21.000Z">
+<meta property="article:modified_time" content="2023-08-11T06:04:13.312Z">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>阅读源码 - </title>
+  <title>learn-rpc - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="阅读源码"></span>
+            <span id="subtitle" data-typed-text="learn-rpc"></span>
           
         </div>
 
@@ -206,7 +207,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-07 16:41" pubdate>
+        <time datetime="2023-08-07 13:29" pubdate>
           2023年8月7日 下午
         </time>
       </span>
@@ -218,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          376 字
+          216 字
         
       </span>
     
@@ -229,7 +230,7 @@
         
         
         
-          4 分钟
+          2 分钟
         
       </span>
     
@@ -266,29 +267,14 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">阅读源码</h1>
+            <h1 id="seo-header">learn-rpc</h1>
             
             
               <div class="markdown-body">
                 
-                <ol>
-<li>@DubboComponentScan<ol>
-<li>@Import(DubboComponentScanRegistrar.class)<ol>
-<li>DubboComponentScanRegistrar implements ImportBeanDefinitionRegistrar<ol>
-<li>Overrid public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry);<ol>
-<li>AnnotationAttributes attributes &#x3D; AnnotationAttributes.fromMap( metadata.getAnnotationAttributes( <strong>DubboComponentScan</strong>.class.getName()));</li>
-<li></li>
-</ol>
-</li>
-<li></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-</li>
-<li></li>
-</ol>
+                <p>1.自定义扫描注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Target(&#123;ElementType.TYPE, ElementType.METHOD&#125;)</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-meta">@Import(CustomScannerRegistrar.class)</span><br><span class="hljs-meta">@Documented</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> RpcScan &#123;<br><br>    String[] basePackage();<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -307,7 +293,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%BA%90%E7%A0%81/" class="category-chain-item">源码</a>
+  <a href="/categories/java/" class="category-chain-item">java</a>
   
   
 
@@ -319,6 +305,13 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/java/" class="print-no-link">#java</a>
+      
+    </div>
+  
 </div>
 
 
@@ -327,8 +320,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>阅读源码</div>
-      <div>http://example.com/2023/08/07/阅读源码/</div>
+      <div>learn-rpc</div>
+      <div>http://example.com/2023/08/07/learn-rpc/</div>
     </div>
     <div class="license-meta">
       
@@ -367,9 +360,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/11/use-stream-way/" title="How to use Stream">
+                      <a href="/2023/08/11/learn-stream/" title="learn-stream">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">How to use Stream</span>
+                        <span class="hidden-mobile">learn-stream</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -377,8 +370,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/07/rpc-learn/" title="rpc-learn">
-                        <span class="hidden-mobile">rpc-learn</span>
+                      <a href="/2023/08/01/learn-xxl-job/" title="learn-xxl-job">
+                        <span class="hidden-mobile">learn-xxl-job</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

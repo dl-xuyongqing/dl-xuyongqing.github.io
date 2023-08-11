@@ -16,21 +16,21 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1.自定义扫描注解 12345678910@Target(&amp;#123;ElementType.TYPE, ElementType.METHOD&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Import(CustomScannerRegistrar.class)@Documentedpublic @interface RpcScan &amp;#123;    Str">
+    <meta name="description" content="Stream初始12345678910111213141516171819DateTimeFormatter dateTimeFormatter &#x3D; DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;);LocalDate beginLocalDate &#x3D; LocalDate.parse(&quot;2022-01-01&quot;, dateTi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="rpc-learn">
-<meta property="og:url" content="http://example.com/2023/08/07/rpc-learn/index.html">
+<meta property="og:title" content="learn-stream">
+<meta property="og:url" content="http://example.com/2023/08/11/learn-stream/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="1.自定义扫描注解 12345678910@Target(&amp;#123;ElementType.TYPE, ElementType.METHOD&amp;#125;)@Retention(RetentionPolicy.RUNTIME)@Import(CustomScannerRegistrar.class)@Documentedpublic @interface RpcScan &amp;#123;    Str">
+<meta property="og:description" content="Stream初始12345678910111213141516171819DateTimeFormatter dateTimeFormatter &#x3D; DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;);LocalDate beginLocalDate &#x3D; LocalDate.parse(&quot;2022-01-01&quot;, dateTi">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-07T05:29:21.000Z">
-<meta property="article:modified_time" content="2023-08-11T01:56:11.341Z">
-<meta property="article:tag" content="Learn">
+<meta property="article:published_time" content="2023-08-11T01:55:43.000Z">
+<meta property="article:modified_time" content="2023-08-11T06:04:05.850Z">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>rpc-learn - </title>
+  <title>learn-stream - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="rpc-learn"></span>
+            <span id="subtitle" data-typed-text="learn-stream"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-07 13:29" pubdate>
-          2023年8月7日 下午
+        <time datetime="2023-08-11 09:55" pubdate>
+          2023年8月11日 上午
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          216 字
+          1.3k 字
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          2 分钟
+          12 分钟
         
       </span>
     
@@ -267,14 +267,19 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">rpc-learn</h1>
+            <h1 id="seo-header">learn-stream</h1>
             
             
               <div class="markdown-body">
                 
-                <p>1.自定义扫描注解</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(&#123;ElementType.TYPE, ElementType.METHOD&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Import(CustomScannerRegistrar.class)</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> RpcScan &#123;</span><br><span class="line"></span><br><span class="line">    String[] basePackage();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+                <h1 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h1><h2 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">dateTimeFormatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br><span class="hljs-type">LocalDate</span> <span class="hljs-variable">beginLocalDate</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2022-01-01&quot;</span>, dateTimeFormatter);<br><span class="hljs-type">LocalDate</span> <span class="hljs-variable">endLocalDate</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2023-12-31&quot;</span>, dateTimeFormatter);<br><br>List&lt;YearMonthDayDTO&gt; yearMonthDayDTOList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><br><span class="hljs-keyword">while</span> (beginLocalDate.isBefore(endLocalDate))&#123;<br>    beginLocalDate.format(DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>));<br><br>    <span class="hljs-type">YearMonthDayDTO</span> <span class="hljs-variable">yearMonthDayDTO</span> <span class="hljs-operator">=</span> YearMonthDayDTO<br>        .builder()<br>        .year(String.valueOf(beginLocalDate.getYear()))<br>        .month(String.valueOf(beginLocalDate.getMonth().getValue()))<br>        .day(String.valueOf(beginLocalDate.getDayOfMonth()))<br>        .build();<br>    yearMonthDayDTOList.add(yearMonthDayDTO);<br><br>    beginLocalDate = beginLocalDate.plusDays(<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
+
+
+<h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Map&lt;String, Set&lt;String&gt;&gt; monthDayMap = yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.collectingAndThen(Collectors.toSet(), list -&gt; list.stream().filter(obj -&gt; Integer.valueOf(obj.getDay()) &lt; <span class="hljs-number">2</span>).map(YearMonthDayDTO::getDay).collect(Collectors.toSet()))));<br><br>        yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.mapping(Function.identity(), Collectors.toSet())));<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="Collectors-collectingAndThen"><a href="#Collectors-collectingAndThen" class="headerlink" title="Collectors.collectingAndThen"></a>Collectors.collectingAndThen</h3><p>​	解释：对已经收集起来的数据进行处理</p>
+<h3 id="Collectors-mapping"><a href="#Collectors-mapping" class="headerlink" title="Collectors.mapping"></a>Collectors.mapping</h3><p>​	解释：对正在收集的数据进行处理</p>
 
                 
               </div>
@@ -308,7 +313,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Learn/" class="print-no-link">#Learn</a>
+        <a href="/tags/java/" class="print-no-link">#java</a>
       
     </div>
   
@@ -320,15 +325,15 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>rpc-learn</div>
-      <div>http://example.com/2023/08/07/rpc-learn/</div>
+      <div>learn-stream</div>
+      <div>http://example.com/2023/08/11/learn-stream/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月7日</div>
+          <div>2023年8月11日</div>
         </div>
       
       
@@ -360,9 +365,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/07/%E9%98%85%E8%AF%BB%E6%BA%90%E7%A0%81/" title="阅读源码">
+                      <a href="/2023/08/11/learn-localDate/" title="learn-localDate">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">阅读源码</span>
+                        <span class="hidden-mobile">learn-localDate</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -370,8 +375,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/07/Learn/" title="Learn">
-                        <span class="hidden-mobile">Learn</span>
+                      <a href="/2023/08/07/learn-rpc/" title="learn-rpc">
+                        <span class="hidden-mobile">learn-rpc</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
