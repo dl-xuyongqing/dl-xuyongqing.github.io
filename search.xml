@@ -4,6 +4,71 @@
   
     
     <entry>
+      <title>spring mechanism</title>
+      <link href="/2023/08/21/spring-mechanism/"/>
+      <url>/2023/08/21/spring-mechanism/</url>
+      
+        <content type="html"><![CDATA[<h2 id="ApplicationEventPublisher"><a href="#ApplicationEventPublisher" class="headerlink" title="ApplicationEventPublisher"></a>ApplicationEventPublisher</h2><h3 id="前景"><a href="#前景" class="headerlink" title="前景"></a>前景</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Getter</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MessageSendEvent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">ApplicationEvent</span> &#123;<br>    <span class="hljs-keyword">private</span> Long msgId;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MessageSendEvent</span><span class="hljs-params">(Object source, Long msgId)</span> &#123;<br>        <span class="hljs-built_in">super</span>(source);<br>        <span class="hljs-built_in">this</span>.msgId = msgId;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> ApplicationEventPublisher applicationEventPublisher;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">method</span><span class="hljs-params">()</span>&#123;<br>    applicationEventPublisher.publishEvent(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MessageSendEvent</span>(<span class="hljs-built_in">this</span>, insert.getId()));<br>&#125;<br><br></code></pre></td></tr></table></figure><h3 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@TransactionalEventListener(classes = MessageSendEvent.class, fallbackExecution = true)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">messageRoute</span><span class="hljs-params">(MessageSendEvent event)</span> &#123;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> spring机制 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> spring </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2023/08/14/%E8%AF%BE%E9%A2%98/rpc-source/"/>
+      <url>/2023/08/14/%E8%AF%BE%E9%A2%98/rpc-source/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>learn-nginx</title>
+      <link href="/2023/08/14/learn-nginx/"/>
+      <url>/2023/08/14/learn-nginx/</url>
+      
+        <content type="html"><![CDATA[<h1 id="本地接口通过外网访问"><a href="#本地接口通过外网访问" class="headerlink" title="本地接口通过外网访问"></a>本地接口通过外网访问</h1><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol><li>代理软件：可以代理本地接口能通过外网访问</li><li>nginx</li><li>本地服务</li></ol><h2 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a>详细说明</h2><h3 id="本地接口通过外网访问-1"><a href="#本地接口通过外网访问-1" class="headerlink" title="本地接口通过外网访问"></a>本地接口通过外网访问</h3><ol><li>natapp 80 -&gt; 8080</li><li>nginx 8080 -&gt; 4000</li><li>本地启动 4000端口</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">server &#123;<br>    listen 8080;<br>    server_name your-domain.com;<br>    location / &#123;<br>        proxy_pass http://localhost:4000;<br>        proxy_set_header Host <span class="hljs-variable">$host</span>;<br>        proxy_set_header X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="如何开启集群"><a href="#如何开启集群" class="headerlink" title="如何开启集群"></a>如何开启集群</h3><p>在下面的配置中，<code>upstream backend</code> 定义了一个名为 <code>backend</code> 的后端服务器集群，其中包含了多个服务器的地址和端口。你可以根据实际情况添加更多的后端服务器。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">http &#123;<br>    upstream backend &#123;<br>        server 192.168.0.178:8081;<br>        server 192.168.0.179:8081;<br>        <span class="hljs-comment"># 添加更多的后端服务器地址和端口</span><br>    &#125;<br>    server &#123;<br>        listen 80;<br>        server_name your-domain.com;<br>        location / &#123;<br>            proxy_pass http://backend;<br>            proxy_set_header Host <span class="hljs-variable">$host</span>;<br>            proxy_set_header X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> nginx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>learn-localDate</title>
       <link href="/2023/08/11/learn-localDate/"/>
       <url>/2023/08/11/learn-localDate/</url>
