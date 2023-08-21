@@ -13,7 +13,7 @@
     
     <categories>
       
-      <category>spring机制</category>
+      <category>spring</category>
       
     </categories>
     
@@ -48,6 +48,31 @@
     <tags>
       
       <tag>nginx</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>learn-doris</title>
+    <link href="/2023/08/14/%E8%AF%BE%E9%A2%98/learn-doris/"/>
+    <url>/2023/08/14/%E8%AF%BE%E9%A2%98/learn-doris/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Doris"><a href="#Doris" class="headerlink" title="Doris"></a>Doris</h1><h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a><a href="https://doris.apache.org/zh-CN/docs/dev/get-starting/quick-start/">Getting Started</a></h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>SQL</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>doris</tag>
       
     </tags>
     
