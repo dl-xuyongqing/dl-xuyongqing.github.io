@@ -31,9 +31,9 @@
     
     
     <entry>
-      <title>learn-nginx</title>
-      <link href="/2023/08/14/learn-nginx/"/>
-      <url>/2023/08/14/learn-nginx/</url>
+      <title>Nginx</title>
+      <link href="/2023/08/14/Nginx/"/>
+      <url>/2023/08/14/Nginx/</url>
       
         <content type="html"><![CDATA[<h1 id="本地接口通过外网访问"><a href="#本地接口通过外网访问" class="headerlink" title="本地接口通过外网访问"></a>本地接口通过外网访问</h1><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol><li>代理软件：可以代理本地接口能通过外网访问</li><li>nginx</li><li>本地服务</li></ol><h2 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a>详细说明</h2><h3 id="本地接口通过外网访问-1"><a href="#本地接口通过外网访问-1" class="headerlink" title="本地接口通过外网访问"></a>本地接口通过外网访问</h3><ol><li>natapp 80 -&gt; 8080</li><li>nginx 8080 -&gt; 4000</li><li>本地启动 4000端口</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">server &#123;<br>    listen 8080;<br>    server_name your-domain.com;<br>    location / &#123;<br>        proxy_pass http://localhost:4000;<br>        proxy_set_header Host <span class="hljs-variable">$host</span>;<br>        proxy_set_header X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="如何开启集群"><a href="#如何开启集群" class="headerlink" title="如何开启集群"></a>如何开启集群</h3><p>在下面的配置中，<code>upstream backend</code> 定义了一个名为 <code>backend</code> 的后端服务器集群，其中包含了多个服务器的地址和端口。你可以根据实际情况添加更多的后端服务器。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">http &#123;<br>    upstream backend &#123;<br>        server 192.168.0.178:8081;<br>        server 192.168.0.179:8081;<br>        <span class="hljs-comment"># 添加更多的后端服务器地址和端口</span><br>    &#125;<br>    server &#123;<br>        listen 80;<br>        server_name your-domain.com;<br>        location / &#123;<br>            proxy_pass http://backend;<br>            proxy_set_header Host <span class="hljs-variable">$host</span>;<br>            proxy_set_header X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
       
@@ -56,9 +56,9 @@
     
     
     <entry>
-      <title>learn-doris</title>
-      <link href="/2023/08/14/%E8%AF%BE%E9%A2%98/learn-doris/"/>
-      <url>/2023/08/14/%E8%AF%BE%E9%A2%98/learn-doris/</url>
+      <title>Doris</title>
+      <link href="/2023/08/14/%E8%AF%BE%E9%A2%98/Doris/"/>
+      <url>/2023/08/14/%E8%AF%BE%E9%A2%98/Doris/</url>
       
         <content type="html"><![CDATA[<h1 id="Doris"><a href="#Doris" class="headerlink" title="Doris"></a>Doris</h1><h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a><a href="https://doris.apache.org/zh-CN/docs/dev/get-starting/quick-start/">Getting Started</a></h2>]]></content>
       
@@ -81,9 +81,9 @@
     
     
     <entry>
-      <title>learn-localDate</title>
-      <link href="/2023/08/11/learn-localDate/"/>
-      <url>/2023/08/11/learn-localDate/</url>
+      <title>LocalDate</title>
+      <link href="/2023/08/11/LocalDate/"/>
+      <url>/2023/08/11/LocalDate/</url>
       
         <content type="html"><![CDATA[<h1 id="LocalDateTime"><a href="#LocalDateTime" class="headerlink" title="LocalDateTime"></a>LocalDateTime</h1><h2 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">format</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br><span class="hljs-type">LocalDate</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2022-01-01&quot;</span>,format);<br><span class="hljs-type">LocalDate</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2022-01-01&quot;</span>, format);<br><br><br>System.err.println(a.isBefore(b));<br>System.err.println(a.isAfter(b));<br>System.err.println(a.isEqual(b));<br><br><span class="hljs-comment">//结果打印</span><br><span class="hljs-comment">//false</span><br><span class="hljs-comment">//false</span><br><span class="hljs-comment">//true</span><br></code></pre></td></tr></table></figure>]]></content>
       
@@ -97,7 +97,7 @@
       
         <tags>
             
-            <tag> java </tag>
+            <tag> LocalDate </tag>
             
         </tags>
       
@@ -106,9 +106,9 @@
     
     
     <entry>
-      <title>learn-stream</title>
-      <link href="/2023/08/11/learn-stream/"/>
-      <url>/2023/08/11/learn-stream/</url>
+      <title>Stream</title>
+      <link href="/2023/08/11/Stream/"/>
+      <url>/2023/08/11/Stream/</url>
       
         <content type="html"><![CDATA[<h1 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h1><h2 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">dateTimeFormatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br><span class="hljs-type">LocalDate</span> <span class="hljs-variable">beginLocalDate</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2022-01-01&quot;</span>, dateTimeFormatter);<br><span class="hljs-type">LocalDate</span> <span class="hljs-variable">endLocalDate</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2023-12-31&quot;</span>, dateTimeFormatter);<br><br>List&lt;YearMonthDayDTO&gt; yearMonthDayDTOList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><br><span class="hljs-keyword">while</span> (beginLocalDate.isBefore(endLocalDate))&#123;<br>    beginLocalDate.format(DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>));<br><br>    <span class="hljs-type">YearMonthDayDTO</span> <span class="hljs-variable">yearMonthDayDTO</span> <span class="hljs-operator">=</span> YearMonthDayDTO<br>        .builder()<br>        .year(String.valueOf(beginLocalDate.getYear()))<br>        .month(String.valueOf(beginLocalDate.getMonth().getValue()))<br>        .day(String.valueOf(beginLocalDate.getDayOfMonth()))<br>        .build();<br>    yearMonthDayDTOList.add(yearMonthDayDTO);<br><br>    beginLocalDate = beginLocalDate.plusDays(<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Map&lt;String, Set&lt;String&gt;&gt; monthDayMap = yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.collectingAndThen(Collectors.toSet(), list -&gt; list.stream().filter(obj -&gt; Integer.valueOf(obj.getDay()) &lt; <span class="hljs-number">2</span>).map(YearMonthDayDTO::getDay).collect(Collectors.toSet()))));<br><br>        yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.mapping(Function.identity(), Collectors.toSet())));<br><br></code></pre></td></tr></table></figure><h3 id="Collectors-collectingAndThen"><a href="#Collectors-collectingAndThen" class="headerlink" title="Collectors.collectingAndThen"></a>Collectors.collectingAndThen</h3><p>​解释：对已经收集起来的数据进行处理</p><h3 id="Collectors-mapping"><a href="#Collectors-mapping" class="headerlink" title="Collectors.mapping"></a>Collectors.mapping</h3><p>​解释：对正在收集的数据进行处理</p>]]></content>
       
@@ -122,7 +122,7 @@
       
         <tags>
             
-            <tag> java </tag>
+            <tag> Stream </tag>
             
         </tags>
       
@@ -156,9 +156,9 @@
     
     
     <entry>
-      <title>learn-xxl-job</title>
-      <link href="/2023/08/01/learn-xxl-job/"/>
-      <url>/2023/08/01/learn-xxl-job/</url>
+      <title>xxl-job</title>
+      <link href="/2023/08/01/xxl-job/"/>
+      <url>/2023/08/01/xxl-job/</url>
       
         <content type="html"><![CDATA[<blockquote><p><a href="https://github.com/xuxueli/xxl-job.git">XXL-JOB</a></p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java">Map&lt;Method, XxlJob&gt; annotatedMethods = <span class="hljs-literal">null</span>;   <span class="hljs-comment">// referred to ：org.springframework.context.event.EventListenerMethodProcessor.processBean</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                annotatedMethods = MethodIntrospector.selectMethods(bean.getClass(),<br>                        <span class="hljs-keyword">new</span> <span class="hljs-title class_">MethodIntrospector</span>.MetadataLookup&lt;XxlJob&gt;() &#123;<br>                            <span class="hljs-meta">@Override</span><br>                            <span class="hljs-keyword">public</span> XxlJob <span class="hljs-title function_">inspect</span><span class="hljs-params">(Method method)</span> &#123;<br>                                <span class="hljs-keyword">return</span> AnnotatedElementUtils.findMergedAnnotation(method, XxlJob.class);<br>                            &#125;<br>                        &#125;);<br>            &#125; <span class="hljs-keyword">catch</span> (Throwable ex) &#123;<br>                logger.error(<span class="hljs-string">&quot;xxl-job method-jobhandler resolve error for bean[&quot;</span> + beanDefinitionName + <span class="hljs-string">&quot;].&quot;</span>, ex);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (annotatedMethods==<span class="hljs-literal">null</span> || annotatedMethods.isEmpty()) &#123;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br><br>            <span class="hljs-comment">// generate and regist method job handler</span><br>            <span class="hljs-keyword">for</span> (Map.Entry&lt;Method, XxlJob&gt; methodXxlJobEntry : annotatedMethods.entrySet()) &#123;<br>                <span class="hljs-type">Method</span> <span class="hljs-variable">executeMethod</span> <span class="hljs-operator">=</span> methodXxlJobEntry.getKey();<br>                <span class="hljs-type">XxlJob</span> <span class="hljs-variable">xxlJob</span> <span class="hljs-operator">=</span> methodXxlJobEntry.getValue();<br>                <span class="hljs-comment">// regist</span><br>                registJobHandler(xxlJob, bean, executeMethod);<br>            &#125;<br></code></pre></td></tr></table></figure>]]></content>
       
@@ -172,7 +172,7 @@
       
         <tags>
             
-            <tag> 定时任务 </tag>
+            <tag> xxl-job </tag>
             
         </tags>
       
