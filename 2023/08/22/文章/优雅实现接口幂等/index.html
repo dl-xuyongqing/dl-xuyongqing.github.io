@@ -16,22 +16,21 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   
-    <meta name="description" content="代码规范使用@Builder 必须同时使用 @NoArgsConstructor，@AllArgsConstructor 类命.buider() 之后换行， .build(); 必须在最后一行  ApplicationEventPublisher前景123456789@Getterpublic class MessageSendEvent extends ApplicationEvent &amp;#12">
+    <meta name="description" content="什么是幂等性？简单来说，就是对一个接口执行重复的多次请求，与一次请求所产生的结果是相同的，听起来非常容易理解，但要真正的在系统中要始终保持这个目标，是需要很严谨的设计的，在实际的生产环境下，我们应该保证任何接口都是幂等的，而如何正确的实现幂等，就是本文要讨论的内容。 哪些请求天生就是幂等的？首先，我们要知道查询类的请求一般都是天然幂等的，除此之外，删除请求在大多数情况下也是幂等的，但是ABA场景下">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring mechanism">
-<meta property="og:url" content="http://example.com/2023/08/21/spring-mechanism/index.html">
+<meta property="og:title" content="优雅实现接口幂等">
+<meta property="og:url" content="http://example.com/2023/08/22/%E6%96%87%E7%AB%A0/%E4%BC%98%E9%9B%85%E5%AE%9E%E7%8E%B0%E6%8E%A5%E5%8F%A3%E5%B9%82%E7%AD%89/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="代码规范使用@Builder 必须同时使用 @NoArgsConstructor，@AllArgsConstructor 类命.buider() 之后换行， .build(); 必须在最后一行  ApplicationEventPublisher前景123456789@Getterpublic class MessageSendEvent extends ApplicationEvent &amp;#12">
+<meta property="og:description" content="什么是幂等性？简单来说，就是对一个接口执行重复的多次请求，与一次请求所产生的结果是相同的，听起来非常容易理解，但要真正的在系统中要始终保持这个目标，是需要很严谨的设计的，在实际的生产环境下，我们应该保证任何接口都是幂等的，而如何正确的实现幂等，就是本文要讨论的内容。 哪些请求天生就是幂等的？首先，我们要知道查询类的请求一般都是天然幂等的，除此之外，删除请求在大多数情况下也是幂等的，但是ABA场景下">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-21T08:47:08.000Z">
-<meta property="article:modified_time" content="2023-08-21T09:16:11.428Z">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="spring">
+<meta property="article:published_time" content="2023-08-22T05:10:40.000Z">
+<meta property="article:modified_time" content="2023-08-22T09:44:15.202Z">
+<meta property="article:tag" content="幂等性">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>spring mechanism - </title>
+  <title>优雅实现接口幂等 - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="记录Spring机制处理业务"></span>
+            <span id="subtitle" data-typed-text="记录文章内容"></span>
           
         </div>
 
@@ -208,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-21 16:47" pubdate>
-          2023年8月21日 下午
+        <time datetime="2023-08-22 13:10" pubdate>
+          2023年8月22日 下午
         </time>
       </span>
     
@@ -220,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          836 字
+          958 字
         
       </span>
     
@@ -231,7 +230,7 @@
         
         
         
-          7 分钟
+          8 分钟
         
       </span>
     
@@ -268,21 +267,22 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">记录Spring机制处理业务</h1>
+            <h1 id="seo-header">记录文章内容</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h2><h3 id="使用-Builder"><a href="#使用-Builder" class="headerlink" title="使用@Builder"></a>使用@Builder</h3><ol>
-<li>必须同时使用 @NoArgsConstructor，@AllArgsConstructor</li>
-<li>类命.buider() 之后换行， .build(); 必须在最后一行</li>
-</ol>
-<h2 id="ApplicationEventPublisher"><a href="#ApplicationEventPublisher" class="headerlink" title="ApplicationEventPublisher"></a>ApplicationEventPublisher</h2><h3 id="前景"><a href="#前景" class="headerlink" title="前景"></a>前景</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Getter</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MessageSendEvent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">ApplicationEvent</span> &#123;<br>    <span class="hljs-keyword">private</span> Long msgId;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MessageSendEvent</span><span class="hljs-params">(Object source, Long msgId)</span> &#123;<br>        <span class="hljs-built_in">super</span>(source);<br>        <span class="hljs-built_in">this</span>.msgId = msgId;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> ApplicationEventPublisher applicationEventPublisher;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">method</span><span class="hljs-params">()</span>&#123;<br>    applicationEventPublisher.publishEvent(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MessageSendEvent</span>(<span class="hljs-built_in">this</span>, insert.getId()));<br>&#125;<br><br></code></pre></td></tr></table></figure>
-
-<h3 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@TransactionalEventListener(classes = MessageSendEvent.class, fallbackExecution = true)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">messageRoute</span><span class="hljs-params">(MessageSendEvent event)</span> &#123;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
-
-<h2 id="TransactionSynchronizationManager"><a href="#TransactionSynchronizationManager" class="headerlink" title="TransactionSynchronizationManager"></a>TransactionSynchronizationManager</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">boolean</span> <span class="hljs-variable">inTransaction</span> <span class="hljs-operator">=</span> TransactionSynchronizationManager.isActualTransactionActive();<br><span class="hljs-comment">//非事务状态，直接执行，不做任何保证。</span><br><span class="hljs-keyword">if</span> (!inTransaction) &#123;<br>    <span class="hljs-keyword">return</span> joinPoint.proceed();<br>&#125;<br></code></pre></td></tr></table></figure>
+                <h2 id="什么是幂等性？"><a href="#什么是幂等性？" class="headerlink" title="什么是幂等性？"></a>什么是幂等性？</h2><p>简单来说，就是对一个接口执行重复的多次请求，与一次请求所产生的结果是相同的，听起来非常容易理解，但要真正的在系统中要始终保持这个目标，是需要很严谨的设计的，在实际的生产环境下，我们应该保证任何接口都是幂等的，而如何正确的实现幂等，就是本文要讨论的内容。</p>
+<h2 id="哪些请求天生就是幂等的？"><a href="#哪些请求天生就是幂等的？" class="headerlink" title="哪些请求天生就是幂等的？"></a>哪些请求天生就是幂等的？</h2><p>首先，我们要知道查询类的请求一般都是天然幂等的，除此之外，删除请求在大多数情况下也是幂等的，但是ABA场景下除外。</p>
+<h4 id="举一个简单的例子"><a href="#举一个简单的例子" class="headerlink" title="举一个简单的例子"></a>举一个简单的例子</h4><p>比如，先请求了一次删除A的操作，但由于响应超时，又自动请求了一次删除A的操作，如果在两次请求之间，又插入了一次A，而实际上新插入的这一次A，是不应该被删除的，这就是ABA问题，不过，在大多数业务场景中，ABA问题都是可以忽略的。</p>
+<p>除了查询和删除之外，还有更新操作，同样的更新操作在大多数场景下也是天然幂等的，其例外是也会存在ABA的问题，更重要的是，比如执行update table set a &#x3D; a + 1 where v &#x3D; 1这样的更新就非幂等了。</p>
+<p>最后，就还剩插入了，插入大多数情况下都是非幂等的，除非是利用数据库唯一索引来保证数据不会重复产生。</p>
+<h2 id="为什么需要幂等"><a href="#为什么需要幂等" class="headerlink" title="为什么需要幂等"></a>为什么需要幂等</h2><h3 id="超时重试"><a href="#超时重试" class="headerlink" title="超时重试"></a>超时重试</h3><p>当发起一次RPC请求时，难免会因为网络不稳定而导致请求失败，一般遇到这样的问题我们希望能够重新请求一次，正常情况下没有问题，但有时请求实际上已经发出去了，只是在请求响应时网络异常或者超时，此时，请求方如果再重新发起一次请求，那被请求方就需要保证幂等了。</p>
+<h3 id="异步回调"><a href="#异步回调" class="headerlink" title="异步回调"></a>异步回调</h3><p>异步回调是提升系统接口吞吐量的一种常用方式，很明显，此类接口一定是需要保证幂等性的。</p>
+<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>现在常用的消息队列框架，比如：Kafka、RocketMQ、RabbitMQ在消息传递时都会采取At least once原则（也就是至少一次原则，在消息传递时，不允许丢消息，但是允许有重复的消息），既然消息队列不保证不会出现重复的消息，那消费者自然要保证处理逻辑的幂等性了。</p>
+<h2 id="实现幂等的关键因素"><a href="#实现幂等的关键因素" class="headerlink" title="实现幂等的关键因素"></a>实现幂等的关键因素</h2><h3 id="关键因素1"><a href="#关键因素1" class="headerlink" title="关键因素1"></a>关键因素1</h3><p>幂等唯一标识，可以叫它幂等号或者幂等令牌或者全局ID，总之就是客户端与服务端一次请求时的唯一标识，一般情况下由客户端来生成，也可以让第三方来统一分配。</p>
+<h3 id="关键因素2"><a href="#关键因素2" class="headerlink" title="关键因素2"></a>关键因素2</h3><p>有了唯一标识以后，服务端只需要确保这个唯一标识只被使用一次即可，一种常见的方式就是利用数据库的唯一索引。</p>
+<h2 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h2>
                 
               </div>
             
@@ -300,7 +300,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/spring/" class="category-chain-item">spring</a>
+  <a href="/categories/java/" class="category-chain-item">java</a>
   
   
 
@@ -315,9 +315,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/java/" class="print-no-link">#java</a>
-      
-        <a href="/tags/spring/" class="print-no-link">#spring</a>
+        <a href="/tags/%E5%B9%82%E7%AD%89%E6%80%A7/" class="print-no-link">#幂等性</a>
       
     </div>
   
@@ -329,15 +327,15 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>spring mechanism</div>
-      <div>http://example.com/2023/08/21/spring-mechanism/</div>
+      <div>优雅实现接口幂等</div>
+      <div>http://example.com/2023/08/22/文章/优雅实现接口幂等/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月21日</div>
+          <div>2023年8月22日</div>
         </div>
       
       
@@ -369,9 +367,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/22/%E6%96%87%E7%AB%A0/%E4%BC%98%E9%9B%85%E5%AE%9E%E7%8E%B0%E6%8E%A5%E5%8F%A3%E5%B9%82%E7%AD%89/" title="优雅实现接口幂等">
+                      <a href="/2023/08/23/spring-aop/" title="spring-aop">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">优雅实现接口幂等</span>
+                        <span class="hidden-mobile">spring-aop</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -379,8 +377,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/14/Nginx/" title="Nginx">
-                        <span class="hidden-mobile">Nginx</span>
+                      <a href="/2023/08/21/spring-mechanism/" title="spring mechanism">
+                        <span class="hidden-mobile">spring mechanism</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
