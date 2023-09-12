@@ -16,22 +16,24 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   
-    <meta name="description" content="注解方式自定义注解12345678910@Target(value &#x3D; ElementType.METHOD)@Retention(RetentionPolicy.RUNTIME)public @interface Idempotent &amp;#123;    String name() default &quot;&quot;;    String field() default &quot;&amp;qu">
+    <meta name="description" content="行转列前提条件表名 student 字段 name,age现有数据十条    name age    A 10   B 11   C 12   D 13   E 14   F 15   G 16   H 17   I 18   J 19   最终呈现效果    name age name1 age1    J 19 E 14   I 18 D 13   H 17 C 12   G 16 B 11">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring-aop">
-<meta property="og:url" content="http://example.com/2023/08/23/spring-aop/index.html">
+<meta property="og:title" content="mysql">
+<meta property="og:url" content="http://example.com/2023/09/11/mysql/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="注解方式自定义注解12345678910@Target(value &#x3D; ElementType.METHOD)@Retention(RetentionPolicy.RUNTIME)public @interface Idempotent &amp;#123;    String name() default &quot;&quot;;    String field() default &quot;&amp;qu">
+<meta property="og:description" content="行转列前提条件表名 student 字段 name,age现有数据十条    name age    A 10   B 11   C 12   D 13   E 14   F 15   G 16   H 17   I 18   J 19   最终呈现效果    name age name1 age1    J 19 E 14   I 18 D 13   H 17 C 12   G 16 B 11">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-23T01:19:47.000Z">
-<meta property="article:modified_time" content="2023-08-23T01:50:47.880Z">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="spring-aop">
+<meta property="og:image" content="http://example.com/images/mysql/image-20230912112554648.png">
+<meta property="og:image" content="http://example.com/images/mysql/image-20230912112604334.png">
+<meta property="article:published_time" content="2023-09-11T08:48:12.000Z">
+<meta property="article:modified_time" content="2023-09-12T03:27:47.347Z">
+<meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/mysql/image-20230912112554648.png">
   
   
   
-  <title>spring-aop - </title>
+  <title>mysql - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="记录spring-aop用法"></span>
+            <span id="subtitle" data-typed-text="记录mysql使用方式"></span>
           
         </div>
 
@@ -208,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-23 09:19" pubdate>
-          2023年8月23日 上午
+        <time datetime="2023-09-11 16:48" pubdate>
+          2023年9月11日 下午
         </time>
       </span>
     
@@ -220,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          554 字
         
       </span>
     
@@ -231,7 +233,7 @@
         
         
         
-          9 分钟
+          5 分钟
         
       </span>
     
@@ -268,18 +270,106 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">记录spring-aop用法</h1>
+            <h1 id="seo-header">记录mysql使用方式</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="注解方式"><a href="#注解方式" class="headerlink" title="注解方式"></a>注解方式</h1><h2 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Target(value = ElementType.METHOD)</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> Idempotent &#123;<br><br>    String <span class="hljs-title function_">name</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> <span class="hljs-string">&quot;&quot;</span>;<br><br>    String <span class="hljs-title function_">field</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> <span class="hljs-string">&quot;&quot;</span>;<br><br>    Class <span class="hljs-title function_">type</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>上述 @Target注解标记地方，@Retention注解的生命周期</p>
-<h2 id="环绕方法一"><a href="#环绕方法一" class="headerlink" title="环绕方法一"></a>环绕方法一</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Pointcut(&quot;@annotation(com.xuyongqing.annotations.Idempotent)&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">idempotent</span><span class="hljs-params">()</span>&#123;<br><br>&#125;<br><span class="hljs-meta">@Around(&quot;idempotent()&quot;)</span><br><span class="hljs-keyword">public</span> Object <span class="hljs-title function_">methodAround1</span><span class="hljs-params">(ProceedingJoinPoint joinPoint)</span> <span class="hljs-keyword">throws</span> Throwable&#123;<br>    <span class="hljs-type">MethodSignature</span> <span class="hljs-variable">signature</span> <span class="hljs-operator">=</span> (MethodSignature) joinPoint.getSignature();<br>    String[] paramNames = ((CodeSignature) joinPoint.getSignature()).getParameterNames();<br>    Object[] paramValues = joinPoint.getArgs();<br>    <span class="hljs-type">Method</span> <span class="hljs-variable">method</span> <span class="hljs-operator">=</span> signature.getMethod();<br>    <span class="hljs-type">Idempotent</span> <span class="hljs-variable">idempotent</span> <span class="hljs-operator">=</span> method.getAnnotation(Idempotent.class);<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;重复请求&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>上述可以从 signature中直接获取getParameterNames()，都是实现 CodeSignature中的方法，MethodSignature是CodeSignature中的方法的子类</p>
-<h2 id="环绕方法二"><a href="#环绕方法二" class="headerlink" title="环绕方法二"></a>环绕方法二</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Around(&quot;@annotation(idempotent))</span><span class="hljs-string">&quot;)</span><br><span class="hljs-string">public Object methodAround2(ProceedingJoinPoint joinPoint, Idempotent idempotent)&#123;</span><br><span class="hljs-string">	return null;</span><br><span class="hljs-string">&#125;</span><br></code></pre></td></tr></table></figure>
+                <h3 id="行转列"><a href="#行转列" class="headerlink" title="行转列"></a>行转列</h3><h4 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h4><p>表名 student 字段 name,age<br>现有数据十条</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>age</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>10</td>
+</tr>
+<tr>
+<td>B</td>
+<td>11</td>
+</tr>
+<tr>
+<td>C</td>
+<td>12</td>
+</tr>
+<tr>
+<td>D</td>
+<td>13</td>
+</tr>
+<tr>
+<td>E</td>
+<td>14</td>
+</tr>
+<tr>
+<td>F</td>
+<td>15</td>
+</tr>
+<tr>
+<td>G</td>
+<td>16</td>
+</tr>
+<tr>
+<td>H</td>
+<td>17</td>
+</tr>
+<tr>
+<td>I</td>
+<td>18</td>
+</tr>
+<tr>
+<td>J</td>
+<td>19</td>
+</tr>
+</tbody></table>
+<p>最终呈现效果</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>age</th>
+<th>name1</th>
+<th>age1</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>J</td>
+<td>19</td>
+<td>E</td>
+<td>14</td>
+</tr>
+<tr>
+<td>I</td>
+<td>18</td>
+<td>D</td>
+<td>13</td>
+</tr>
+<tr>
+<td>H</td>
+<td>17</td>
+<td>C</td>
+<td>12</td>
+</tr>
+<tr>
+<td>G</td>
+<td>16</td>
+<td>B</td>
+<td>11</td>
+</tr>
+<tr>
+<td>F</td>
+<td>15</td>
+<td>A</td>
+<td>10</td>
+</tr>
+</tbody></table>
+<p>代码展示</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>	<span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&lt;</span> <span class="hljs-number">6</span> <span class="hljs-keyword">THEN</span> c.`name` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `name`,<br>	<span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&lt;</span> <span class="hljs-number">6</span> <span class="hljs-keyword">THEN</span> c.`age` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `age`,<br>	<span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span> <span class="hljs-keyword">THEN</span> c.`name` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `name1`,<br>	<span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span> <span class="hljs-keyword">THEN</span> c.`age` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `age1` <br><span class="hljs-keyword">FROM</span><br>	(<br>	<span class="hljs-keyword">SELECT</span><br>		a.`name`,<br>		a.`age`,<br>		( <span class="hljs-variable">@rownum</span> :<span class="hljs-operator">=</span> <span class="hljs-variable">@rownum</span> <span class="hljs-operator">+</span> <span class="hljs-number">1</span> ) rw,<br>		( <span class="hljs-variable">@rownum</span> <span class="hljs-operator">%</span> <span class="hljs-number">5</span> ) rn <br>	<span class="hljs-keyword">FROM</span><br>		( <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> student a <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> age <span class="hljs-keyword">DESC</span> LIMIT <span class="hljs-number">10</span> ) a,<br>		( <span class="hljs-keyword">SELECT</span> <span class="hljs-variable">@rownum</span> :<span class="hljs-operator">=</span> <span class="hljs-number">0</span> ) b <br>	) c <br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span><br>	c.rn <br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span><br>	c.rw<br></code></pre></td></tr></table></figure>
 
-<p>需要注意@annotation(arg1)中的 arg1是方法中同名的参数</p>
+<p><img src="/images/mysql/image-20230912112554648.png" srcset="/img/loading.gif" lazyload alt="image-20230912112554648"></p>
+<p><img src="/images/mysql/image-20230912112604334.png" srcset="/img/loading.gif" lazyload alt="image-20230912112604334"></p>
 
                 
               </div>
@@ -298,7 +388,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/spring/" class="category-chain-item">spring</a>
+  <a href="/categories/java/" class="category-chain-item">java</a>
   
   
 
@@ -313,9 +403,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/java/" class="print-no-link">#java</a>
-      
-        <a href="/tags/spring-aop/" class="print-no-link">#spring-aop</a>
+        <a href="/tags/mysql/" class="print-no-link">#mysql</a>
       
     </div>
   
@@ -327,15 +415,15 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>spring-aop</div>
-      <div>http://example.com/2023/08/23/spring-aop/</div>
+      <div>mysql</div>
+      <div>http://example.com/2023/09/11/mysql/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月23日</div>
+          <div>2023年9月11日</div>
         </div>
       
       
@@ -367,18 +455,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/29/MallChat/MallChat/" title="MallChat">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MallChat</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/22/%E6%96%87%E7%AB%A0/%E4%BC%98%E9%9B%85%E5%AE%9E%E7%8E%B0%E6%8E%A5%E5%8F%A3%E5%B9%82%E7%AD%89/" title="优雅实现接口幂等">
-                        <span class="hidden-mobile">优雅实现接口幂等</span>
+                      <a href="/2023/08/29/MallChat/MallChat/" title="MallChat">
+                        <span class="hidden-mobile">MallChat</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

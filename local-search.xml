@@ -4,6 +4,56 @@
   
   
   <entry>
+    <title>mysql</title>
+    <link href="/2023/09/11/mysql/"/>
+    <url>/2023/09/11/mysql/</url>
+    
+    <content type="html"><![CDATA[<h3 id="行转列"><a href="#行转列" class="headerlink" title="行转列"></a>行转列</h3><h4 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h4><p>表名 student 字段 name,age<br>现有数据十条</p><table><thead><tr><th>name</th><th>age</th></tr></thead><tbody><tr><td>A</td><td>10</td></tr><tr><td>B</td><td>11</td></tr><tr><td>C</td><td>12</td></tr><tr><td>D</td><td>13</td></tr><tr><td>E</td><td>14</td></tr><tr><td>F</td><td>15</td></tr><tr><td>G</td><td>16</td></tr><tr><td>H</td><td>17</td></tr><tr><td>I</td><td>18</td></tr><tr><td>J</td><td>19</td></tr></tbody></table><p>最终呈现效果</p><table><thead><tr><th>name</th><th>age</th><th>name1</th><th>age1</th></tr></thead><tbody><tr><td>J</td><td>19</td><td>E</td><td>14</td></tr><tr><td>I</td><td>18</td><td>D</td><td>13</td></tr><tr><td>H</td><td>17</td><td>C</td><td>12</td></tr><tr><td>G</td><td>16</td><td>B</td><td>11</td></tr><tr><td>F</td><td>15</td><td>A</td><td>10</td></tr></tbody></table><p>代码展示</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&lt;</span> <span class="hljs-number">6</span> <span class="hljs-keyword">THEN</span> c.`name` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `name`,<br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&lt;</span> <span class="hljs-number">6</span> <span class="hljs-keyword">THEN</span> c.`age` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `age`,<br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span> <span class="hljs-keyword">THEN</span> c.`name` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `name1`,<br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span> <span class="hljs-keyword">THEN</span> c.`age` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `age1` <br><span class="hljs-keyword">FROM</span><br>(<br><span class="hljs-keyword">SELECT</span><br>a.`name`,<br>a.`age`,<br>( <span class="hljs-variable">@rownum</span> :<span class="hljs-operator">=</span> <span class="hljs-variable">@rownum</span> <span class="hljs-operator">+</span> <span class="hljs-number">1</span> ) rw,<br>( <span class="hljs-variable">@rownum</span> <span class="hljs-operator">%</span> <span class="hljs-number">5</span> ) rn <br><span class="hljs-keyword">FROM</span><br>( <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> student a <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> age <span class="hljs-keyword">DESC</span> LIMIT <span class="hljs-number">10</span> ) a,<br>( <span class="hljs-keyword">SELECT</span> <span class="hljs-variable">@rownum</span> :<span class="hljs-operator">=</span> <span class="hljs-number">0</span> ) b <br>) c <br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span><br>c.rn <br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span><br>c.rw<br></code></pre></td></tr></table></figure><p><img src="/images/mysql/image-20230912112554648.png" alt="image-20230912112554648"></p><p><img src="/images/mysql/image-20230912112604334.png" alt="image-20230912112604334"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>java</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>mysql</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>MallChat</title>
+    <link href="/2023/08/29/MallChat/MallChat/"/>
+    <url>/2023/08/29/MallChat/MallChat/</url>
+    
+    <content type="html"><![CDATA[<h1 id="MallChat"><a href="#MallChat" class="headerlink" title="MallChat"></a><a href="https://github.com/zongzibinbin/MallChat">MallChat</a></h1><h2 id="禁止"><a href="#禁止" class="headerlink" title="禁止"></a>禁止</h2><ol><li>禁止在代码中出现 return fail info</li><li>禁止在代码中出现魔法数值</li></ol><h2 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h2><p>具体代码</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@PostMapping(&quot;/msg&quot;)</span><br><span class="hljs-meta">@ApiOperation(&quot;发送消息&quot;)</span><br><span class="hljs-meta">@FrequencyControl(time = 5, count = 3, target = FrequencyControl.Target.UID)</span><br><span class="hljs-meta">@FrequencyControl(time = 30, count = 5, target = FrequencyControl.Target.UID)</span><br><span class="hljs-meta">@FrequencyControl(time = 60, count = 10, target = FrequencyControl.Target.UID)</span><br><span class="hljs-keyword">public</span> ApiResult&lt;ChatMessageResp&gt; <span class="hljs-title function_">sendMsg</span><span class="hljs-params">(<span class="hljs-meta">@Valid</span> <span class="hljs-meta">@RequestBody</span> ChatMessageReq request)</span> &#123;<span class="hljs-comment">//todo 发送给单聊</span><br><span class="hljs-type">Long</span> <span class="hljs-variable">msgId</span> <span class="hljs-operator">=</span> chatService.sendMsg(request, RequestHolder.get().getUid());<br><span class="hljs-comment">//返回完整消息格式，方便前端展示</span><br><span class="hljs-keyword">return</span> ApiResult.success(chatService.getMsgResp(msgId, RequestHolder.get().getUid()));<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h3><ol><li><a href="#%E9%A2%91%E6%8E%A7">频控</a></li><li>在登录过程中将用户信息存放打ThreadLocal中后，通过ReqyestHolder.get()方法获取<ol><li>实现方式 继承 HandlerInterceptor 重写 preHandle() 和 afterCompletion()方法</li><li>实现 WebMvcConfiguration 重写 addInterceptors 将 step1的类 加入到 InterceptorRegistry</li></ol></li></ol><h4 id="发送消息具体处理"><a href="#发送消息具体处理" class="headerlink" title="发送消息具体处理"></a>发送消息具体处理</h4><p>具体代码</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 发送消息</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Override</span><br><span class="hljs-meta">@Transactional</span><br><span class="hljs-keyword">public</span> Long <span class="hljs-title function_">sendMsg</span><span class="hljs-params">(ChatMessageReq request, Long uid)</span> &#123;<br>    check(request, uid);<br>    <span class="hljs-type">AbstractMsgHandler</span> <span class="hljs-variable">msgHandler</span> <span class="hljs-operator">=</span> MsgHandlerFactory.getStrategyNoNull(request.getMsgType());<span class="hljs-comment">//todo 这里先不扩展，后续再改</span><br>    msgHandler.checkMsg(request, uid);<br>    <span class="hljs-comment">//同步获取消息的跳转链接标题</span><br>    <span class="hljs-type">Message</span> <span class="hljs-variable">insert</span> <span class="hljs-operator">=</span> MessageAdapter.buildMsgSave(request, uid);<br>    messageDao.save(insert);<br>    msgHandler.saveMsg(insert, request);<br>    <span class="hljs-comment">//发布消息发送事件</span><br>    applicationEventPublisher.publishEvent(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MessageSendEvent</span>(<span class="hljs-built_in">this</span>, insert.getId()));<br>    <span class="hljs-keyword">return</span> insert.getId();<br>&#125;<br></code></pre></td></tr></table></figure><p>代码解释</p><ol><li><p>MsgHandlerFactory.getStrategyNoNull(request.getMsgType())</p><ol><li>具体实现方法是通过 具体的消息利用spring注入实例化的方式，将</li></ol></li><li><p>发布消息发送事件</p><ol><li><p>利用spring 事件发布</p></li><li><p>MessageSendEvent 需要继承 ApplicationEvent</p></li><li><p>对应方法需要这么使用 </p><ol><li><pre><code class="java">@TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT, classes = MessageSendEvent.class, fallbackExecution = true)    public void messageRoute(MessageSendEvent event) &#123;        Long msgId = event.getMsgId();        mqProducer.sendSecureMsg(MQConstant.SEND_MSG_TOPIC, new MsgSendMessageDTO(msgId), msgId);    &#125;</code></pre></li></ol></li></ol></li></ol><h2 id="频控"><a href="#频控" class="headerlink" title="频控"></a>频控</h2><p>解释：控制访问次数</p><h3 id="1-注解"><a href="#1-注解" class="headerlink" title="1.注解"></a>1.注解</h3>]]></content>
+    
+    
+    <categories>
+      
+      <category>java</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Github开源项目MallChat</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>spring-aop</title>
     <link href="/2023/08/23/spring-aop/"/>
     <url>/2023/08/23/spring-aop/</url>
