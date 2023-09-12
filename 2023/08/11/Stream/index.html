@@ -18,19 +18,19 @@
   
     <meta name="description" content="Stream初始12345678910111213141516171819DateTimeFormatter dateTimeFormatter &#x3D; DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;);LocalDate beginLocalDate &#x3D; LocalDate.parse(&quot;2022-01-01&quot;, dateTi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Stream">
-<meta property="og:url" content="http://example.com/2023/08/11/Stream/index.html">
+<meta property="og:title" content="stream">
+<meta property="og:url" content="http://example.com/2023/08/11/stream/index.html">
 <meta property="og:site_name">
 <meta property="og:description" content="Stream初始12345678910111213141516171819DateTimeFormatter dateTimeFormatter &#x3D; DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;);LocalDate beginLocalDate &#x3D; LocalDate.parse(&quot;2022-01-01&quot;, dateTi">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-11T01:55:43.000Z">
-<meta property="article:modified_time" content="2023-08-22T01:16:52.051Z">
+<meta property="article:modified_time" content="2023-09-12T05:04:12.551Z">
 <meta property="article:tag" content="Stream">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Stream - </title>
+  <title>stream - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -276,7 +276,7 @@
 
 
 
-<h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">Map&lt;String, Set&lt;String&gt;&gt; monthDayMap = yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.collectingAndThen(Collectors.toSet(), list -&gt; list.stream().filter(obj -&gt; Integer.valueOf(obj.getDay()) &lt; <span class="hljs-number">2</span>).map(YearMonthDayDTO::getDay).collect(Collectors.toSet()))));<br><br>        yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.mapping(Function.identity(), Collectors.toSet())));<br><br></code></pre></td></tr></table></figure>
+<h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">Map&lt;String, Set&lt;String&gt;&gt; monthDayMap = yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.collectingAndThen(Collectors.toSet(), list -&gt; list.stream().filter(obj -&gt; Integer.valueOf(obj.getDay()) &lt; <span class="hljs-number">2</span>).map(YearMonthDayDTO::getDay).collect(Collectors.toSet()))));<br>yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.mapping(Function.identity(), Collectors.toSet())));<br></code></pre></td></tr></table></figure>
 
 <h3 id="Collectors-collectingAndThen"><a href="#Collectors-collectingAndThen" class="headerlink" title="Collectors.collectingAndThen"></a>Collectors.collectingAndThen</h3><p>​	解释：对已经收集起来的数据进行处理</p>
 <h3 id="Collectors-mapping"><a href="#Collectors-mapping" class="headerlink" title="Collectors.mapping"></a>Collectors.mapping</h3><p>​	解释：对正在收集的数据进行处理</p>
@@ -325,8 +325,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Stream</div>
-      <div>http://example.com/2023/08/11/Stream/</div>
+      <div>stream</div>
+      <div>http://example.com/2023/08/11/stream/</div>
     </div>
     <div class="license-meta">
       
@@ -365,7 +365,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/11/LocalDate/" title="LocalDate">
+                      <a href="/2023/08/11/localDate/" title="LocalDate">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">LocalDate</span>
                         <span class="visible-mobile">上一篇</span>
@@ -375,8 +375,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/07/learn-rpc/" title="learn-rpc">
-                        <span class="hidden-mobile">learn-rpc</span>
+                      <a href="/2023/08/07/rpc/" title="rpc">
+                        <span class="hidden-mobile">rpc</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
