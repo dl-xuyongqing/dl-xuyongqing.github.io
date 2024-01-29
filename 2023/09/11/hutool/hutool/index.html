@@ -16,22 +16,21 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   
-    <meta name="description" content="代码规范使用@Builder 必须同时使用 @NoArgsConstructor，@AllArgsConstructor 类命.buider() 之后换行， .build(); 必须在最后一行  spring - eventApplicationEventPublisher前景123456789@Getterpublic class MessageSendEvent extends Applica">
+    <meta name="description" content="字符串判空12345public class Demo&amp;#123;    public boolean isNotBlank(Strig str)&amp;#123;        return StrUtil.isNotBlank(str);    &amp;#125;&amp;#125;  分片12345678910public class Demo&amp;#123;        private static final">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring">
-<meta property="og:url" content="http://example.com/2023/08/21/spring/index.html">
+<meta property="og:title" content="hutool">
+<meta property="og:url" content="http://example.com/2023/09/11/hutool/hutool/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="代码规范使用@Builder 必须同时使用 @NoArgsConstructor，@AllArgsConstructor 类命.buider() 之后换行， .build(); 必须在最后一行  spring - eventApplicationEventPublisher前景123456789@Getterpublic class MessageSendEvent extends Applica">
+<meta property="og:description" content="字符串判空12345public class Demo&amp;#123;    public boolean isNotBlank(Strig str)&amp;#123;        return StrUtil.isNotBlank(str);    &amp;#125;&amp;#125;  分片12345678910public class Demo&amp;#123;        private static final">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-21T08:47:08.000Z">
-<meta property="article:modified_time" content="2023-09-12T05:14:04.016Z">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="spring">
+<meta property="article:published_time" content="2023-09-11T08:48:12.000Z">
+<meta property="article:modified_time" content="2024-01-29T02:19:55.058Z">
+<meta property="article:tag" content="hutool">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>spring - </title>
+  <title>hutool - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="记录Spring机制处理业务"></span>
+            <span id="subtitle" data-typed-text="记录hutool工具类使用到的方式"></span>
           
         </div>
 
@@ -208,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-21 16:47" pubdate>
-          2023年8月21日 下午
+        <time datetime="2023-09-11 16:48" pubdate>
+          2023年9月11日 下午
         </time>
       </span>
     
@@ -220,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          366 字
         
       </span>
     
@@ -231,7 +230,7 @@
         
         
         
-          17 分钟
+          4 分钟
         
       </span>
     
@@ -268,32 +267,14 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">记录Spring机制处理业务</h1>
+            <h1 id="seo-header">记录hutool工具类使用到的方式</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h2><h3 id="使用-Builder"><a href="#使用-Builder" class="headerlink" title="使用@Builder"></a>使用@Builder</h3><ol>
-<li>必须同时使用 @NoArgsConstructor，@AllArgsConstructor</li>
-<li>类命.buider() 之后换行， .build(); 必须在最后一行</li>
-</ol>
-<h1 id="spring-event"><a href="#spring-event" class="headerlink" title="spring - event"></a>spring - event</h1><h2 id="ApplicationEventPublisher"><a href="#ApplicationEventPublisher" class="headerlink" title="ApplicationEventPublisher"></a>ApplicationEventPublisher</h2><h3 id="前景"><a href="#前景" class="headerlink" title="前景"></a>前景</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Getter</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MessageSendEvent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">ApplicationEvent</span> &#123;<br>    <span class="hljs-keyword">private</span> Long msgId;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MessageSendEvent</span><span class="hljs-params">(Object source, Long msgId)</span> &#123;<br>        <span class="hljs-built_in">super</span>(source);<br>        <span class="hljs-built_in">this</span>.msgId = msgId;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> ApplicationEventPublisher applicationEventPublisher;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">method</span><span class="hljs-params">()</span>&#123;<br>    applicationEventPublisher.publishEvent(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MessageSendEvent</span>(<span class="hljs-built_in">this</span>, insert.getId()));<br>&#125;<br><br></code></pre></td></tr></table></figure>
+                <h4 id="字符串判空"><a href="#字符串判空" class="headerlink" title="字符串判空"></a>字符串判空</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isNotBlank</span><span class="hljs-params">(Strig str)</span>&#123;<br>        <span class="hljs-keyword">return</span> StrUtil.isNotBlank(str);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@TransactionalEventListener(classes = MessageSendEvent.class, fallbackExecution = true)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">messageRoute</span><span class="hljs-params">(MessageSendEvent event)</span> &#123;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
-
-<h1 id="spring-transaction"><a href="#spring-transaction" class="headerlink" title="spring - transaction"></a>spring - transaction</h1><h2 id="判断当前代码中是否存在事务未提交"><a href="#判断当前代码中是否存在事务未提交" class="headerlink" title="判断当前代码中是否存在事务未提交"></a>判断当前代码中是否存在事务未提交</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">boolean</span> <span class="hljs-variable">inTransaction</span> <span class="hljs-operator">=</span> TransactionSynchronizationManager.isActualTransactionActive();<br><span class="hljs-comment">//非事务状态，直接执行，不做任何保证。</span><br><span class="hljs-keyword">if</span> (!inTransaction) &#123;<br>    <span class="hljs-keyword">return</span> joinPoint.proceed();<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-
-
-<h1 id="spring-aop"><a href="#spring-aop" class="headerlink" title="spring - aop"></a>spring - aop</h1><h2 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Target(value = ElementType.METHOD)</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> Idempotent &#123;<br><br>    String <span class="hljs-title function_">name</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> <span class="hljs-string">&quot;&quot;</span>;<br><br>    String <span class="hljs-title function_">field</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> <span class="hljs-string">&quot;&quot;</span>;<br><br>    Class <span class="hljs-title function_">type</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="切面类"><a href="#切面类" class="headerlink" title="切面类"></a>切面类</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;<br><span class="hljs-keyword">import</span> org.aspectj.lang.annotation.Around;<br><span class="hljs-keyword">import</span> org.aspectj.lang.annotation.Aspect;<br><span class="hljs-keyword">import</span> org.aspectj.lang.annotation.Pointcut;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-meta">@Aspect</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IdempotentAspect</span> &#123;<br><br>    <span class="hljs-meta">@Pointcut(&quot;@annotation(com.xuyongqing.annotations.Idempotent)&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">idempotent</span><span class="hljs-params">()</span>&#123;<br><br>    &#125;<br>    <span class="hljs-meta">@Around(&quot;idempotent()&quot;)</span><br>    <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">methodAround1</span><span class="hljs-params">(ProceedingJoinPoint joinPoint)</span> <span class="hljs-keyword">throws</span> Throwable&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> com.xuyongqing.annotations.Idempotent;<br><span class="hljs-keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;<br><span class="hljs-keyword">import</span> org.aspectj.lang.annotation.Around;<br><span class="hljs-keyword">import</span> org.aspectj.lang.annotation.Aspect;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-meta">@Aspect</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IdempotentAspect</span> &#123;<br><br>    <span class="hljs-meta">@Around(&quot;@annotation(idempotent))</span><span class="hljs-string">&quot;)</span><br><span class="hljs-string">    public Object methodAround2(ProceedingJoinPoint joinPoint, Idempotent idempotent)&#123;</span><br><span class="hljs-string">        return null;</span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">&#125;</span><br><span class="hljs-string"></span><br></code></pre></td></tr></table></figure>
-
+<h4 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span>&#123;<br>    <br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Integer</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> <span class="hljs-number">500</span>;<br>    <br>    Consumer&lt;List&lt;String&gt;&gt; consumer = CollectionUtil::isEmpty;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">partition</span><span class="hljs-params">(List&lt;String&gt; dataList)</span>&#123;<br>        ListUtil.partition(dataList, count).forEach(consumer);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -312,7 +293,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/spring/" class="category-chain-item">spring</a>
+  <a href="/categories/java/" class="category-chain-item">java</a>
   
   
 
@@ -327,9 +308,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/java/" class="print-no-link">#java</a>
-      
-        <a href="/tags/spring/" class="print-no-link">#spring</a>
+        <a href="/tags/hutool/" class="print-no-link">#hutool</a>
       
     </div>
   
@@ -341,15 +320,15 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>spring</div>
-      <div>http://example.com/2023/08/21/spring/</div>
+      <div>hutool</div>
+      <div>http://example.com/2023/09/11/hutool/hutool/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月21日</div>
+          <div>2023年9月11日</div>
         </div>
       
       
@@ -381,18 +360,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/29/%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/MallChat/" title="MallChat">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MallChat</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/14/%E8%AF%BE%E9%A2%98/Doris/" title="Doris">
-                        <span class="hidden-mobile">Doris</span>
+                      <a href="/2023/09/11/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/" title="mysql">
+                        <span class="hidden-mobile">mysql</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

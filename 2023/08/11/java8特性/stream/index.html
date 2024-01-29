@@ -16,24 +16,21 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   
-    <meta name="description" content="行转列前提条件表名 student 字段 name,age现有数据十条    name age    A 10   B 11   C 12   D 13   E 14   F 15   G 16   H 17   I 18   J 19   最终呈现效果    name age name1 age1    J 19 E 14   I 18 D 13   H 17 C 12   G 16 B 11">
+    <meta name="description" content="Stream初始12345678910111213141516171819DateTimeFormatter dateTimeFormatter &#x3D; DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;);LocalDate beginLocalDate &#x3D; LocalDate.parse(&quot;2022-01-01&quot;, dateTi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql">
-<meta property="og:url" content="http://example.com/2023/09/11/mysql/index.html">
+<meta property="og:title" content="stream">
+<meta property="og:url" content="http://example.com/2023/08/11/java8%E7%89%B9%E6%80%A7/stream/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="行转列前提条件表名 student 字段 name,age现有数据十条    name age    A 10   B 11   C 12   D 13   E 14   F 15   G 16   H 17   I 18   J 19   最终呈现效果    name age name1 age1    J 19 E 14   I 18 D 13   H 17 C 12   G 16 B 11">
+<meta property="og:description" content="Stream初始12345678910111213141516171819DateTimeFormatter dateTimeFormatter &#x3D; DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;);LocalDate beginLocalDate &#x3D; LocalDate.parse(&quot;2022-01-01&quot;, dateTi">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/mysql/image-20230912112554648.png">
-<meta property="og:image" content="http://example.com/images/mysql/image-20230912112604334.png">
-<meta property="article:published_time" content="2023-09-11T08:48:12.000Z">
-<meta property="article:modified_time" content="2023-09-12T03:27:47.347Z">
-<meta property="article:tag" content="mysql">
+<meta property="article:published_time" content="2023-08-11T01:55:43.000Z">
+<meta property="article:modified_time" content="2023-09-12T05:04:12.551Z">
+<meta property="article:tag" content="Stream">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/images/mysql/image-20230912112554648.png">
   
   
   
-  <title>mysql - </title>
+  <title>stream - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="记录mysql使用方式"></span>
+            <span id="subtitle" data-typed-text="记录自己总百度Stream用法"></span>
           
         </div>
 
@@ -210,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-11 16:48" pubdate>
-          2023年9月11日 下午
+        <time datetime="2023-08-11 09:55" pubdate>
+          2023年8月11日 上午
         </time>
       </span>
     
@@ -222,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          554 字
+          1.3k 字
         
       </span>
     
@@ -233,7 +230,7 @@
         
         
         
-          5 分钟
+          12 分钟
         
       </span>
     
@@ -270,106 +267,19 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">记录mysql使用方式</h1>
+            <h1 id="seo-header">记录自己总百度Stream用法</h1>
             
             
               <div class="markdown-body">
                 
-                <h3 id="行转列"><a href="#行转列" class="headerlink" title="行转列"></a>行转列</h3><h4 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h4><p>表名 student 字段 name,age<br>现有数据十条</p>
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th>age</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>A</td>
-<td>10</td>
-</tr>
-<tr>
-<td>B</td>
-<td>11</td>
-</tr>
-<tr>
-<td>C</td>
-<td>12</td>
-</tr>
-<tr>
-<td>D</td>
-<td>13</td>
-</tr>
-<tr>
-<td>E</td>
-<td>14</td>
-</tr>
-<tr>
-<td>F</td>
-<td>15</td>
-</tr>
-<tr>
-<td>G</td>
-<td>16</td>
-</tr>
-<tr>
-<td>H</td>
-<td>17</td>
-</tr>
-<tr>
-<td>I</td>
-<td>18</td>
-</tr>
-<tr>
-<td>J</td>
-<td>19</td>
-</tr>
-</tbody></table>
-<p>最终呈现效果</p>
-<table>
-<thead>
-<tr>
-<th>name</th>
-<th>age</th>
-<th>name1</th>
-<th>age1</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>J</td>
-<td>19</td>
-<td>E</td>
-<td>14</td>
-</tr>
-<tr>
-<td>I</td>
-<td>18</td>
-<td>D</td>
-<td>13</td>
-</tr>
-<tr>
-<td>H</td>
-<td>17</td>
-<td>C</td>
-<td>12</td>
-</tr>
-<tr>
-<td>G</td>
-<td>16</td>
-<td>B</td>
-<td>11</td>
-</tr>
-<tr>
-<td>F</td>
-<td>15</td>
-<td>A</td>
-<td>10</td>
-</tr>
-</tbody></table>
-<p>代码展示</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br>	<span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&lt;</span> <span class="hljs-number">6</span> <span class="hljs-keyword">THEN</span> c.`name` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `name`,<br>	<span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&lt;</span> <span class="hljs-number">6</span> <span class="hljs-keyword">THEN</span> c.`age` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `age`,<br>	<span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span> <span class="hljs-keyword">THEN</span> c.`name` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `name1`,<br>	<span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span> <span class="hljs-keyword">THEN</span> c.`age` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `age1` <br><span class="hljs-keyword">FROM</span><br>	(<br>	<span class="hljs-keyword">SELECT</span><br>		a.`name`,<br>		a.`age`,<br>		( <span class="hljs-variable">@rownum</span> :<span class="hljs-operator">=</span> <span class="hljs-variable">@rownum</span> <span class="hljs-operator">+</span> <span class="hljs-number">1</span> ) rw,<br>		( <span class="hljs-variable">@rownum</span> <span class="hljs-operator">%</span> <span class="hljs-number">5</span> ) rn <br>	<span class="hljs-keyword">FROM</span><br>		( <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> student a <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> age <span class="hljs-keyword">DESC</span> LIMIT <span class="hljs-number">10</span> ) a,<br>		( <span class="hljs-keyword">SELECT</span> <span class="hljs-variable">@rownum</span> :<span class="hljs-operator">=</span> <span class="hljs-number">0</span> ) b <br>	) c <br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span><br>	c.rn <br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span><br>	c.rw<br></code></pre></td></tr></table></figure>
+                <h1 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h1><h2 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">dateTimeFormatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br><span class="hljs-type">LocalDate</span> <span class="hljs-variable">beginLocalDate</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2022-01-01&quot;</span>, dateTimeFormatter);<br><span class="hljs-type">LocalDate</span> <span class="hljs-variable">endLocalDate</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2023-12-31&quot;</span>, dateTimeFormatter);<br><br>List&lt;YearMonthDayDTO&gt; yearMonthDayDTOList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><br><span class="hljs-keyword">while</span> (beginLocalDate.isBefore(endLocalDate))&#123;<br>    beginLocalDate.format(DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>));<br><br>    <span class="hljs-type">YearMonthDayDTO</span> <span class="hljs-variable">yearMonthDayDTO</span> <span class="hljs-operator">=</span> YearMonthDayDTO<br>        .builder()<br>        .year(String.valueOf(beginLocalDate.getYear()))<br>        .month(String.valueOf(beginLocalDate.getMonth().getValue()))<br>        .day(String.valueOf(beginLocalDate.getDayOfMonth()))<br>        .build();<br>    yearMonthDayDTOList.add(yearMonthDayDTO);<br><br>    beginLocalDate = beginLocalDate.plusDays(<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/images/mysql/image-20230912112554648.png" srcset="/img/loading.gif" lazyload alt="image-20230912112554648"></p>
-<p><img src="/images/mysql/image-20230912112604334.png" srcset="/img/loading.gif" lazyload alt="image-20230912112604334"></p>
+
+
+<h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">Map&lt;String, Set&lt;String&gt;&gt; monthDayMap = yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.collectingAndThen(Collectors.toSet(), list -&gt; list.stream().filter(obj -&gt; Integer.valueOf(obj.getDay()) &lt; <span class="hljs-number">2</span>).map(YearMonthDayDTO::getDay).collect(Collectors.toSet()))));<br>yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.mapping(Function.identity(), Collectors.toSet())));<br></code></pre></td></tr></table></figure>
+
+<h3 id="Collectors-collectingAndThen"><a href="#Collectors-collectingAndThen" class="headerlink" title="Collectors.collectingAndThen"></a>Collectors.collectingAndThen</h3><p>​	解释：对已经收集起来的数据进行处理</p>
+<h3 id="Collectors-mapping"><a href="#Collectors-mapping" class="headerlink" title="Collectors.mapping"></a>Collectors.mapping</h3><p>​	解释：对正在收集的数据进行处理</p>
 
                 
               </div>
@@ -403,7 +313,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/mysql/" class="print-no-link">#mysql</a>
+        <a href="/tags/Stream/" class="print-no-link">#Stream</a>
       
     </div>
   
@@ -415,15 +325,15 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>mysql</div>
-      <div>http://example.com/2023/09/11/mysql/</div>
+      <div>stream</div>
+      <div>http://example.com/2023/08/11/java8特性/stream/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年9月11日</div>
+          <div>2023年8月11日</div>
         </div>
       
       
@@ -455,12 +365,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2023/08/11/java8%E7%89%B9%E6%80%A7/localDate/" title="LocalDate">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">LocalDate</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/29/%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/MallChat/" title="MallChat">
-                        <span class="hidden-mobile">MallChat</span>
+                      <a href="/2023/08/07/rpc%E6%A1%86%E6%9E%B6/rpc/" title="rpc">
+                        <span class="hidden-mobile">rpc</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
