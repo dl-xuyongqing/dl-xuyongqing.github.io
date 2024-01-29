@@ -16,21 +16,21 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   
-    <meta name="description" content="什么是幂等性？简单来说，就是对一个接口执行重复的多次请求，与一次请求所产生的结果是相同的，听起来非常容易理解，但要真正的在系统中要始终保持这个目标，是需要很严谨的设计的，在实际的生产环境下，我们应该保证任何接口都是幂等的，而如何正确的实现幂等，就是本文要讨论的内容。 哪些请求天生就是幂等的？首先，我们要知道查询类的请求一般都是天然幂等的，除此之外，删除请求在大多数情况下也是幂等的，但是ABA场景下">
+    <meta name="description" content="MallChat禁止 禁止在代码中出现 return fail info 禁止在代码中出现魔法数值  发送消息具体代码 12345678910@PostMapping(&quot;&#x2F;msg&quot;)@ApiOperation(&quot;发送消息&quot;)@FrequencyControl(time &#x3D; 5, count &#x3D; 3, target &#x3D; FrequencyControl.Tar">
 <meta property="og:type" content="article">
-<meta property="og:title" content="优雅实现接口幂等">
-<meta property="og:url" content="http://example.com/2023/08/22/%E6%96%87%E7%AB%A0/%E4%BC%98%E9%9B%85%E5%AE%9E%E7%8E%B0%E6%8E%A5%E5%8F%A3%E5%B9%82%E7%AD%89/index.html">
+<meta property="og:title" content="MallChat">
+<meta property="og:url" content="http://example.com/2023/08/29/%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/MallChat/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="什么是幂等性？简单来说，就是对一个接口执行重复的多次请求，与一次请求所产生的结果是相同的，听起来非常容易理解，但要真正的在系统中要始终保持这个目标，是需要很严谨的设计的，在实际的生产环境下，我们应该保证任何接口都是幂等的，而如何正确的实现幂等，就是本文要讨论的内容。 哪些请求天生就是幂等的？首先，我们要知道查询类的请求一般都是天然幂等的，除此之外，删除请求在大多数情况下也是幂等的，但是ABA场景下">
+<meta property="og:description" content="MallChat禁止 禁止在代码中出现 return fail info 禁止在代码中出现魔法数值  发送消息具体代码 12345678910@PostMapping(&quot;&#x2F;msg&quot;)@ApiOperation(&quot;发送消息&quot;)@FrequencyControl(time &#x3D; 5, count &#x3D; 3, target &#x3D; FrequencyControl.Tar">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-22T05:10:40.000Z">
-<meta property="article:modified_time" content="2023-08-22T09:44:15.202Z">
-<meta property="article:tag" content="幂等性">
+<meta property="article:published_time" content="2023-08-29T01:22:54.000Z">
+<meta property="article:modified_time" content="2023-09-12T10:03:27.948Z">
+<meta property="article:tag" content="Github开源项目MallChat">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>优雅实现接口幂等 - </title>
+  <title>MallChat - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="记录文章内容"></span>
+            <span id="subtitle" data-typed-text="一点一滴记录看开源项目学习到的优秀的写法和知识点"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-22 13:10" pubdate>
-          2023年8月22日 下午
+        <time datetime="2023-08-29 09:22" pubdate>
+          2023年8月29日 上午
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          958 字
+          1.8k 字
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          8 分钟
+          15 分钟
         
       </span>
     
@@ -267,22 +267,58 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">记录文章内容</h1>
+            <h1 id="seo-header">一点一滴记录看开源项目学习到的优秀的写法和知识点</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="什么是幂等性？"><a href="#什么是幂等性？" class="headerlink" title="什么是幂等性？"></a>什么是幂等性？</h2><p>简单来说，就是对一个接口执行重复的多次请求，与一次请求所产生的结果是相同的，听起来非常容易理解，但要真正的在系统中要始终保持这个目标，是需要很严谨的设计的，在实际的生产环境下，我们应该保证任何接口都是幂等的，而如何正确的实现幂等，就是本文要讨论的内容。</p>
-<h2 id="哪些请求天生就是幂等的？"><a href="#哪些请求天生就是幂等的？" class="headerlink" title="哪些请求天生就是幂等的？"></a>哪些请求天生就是幂等的？</h2><p>首先，我们要知道查询类的请求一般都是天然幂等的，除此之外，删除请求在大多数情况下也是幂等的，但是ABA场景下除外。</p>
-<h4 id="举一个简单的例子"><a href="#举一个简单的例子" class="headerlink" title="举一个简单的例子"></a>举一个简单的例子</h4><p>比如，先请求了一次删除A的操作，但由于响应超时，又自动请求了一次删除A的操作，如果在两次请求之间，又插入了一次A，而实际上新插入的这一次A，是不应该被删除的，这就是ABA问题，不过，在大多数业务场景中，ABA问题都是可以忽略的。</p>
-<p>除了查询和删除之外，还有更新操作，同样的更新操作在大多数场景下也是天然幂等的，其例外是也会存在ABA的问题，更重要的是，比如执行update table set a &#x3D; a + 1 where v &#x3D; 1这样的更新就非幂等了。</p>
-<p>最后，就还剩插入了，插入大多数情况下都是非幂等的，除非是利用数据库唯一索引来保证数据不会重复产生。</p>
-<h2 id="为什么需要幂等"><a href="#为什么需要幂等" class="headerlink" title="为什么需要幂等"></a>为什么需要幂等</h2><h3 id="超时重试"><a href="#超时重试" class="headerlink" title="超时重试"></a>超时重试</h3><p>当发起一次RPC请求时，难免会因为网络不稳定而导致请求失败，一般遇到这样的问题我们希望能够重新请求一次，正常情况下没有问题，但有时请求实际上已经发出去了，只是在请求响应时网络异常或者超时，此时，请求方如果再重新发起一次请求，那被请求方就需要保证幂等了。</p>
-<h3 id="异步回调"><a href="#异步回调" class="headerlink" title="异步回调"></a>异步回调</h3><p>异步回调是提升系统接口吞吐量的一种常用方式，很明显，此类接口一定是需要保证幂等性的。</p>
-<h3 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h3><p>现在常用的消息队列框架，比如：Kafka、RocketMQ、RabbitMQ在消息传递时都会采取At least once原则（也就是至少一次原则，在消息传递时，不允许丢消息，但是允许有重复的消息），既然消息队列不保证不会出现重复的消息，那消费者自然要保证处理逻辑的幂等性了。</p>
-<h2 id="实现幂等的关键因素"><a href="#实现幂等的关键因素" class="headerlink" title="实现幂等的关键因素"></a>实现幂等的关键因素</h2><h3 id="关键因素1"><a href="#关键因素1" class="headerlink" title="关键因素1"></a>关键因素1</h3><p>幂等唯一标识，可以叫它幂等号或者幂等令牌或者全局ID，总之就是客户端与服务端一次请求时的唯一标识，一般情况下由客户端来生成，也可以让第三方来统一分配。</p>
-<h3 id="关键因素2"><a href="#关键因素2" class="headerlink" title="关键因素2"></a>关键因素2</h3><p>有了唯一标识以后，服务端只需要确保这个唯一标识只被使用一次即可，一种常见的方式就是利用数据库的唯一索引。</p>
-<h2 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h2>
+                <h1 id="MallChat"><a href="#MallChat" class="headerlink" title="MallChat"></a><a target="_blank" rel="noopener" href="https://github.com/zongzibinbin/MallChat">MallChat</a></h1><h2 id="禁止"><a href="#禁止" class="headerlink" title="禁止"></a>禁止</h2><ol>
+<li>禁止在代码中出现 return fail info</li>
+<li>禁止在代码中出现魔法数值</li>
+</ol>
+<h2 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h2><p>具体代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@PostMapping(&quot;/msg&quot;)</span><br><span class="hljs-meta">@ApiOperation(&quot;发送消息&quot;)</span><br><span class="hljs-meta">@FrequencyControl(time = 5, count = 3, target = FrequencyControl.Target.UID)</span><br><span class="hljs-meta">@FrequencyControl(time = 30, count = 5, target = FrequencyControl.Target.UID)</span><br><span class="hljs-meta">@FrequencyControl(time = 60, count = 10, target = FrequencyControl.Target.UID)</span><br><span class="hljs-keyword">public</span> ApiResult&lt;ChatMessageResp&gt; <span class="hljs-title function_">sendMsg</span><span class="hljs-params">(<span class="hljs-meta">@Valid</span> <span class="hljs-meta">@RequestBody</span> ChatMessageReq request)</span> &#123;<span class="hljs-comment">//todo 发送给单聊</span><br><span class="hljs-type">Long</span> <span class="hljs-variable">msgId</span> <span class="hljs-operator">=</span> chatService.sendMsg(request, RequestHolder.get().getUid());<br><span class="hljs-comment">//返回完整消息格式，方便前端展示</span><br><span class="hljs-keyword">return</span> ApiResult.success(chatService.getMsgResp(msgId, RequestHolder.get().getUid()));<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h3><ol>
+<li><a href="#%E9%A2%91%E6%8E%A7">频控</a></li>
+<li>在登录过程中将用户信息存放打ThreadLocal中后，通过ReqyestHolder.get()方法获取<ol>
+<li>实现方式 继承 HandlerInterceptor 重写 preHandle() 和 afterCompletion()方法</li>
+<li>实现 WebMvcConfiguration 重写 addInterceptors 将 step1的类 加入到 InterceptorRegistry</li>
+</ol>
+</li>
+</ol>
+<h4 id="发送消息具体处理"><a href="#发送消息具体处理" class="headerlink" title="发送消息具体处理"></a>发送消息具体处理</h4><p>具体代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 发送消息</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Override</span><br><span class="hljs-meta">@Transactional</span><br><span class="hljs-keyword">public</span> Long <span class="hljs-title function_">sendMsg</span><span class="hljs-params">(ChatMessageReq request, Long uid)</span> &#123;<br>    check(request, uid);<br>    <span class="hljs-type">AbstractMsgHandler</span> <span class="hljs-variable">msgHandler</span> <span class="hljs-operator">=</span> MsgHandlerFactory.getStrategyNoNull(request.getMsgType());<span class="hljs-comment">//todo 这里先不扩展，后续再改</span><br>    msgHandler.checkMsg(request, uid);<br>    <span class="hljs-comment">//同步获取消息的跳转链接标题</span><br>    <span class="hljs-type">Message</span> <span class="hljs-variable">insert</span> <span class="hljs-operator">=</span> MessageAdapter.buildMsgSave(request, uid);<br>    messageDao.save(insert);<br>    msgHandler.saveMsg(insert, request);<br>    <span class="hljs-comment">//发布消息发送事件</span><br>    applicationEventPublisher.publishEvent(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MessageSendEvent</span>(<span class="hljs-built_in">this</span>, insert.getId()));<br>    <span class="hljs-keyword">return</span> insert.getId();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>代码解释</p>
+<ol>
+<li><p>MsgHandlerFactory.getStrategyNoNull(request.getMsgType())</p>
+<ol>
+<li>具体实现方法是通过 具体的消息利用spring注入实例化的方式，将</li>
+</ol>
+</li>
+<li><p>发布消息发送事件</p>
+<ol>
+<li><p>利用spring 事件发布</p>
+</li>
+<li><p>MessageSendEvent 需要继承 ApplicationEvent</p>
+</li>
+<li><p>对应方法需要这么使用 </p>
+<ol>
+<li><pre><code class="java">@TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT, classes = MessageSendEvent.class, fallbackExecution = true)
+    public void messageRoute(MessageSendEvent event) &#123;
+        Long msgId = event.getMsgId();
+        mqProducer.sendSecureMsg(MQConstant.SEND_MSG_TOPIC, new MsgSendMessageDTO(msgId), msgId);
+    &#125;
+</code></pre>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="频控"><a href="#频控" class="headerlink" title="频控"></a>频控</h2><p>解释：控制访问次数</p>
+<h3 id="1-注解"><a href="#1-注解" class="headerlink" title="1.注解"></a>1.注解</h3>
                 
               </div>
             
@@ -315,7 +351,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%B9%82%E7%AD%89%E6%80%A7/" class="print-no-link">#幂等性</a>
+        <a href="/tags/Github%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AEMallChat/" class="print-no-link">#Github开源项目MallChat</a>
       
     </div>
   
@@ -327,15 +363,15 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>优雅实现接口幂等</div>
-      <div>http://example.com/2023/08/22/文章/优雅实现接口幂等/</div>
+      <div>MallChat</div>
+      <div>http://example.com/2023/08/29/项目学习/MallChat/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月22日</div>
+          <div>2023年8月29日</div>
         </div>
       
       
@@ -367,9 +403,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/29/MallChat/MallChat/" title="MallChat">
+                      <a href="/2023/09/11/mysql/" title="mysql">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MallChat</span>
+                        <span class="hidden-mobile">mysql</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
