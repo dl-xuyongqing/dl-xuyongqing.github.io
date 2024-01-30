@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>搞笑段子</title>
+      <link href="/2024/01/29/%E6%90%9E%E7%AC%91%E6%AE%B5%E5%AD%90/%E6%90%9E%E7%AC%91%E6%AE%B5%E5%AD%90/"/>
+      <url>/2024/01/29/%E6%90%9E%E7%AC%91%E6%AE%B5%E5%AD%90/%E6%90%9E%E7%AC%91%E6%AE%B5%E5%AD%90/</url>
+      
+        <content type="html"><![CDATA[<p>我现在最大的愿望就是能找个好老婆，我可以啥事都让着她，让她洗碗，让她做饭，让她洗衣服……</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 搞笑段子 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> init-project </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hutool</title>
       <link href="/2023/09/11/hutool/hutool/"/>
       <url>/2023/09/11/hutool/hutool/</url>
@@ -46,6 +71,31 @@
         <tags>
             
             <tag> mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>GBase</title>
+      <link href="/2023/09/11/%E6%95%B0%E6%8D%AE%E5%BA%93/gbase/"/>
+      <url>/2023/09/11/%E6%95%B0%E6%8D%AE%E5%BA%93/gbase/</url>
+      
+        <content type="html"><![CDATA[<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h1 id="GBase"><a href="#GBase" class="headerlink" title="GBase"></a>GBase</h1><h2 id="客户端工具"><a href="#客户端工具" class="headerlink" title="客户端工具"></a>客户端工具</h2><p>链接：<a href="https://pan.baidu.com/s/1K80jHrb88_yA_f4_1FVZEA">https://pan.baidu.com/s/1K80jHrb88_yA_f4_1FVZEA</a><br>提取码：d2rb </p><h2 id="客户端工具使用GBase方式"><a href="#客户端工具使用GBase方式" class="headerlink" title="客户端工具使用GBase方式"></a>客户端工具使用GBase方式</h2><p><a href="https://blog.csdn.net/ilovefaust/article/details/133296295">https://blog.csdn.net/ilovefaust/article/details/133296295</a></p><h2 id="jar地址"><a href="#jar地址" class="headerlink" title="jar地址"></a>jar地址</h2><p>链接：<a href="https://pan.baidu.com/s/1kiH0wRr6pgjy-pWJpBTOVQ">https://pan.baidu.com/s/1kiH0wRr6pgjy-pWJpBTOVQ</a><br>提取码：qp29 </p>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GBase </tag>
             
         </tags>
       
@@ -157,10 +207,10 @@
     
     <entry>
       <title>LocalDate</title>
-      <link href="/2023/08/11/java8%E7%89%B9%E6%80%A7/localDate/"/>
-      <url>/2023/08/11/java8%E7%89%B9%E6%80%A7/localDate/</url>
+      <link href="/2023/08/11/java8%E7%89%B9%E6%80%A7/LocalDate/"/>
+      <url>/2023/08/11/java8%E7%89%B9%E6%80%A7/LocalDate/</url>
       
-        <content type="html"><![CDATA[<h1 id="LocalDateTime"><a href="#LocalDateTime" class="headerlink" title="LocalDateTime"></a>LocalDateTime</h1><h2 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">format</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br><span class="hljs-type">LocalDate</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2022-01-01&quot;</span>,format);<br><span class="hljs-type">LocalDate</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2022-01-01&quot;</span>, format);<br><br><br>System.err.println(a.isBefore(b));<br>System.err.println(a.isAfter(b));<br>System.err.println(a.isEqual(b));<br><br><span class="hljs-comment">//结果打印</span><br><span class="hljs-comment">//false</span><br><span class="hljs-comment">//false</span><br><span class="hljs-comment">//true</span><br></code></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h1 id="LocalDateTime"><a href="#LocalDateTime" class="headerlink" title="LocalDateTime"></a>LocalDateTime</h1><h2 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        <span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">format</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br>        <span class="hljs-type">LocalDate</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2022-01-01&quot;</span>,format);<br>        <span class="hljs-type">LocalDate</span> <span class="hljs-variable">b</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2022-01-01&quot;</span>, format);<br>        <br>        System.err.println(a.isBefore(b));<br>        System.err.println(a.isAfter(b));<br>        System.err.println(a.isEqual(b));<br>    &#125;<br>&#125;<br><span class="hljs-comment">//结果打印</span><br><span class="hljs-comment">//false</span><br><span class="hljs-comment">//false</span><br><span class="hljs-comment">//true</span><br></code></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -172,7 +222,7 @@
       
         <tags>
             
-            <tag> LocalDate </tag>
+            <tag> java8特性 </tag>
             
         </tags>
       
@@ -181,11 +231,11 @@
     
     
     <entry>
-      <title>stream</title>
-      <link href="/2023/08/11/java8%E7%89%B9%E6%80%A7/stream/"/>
-      <url>/2023/08/11/java8%E7%89%B9%E6%80%A7/stream/</url>
+      <title>Stream</title>
+      <link href="/2023/08/11/java8%E7%89%B9%E6%80%A7/Stream/"/>
+      <url>/2023/08/11/java8%E7%89%B9%E6%80%A7/Stream/</url>
       
-        <content type="html"><![CDATA[<h1 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h1><h2 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">dateTimeFormatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br><span class="hljs-type">LocalDate</span> <span class="hljs-variable">beginLocalDate</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2022-01-01&quot;</span>, dateTimeFormatter);<br><span class="hljs-type">LocalDate</span> <span class="hljs-variable">endLocalDate</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2023-12-31&quot;</span>, dateTimeFormatter);<br><br>List&lt;YearMonthDayDTO&gt; yearMonthDayDTOList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><br><span class="hljs-keyword">while</span> (beginLocalDate.isBefore(endLocalDate))&#123;<br>    beginLocalDate.format(DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>));<br><br>    <span class="hljs-type">YearMonthDayDTO</span> <span class="hljs-variable">yearMonthDayDTO</span> <span class="hljs-operator">=</span> YearMonthDayDTO<br>        .builder()<br>        .year(String.valueOf(beginLocalDate.getYear()))<br>        .month(String.valueOf(beginLocalDate.getMonth().getValue()))<br>        .day(String.valueOf(beginLocalDate.getDayOfMonth()))<br>        .build();<br>    yearMonthDayDTOList.add(yearMonthDayDTO);<br><br>    beginLocalDate = beginLocalDate.plusDays(<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">Map&lt;String, Set&lt;String&gt;&gt; monthDayMap = yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.collectingAndThen(Collectors.toSet(), list -&gt; list.stream().filter(obj -&gt; Integer.valueOf(obj.getDay()) &lt; <span class="hljs-number">2</span>).map(YearMonthDayDTO::getDay).collect(Collectors.toSet()))));<br>yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.mapping(Function.identity(), Collectors.toSet())));<br></code></pre></td></tr></table></figure><h3 id="Collectors-collectingAndThen"><a href="#Collectors-collectingAndThen" class="headerlink" title="Collectors.collectingAndThen"></a>Collectors.collectingAndThen</h3><p>​解释：对已经收集起来的数据进行处理</p><h3 id="Collectors-mapping"><a href="#Collectors-mapping" class="headerlink" title="Collectors.mapping"></a>Collectors.mapping</h3><p>​解释：对正在收集的数据进行处理</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h1><h2 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        <span class="hljs-type">DateTimeFormatter</span> <span class="hljs-variable">dateTimeFormatter</span> <span class="hljs-operator">=</span> DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>);<br>        <span class="hljs-type">LocalDate</span> <span class="hljs-variable">beginLocalDate</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2022-01-01&quot;</span>, dateTimeFormatter);<br>        <span class="hljs-type">LocalDate</span> <span class="hljs-variable">endLocalDate</span> <span class="hljs-operator">=</span> LocalDate.parse(<span class="hljs-string">&quot;2023-12-31&quot;</span>, dateTimeFormatter);<br><br>        List&lt;YearMonthDayDTO&gt; yearMonthDayDTOList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br><br>        <span class="hljs-keyword">while</span> (beginLocalDate.isBefore(endLocalDate))&#123;<br>            beginLocalDate.format(DateTimeFormatter.ofPattern(<span class="hljs-string">&quot;yyyy-MM-dd&quot;</span>));<br><br>            <span class="hljs-type">YearMonthDayDTO</span> <span class="hljs-variable">yearMonthDayDTO</span> <span class="hljs-operator">=</span> YearMonthDayDTO<br>                    .builder()<br>                    .year(String.valueOf(beginLocalDate.getYear()))<br>                    .month(String.valueOf(beginLocalDate.getMonth().getValue()))<br>                    .day(String.valueOf(beginLocalDate.getDayOfMonth()))<br>                    .build();<br>            yearMonthDayDTOList.add(yearMonthDayDTO);<br><br>            beginLocalDate = beginLocalDate.plusDays(<span class="hljs-number">1</span>);<br>        &#125;<br>        <br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure><h2 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        Map&lt;String, Set&lt;String&gt;&gt; monthDayMap = yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.collectingAndThen(Collectors.toSet(), list -&gt; list.stream().filter(obj -&gt; Integer.valueOf(obj.getDay()) &lt; <span class="hljs-number">2</span>).map(YearMonthDayDTO::getDay).collect(Collectors.toSet()))));<br>        yearMonthDayDTOList.stream().collect(Collectors.groupingBy(YearMonthDayDTO::getMonth, Collectors.mapping(Function.identity(), Collectors.toSet())));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="Collectors-collectingAndThen"><a href="#Collectors-collectingAndThen" class="headerlink" title="Collectors.collectingAndThen"></a>Collectors.collectingAndThen</h3><p>解释：对已经收集起来的数据进行处理</p><h3 id="Collectors-mapping"><a href="#Collectors-mapping" class="headerlink" title="Collectors.mapping"></a>Collectors.mapping</h3><p>解释：对正在收集的数据进行处理</p>]]></content>
       
       
       <categories>
@@ -197,7 +247,7 @@
       
         <tags>
             
-            <tag> Stream </tag>
+            <tag> java8特性 </tag>
             
         </tags>
       
@@ -232,10 +282,10 @@
     
     <entry>
       <title>xxl-job</title>
-      <link href="/2023/08/01/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/xxl-job/"/>
-      <url>/2023/08/01/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/xxl-job/</url>
+      <link href="/2023/08/01/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/XXL-JOB/"/>
+      <url>/2023/08/01/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/XXL-JOB/</url>
       
-        <content type="html"><![CDATA[<blockquote><p><a href="https://github.com/xuxueli/xxl-job.git">XXL-JOB</a></p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java">Map&lt;Method, XxlJob&gt; annotatedMethods = <span class="hljs-literal">null</span>;   <span class="hljs-comment">// referred to ：org.springframework.context.event.EventListenerMethodProcessor.processBean</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                annotatedMethods = MethodIntrospector.selectMethods(bean.getClass(),<br>                        <span class="hljs-keyword">new</span> <span class="hljs-title class_">MethodIntrospector</span>.MetadataLookup&lt;XxlJob&gt;() &#123;<br>                            <span class="hljs-meta">@Override</span><br>                            <span class="hljs-keyword">public</span> XxlJob <span class="hljs-title function_">inspect</span><span class="hljs-params">(Method method)</span> &#123;<br>                                <span class="hljs-keyword">return</span> AnnotatedElementUtils.findMergedAnnotation(method, XxlJob.class);<br>                            &#125;<br>                        &#125;);<br>            &#125; <span class="hljs-keyword">catch</span> (Throwable ex) &#123;<br>                logger.error(<span class="hljs-string">&quot;xxl-job method-jobhandler resolve error for bean[&quot;</span> + beanDefinitionName + <span class="hljs-string">&quot;].&quot;</span>, ex);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (annotatedMethods==<span class="hljs-literal">null</span> || annotatedMethods.isEmpty()) &#123;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br><br>            <span class="hljs-comment">// generate and regist method job handler</span><br>            <span class="hljs-keyword">for</span> (Map.Entry&lt;Method, XxlJob&gt; methodXxlJobEntry : annotatedMethods.entrySet()) &#123;<br>                <span class="hljs-type">Method</span> <span class="hljs-variable">executeMethod</span> <span class="hljs-operator">=</span> methodXxlJobEntry.getKey();<br>                <span class="hljs-type">XxlJob</span> <span class="hljs-variable">xxlJob</span> <span class="hljs-operator">=</span> methodXxlJobEntry.getValue();<br>                <span class="hljs-comment">// regist</span><br>                registJobHandler(xxlJob, bean, executeMethod);<br>            &#125;<br></code></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<blockquote><p><a href="https://github.com/xuxueli/xxl-job.git">XXL-JOB</a></p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        Map&lt;Method, XxlJob&gt; annotatedMethods = <span class="hljs-literal">null</span>;   <span class="hljs-comment">// referred to ：org.springframework.context.event.EventListenerMethodProcessor.processBean</span><br>        <span class="hljs-keyword">try</span> &#123;<br>            annotatedMethods = MethodIntrospector.selectMethods(bean.getClass(),<br>                    <span class="hljs-keyword">new</span> <span class="hljs-title class_">MethodIntrospector</span>.MetadataLookup&lt;XxlJob&gt;() &#123;<br>                        <span class="hljs-meta">@Override</span><br>                        <span class="hljs-keyword">public</span> XxlJob <span class="hljs-title function_">inspect</span><span class="hljs-params">(Method method)</span> &#123;<br>                            <span class="hljs-keyword">return</span> AnnotatedElementUtils.findMergedAnnotation(method, XxlJob.class);<br>                        &#125;<br>                    &#125;);<br>        &#125; <span class="hljs-keyword">catch</span> (Throwable ex) &#123;<br>            logger.error(<span class="hljs-string">&quot;xxl-job method-jobhandler resolve error for bean[&quot;</span> + beanDefinitionName + <span class="hljs-string">&quot;].&quot;</span>, ex);<br>        &#125;<br>        <span class="hljs-keyword">if</span> (annotatedMethods==<span class="hljs-literal">null</span> || annotatedMethods.isEmpty()) &#123;<br>            <span class="hljs-keyword">continue</span>;<br>        &#125;<br>        <span class="hljs-comment">// generate and regist method job handler</span><br>        <span class="hljs-keyword">for</span> (Map.Entry&lt;Method, XxlJob&gt; methodXxlJobEntry : annotatedMethods.entrySet()) &#123;<br>            <span class="hljs-type">Method</span> <span class="hljs-variable">executeMethod</span> <span class="hljs-operator">=</span> methodXxlJobEntry.getKey();<br>            <span class="hljs-type">XxlJob</span> <span class="hljs-variable">xxlJob</span> <span class="hljs-operator">=</span> methodXxlJobEntry.getValue();<br>            <span class="hljs-comment">// regist</span><br>            registJobHandler(xxlJob, bean, executeMethod);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -247,7 +297,7 @@
       
         <tags>
             
-            <tag> xxl-job </tag>
+            <tag> 分布式定时任务 </tag>
             
         </tags>
       
