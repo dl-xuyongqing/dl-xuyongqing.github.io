@@ -54,31 +54,6 @@
     
     
     <entry>
-      <title>mysql</title>
-      <link href="/blog/2023/09/11/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/"/>
-      <url>/blog/2023/09/11/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/</url>
-      
-        <content type="html"><![CDATA[<h3 id="行转列"><a href="#行转列" class="headerlink" title="行转列"></a>行转列</h3><p>表名 student 字段 name,age<br>现有数据十条</p><table><thead><tr><th>name</th><th>age</th></tr></thead><tbody><tr><td>A</td><td>10</td></tr><tr><td>B</td><td>11</td></tr><tr><td>C</td><td>12</td></tr><tr><td>D</td><td>13</td></tr><tr><td>E</td><td>14</td></tr><tr><td>F</td><td>15</td></tr><tr><td>G</td><td>16</td></tr><tr><td>H</td><td>17</td></tr><tr><td>I</td><td>18</td></tr><tr><td>J</td><td>19</td></tr></tbody></table><p>最终呈现效果</p><table><thead><tr><th>name</th><th>age</th><th>name1</th><th>age1</th></tr></thead><tbody><tr><td>J</td><td>19</td><td>E</td><td>14</td></tr><tr><td>I</td><td>18</td><td>D</td><td>13</td></tr><tr><td>H</td><td>17</td><td>C</td><td>12</td></tr><tr><td>G</td><td>16</td><td>B</td><td>11</td></tr><tr><td>F</td><td>15</td><td>A</td><td>10</td></tr></tbody></table><p>代码展示</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&lt;</span> <span class="hljs-number">6</span> <span class="hljs-keyword">THEN</span> c.`name` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `name`,<br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&lt;</span> <span class="hljs-number">6</span> <span class="hljs-keyword">THEN</span> c.`age` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `age`,<br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span> <span class="hljs-keyword">THEN</span> c.`name` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `name1`,<br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span> <span class="hljs-keyword">THEN</span> c.`age` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `age1` <br><span class="hljs-keyword">FROM</span><br>(<br><span class="hljs-keyword">SELECT</span><br>a.`name`,<br>a.`age`,<br>( <span class="hljs-variable">@rownum</span> :<span class="hljs-operator">=</span> <span class="hljs-variable">@rownum</span> <span class="hljs-operator">+</span> <span class="hljs-number">1</span> ) rw,<br>( <span class="hljs-variable">@rownum</span> <span class="hljs-operator">%</span> <span class="hljs-number">5</span> ) rn <br><span class="hljs-keyword">FROM</span><br>( <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> student a <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> age <span class="hljs-keyword">DESC</span> LIMIT <span class="hljs-number">10</span> ) a,<br>( <span class="hljs-keyword">SELECT</span> <span class="hljs-variable">@rownum</span> :<span class="hljs-operator">=</span> <span class="hljs-number">0</span> ) b <br>) c #### 前提条件<br><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span><br>c.rn <br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span><br>c.rw<br></code></pre></td></tr></table></figure><p><img src="/blog/images/mysql/image-20230912112554648.png" alt="image-20230912112554648"></p><p><img src="/blog/images/mysql/image-20230912112604334.png" alt="image-20230912112604334"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> java </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> mysql </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>GBase</title>
       <link href="/blog/2023/09/11/%E6%95%B0%E6%8D%AE%E5%BA%93/gbase/"/>
       <url>/blog/2023/09/11/%E6%95%B0%E6%8D%AE%E5%BA%93/gbase/</url>
@@ -96,6 +71,31 @@
         <tags>
             
             <tag> GBase </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>mysql</title>
+      <link href="/blog/2023/09/11/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/"/>
+      <url>/blog/2023/09/11/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/</url>
+      
+        <content type="html"><![CDATA[<h3 id="行转列"><a href="#行转列" class="headerlink" title="行转列"></a>行转列</h3><p>表名 student 字段 name,age<br>现有数据十条</p><table><thead><tr><th>name</th><th>age</th></tr></thead><tbody><tr><td>A</td><td>10</td></tr><tr><td>B</td><td>11</td></tr><tr><td>C</td><td>12</td></tr><tr><td>D</td><td>13</td></tr><tr><td>E</td><td>14</td></tr><tr><td>F</td><td>15</td></tr><tr><td>G</td><td>16</td></tr><tr><td>H</td><td>17</td></tr><tr><td>I</td><td>18</td></tr><tr><td>J</td><td>19</td></tr></tbody></table><p>最终呈现效果</p><table><thead><tr><th>name</th><th>age</th><th>name1</th><th>age1</th></tr></thead><tbody><tr><td>J</td><td>19</td><td>E</td><td>14</td></tr><tr><td>I</td><td>18</td><td>D</td><td>13</td></tr><tr><td>H</td><td>17</td><td>C</td><td>12</td></tr><tr><td>G</td><td>16</td><td>B</td><td>11</td></tr><tr><td>F</td><td>15</td><td>A</td><td>10</td></tr></tbody></table><p>代码展示</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&lt;</span> <span class="hljs-number">6</span> <span class="hljs-keyword">THEN</span> c.`name` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `name`,<br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&lt;</span> <span class="hljs-number">6</span> <span class="hljs-keyword">THEN</span> c.`age` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `age`,<br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span> <span class="hljs-keyword">THEN</span> c.`name` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `name1`,<br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span> <span class="hljs-keyword">THEN</span> c.`age` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `age1` <br><span class="hljs-keyword">FROM</span><br>(<br><span class="hljs-keyword">SELECT</span><br>a.`name`,<br>a.`age`,<br>( <span class="hljs-variable">@rownum</span> :<span class="hljs-operator">=</span> <span class="hljs-variable">@rownum</span> <span class="hljs-operator">+</span> <span class="hljs-number">1</span> ) rw,<br>( <span class="hljs-variable">@rownum</span> <span class="hljs-operator">%</span> <span class="hljs-number">5</span> ) rn <br><span class="hljs-keyword">FROM</span><br>( <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> student a <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> age <span class="hljs-keyword">DESC</span> LIMIT <span class="hljs-number">10</span> ) a,<br>( <span class="hljs-keyword">SELECT</span> <span class="hljs-variable">@rownum</span> :<span class="hljs-operator">=</span> <span class="hljs-number">0</span> ) b <br>) c #### 前提条件<br><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span><br>c.rn <br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span><br>c.rw<br></code></pre></td></tr></table></figure><p><img src="/blog/images/mysql/image-20230912112554648.png" alt="image-20230912112554648"></p><p><img src="/blog/images/mysql/image-20230912112604334.png" alt="image-20230912112604334"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> mysql </tag>
             
         </tags>
       
@@ -156,31 +156,6 @@
     
     
     <entry>
-      <title>Doris</title>
-      <link href="/blog/2023/08/14/%E8%AF%BE%E9%A2%98/Doris/"/>
-      <url>/blog/2023/08/14/%E8%AF%BE%E9%A2%98/Doris/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Doris"><a href="#Doris" class="headerlink" title="Doris"></a>Doris</h1><h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a><a href="https://doris.apache.org/zh-CN/docs/dev/get-starting/quick-start/">Getting Started</a></h2>]]></content>
-      
-      
-      <categories>
-          
-          <category> SQL </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> doris </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>nginx</title>
       <link href="/blog/2023/08/14/nginx/nginx/"/>
       <url>/blog/2023/08/14/nginx/nginx/</url>
@@ -198,6 +173,31 @@
         <tags>
             
             <tag> nginx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Doris</title>
+      <link href="/blog/2023/08/14/%E8%AF%BE%E9%A2%98/Doris/"/>
+      <url>/blog/2023/08/14/%E8%AF%BE%E9%A2%98/Doris/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Doris"><a href="#Doris" class="headerlink" title="Doris"></a>Doris</h1><h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a><a href="https://doris.apache.org/zh-CN/docs/dev/get-starting/quick-start/">Getting Started</a></h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> SQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> doris </tag>
             
         </tags>
       
