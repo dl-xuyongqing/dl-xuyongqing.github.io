@@ -4,13 +4,54 @@
   
   
   <entry>
-    <title></title>
-    <link href="/2024/05/14/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E7%BC%93%E5%AD%98/redis/"/>
-    <url>/2024/05/14/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E7%BC%93%E5%AD%98/redis/</url>
+    <title>Redis相关</title>
+    <link href="/2024/05/05/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E7%BC%93%E5%AD%98/redis/"/>
+    <url>/2024/05/05/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E7%BC%93%E5%AD%98/redis/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h1 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h1><h2 id="面试相关"><a href="#面试相关" class="headerlink" title="面试相关"></a>面试相关</h2><h3 id="redis哪些好处"><a href="#redis哪些好处" class="headerlink" title="redis哪些好处"></a>redis哪些好处</h3><ul><li>答：数据存放在内存中，支持5种数据类型，string，list，set，sort set，hash<ul><li>string基础用法</li><li>list链表</li><li>set集合，可以用于交集并集等等</li><li>hash存放对象内容</li><li>sort set 增加权重 score</li></ul></li></ul><h3 id="redis为啥这么快"><a href="#redis为啥这么快" class="headerlink" title="redis为啥这么快"></a>redis为啥这么快</h3><ul><li>数据存放在内存中，不需要访问磁盘，降低访问延迟，</li><li>单线程，避免多线程上下文切换</li><li>高效数据结构</li><li>非阻塞i&#x2F;o多路复用机制</li></ul><h2 id="重点难点-尽量理解"><a href="#重点难点-尽量理解" class="headerlink" title="重点难点(尽量理解)"></a>重点难点(尽量理解)</h2><p><a href="https://mp.weixin.qq.com/s/DCVZWAc_XgbmZ5KFOQEsAw">参考内容</a></p><p>redis 持久化 rdb aof</p><h3 id="持久化方式"><a href="#持久化方式" class="headerlink" title="持久化方式"></a>持久化方式</h3><ol><li>快照</li><li>文件追加方式</li><li>混合持久化方式</li></ol><h4 id="什么是rdb，rdb如何持久话"><a href="#什么是rdb，rdb如何持久话" class="headerlink" title="什么是rdb，rdb如何持久话"></a>什么是rdb，rdb如何持久话</h4><ol><li><p>某一个时间点，将内存中的数据存放到磁盘上</p></li><li><p>触发方式</p><ol><li>手动 save ，bgsave，save阻塞主线程，bgsave fork一个子线程</li><li>自动 - 需要修改配置</li></ol> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#900秒内有1个key发生了变化，</span><br>save 900 1 <br><span class="hljs-comment">#服务器在300秒内呗修改10次 </span><br>save 300 10 <br><span class="hljs-comment">##服务器在60秒内呗修改10000 次</span><br>save 60 10000 <br><br><span class="hljs-comment">#如果想禁用快照保存的功能，可以通过注释掉所有&quot;save&quot;配置达到，或者在最后一条&quot;save&quot;配置后添加如下的配置：</span><br>save <span class="hljs-string">&quot;&quot;</span><br></code></pre></td></tr></table></figure></li></ol><h4 id="什么是aof，aof如何实现持久化"><a href="#什么是aof，aof如何实现持久化" class="headerlink" title="什么是aof，aof如何实现持久化"></a>什么是aof，aof如何实现持久化</h4><p>以日志的形势记录<strong>每个写操作</strong></p><p>持久化流程：client 命令 -&gt; redis server -&gt; aof 缓存区 -&gt; aof 文件 -&gt; aof重写 -&gt;</p><p>aof 缓存区 -&gt; aof 文件 策略方式</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#always表示每次写入都执行fsync，以保证数据同步到磁盘</span><br>appendfsync always<br><span class="hljs-comment">#everysec表示每秒执行一次fsync，可能会导致丢失这1s数据</span><br>appendfsynv everysec<br><span class="hljs-comment">#no表示不执行fsync，由操作系统保证数据同步到磁盘，速度最快</span><br>appendfsync no <br></code></pre></td></tr></table></figure><h3 id="rdb和aof各自优缺点"><a href="#rdb和aof各自优缺点" class="headerlink" title="rdb和aof各自优缺点"></a>rdb和aof各自优缺点</h3><h4 id="rdb的优点"><a href="#rdb的优点" class="headerlink" title="rdb的优点"></a>rdb的优点</h4><ol><li>启动速度快</li><li>适合用于备份</li><li>性能好</li></ol><h4 id="rdb缺点"><a href="#rdb缺点" class="headerlink" title="rdb缺点"></a>rdb缺点</h4><ol><li>容易数据丢失</li><li>数据来比较大，fork产生子进程过程会堵塞主线程</li></ol><h4 id="aof优点"><a href="#aof优点" class="headerlink" title="aof优点"></a>aof优点</h4><ol><li>更高数据安全性</li><li></li></ol><h4 id="aof缺点"><a href="#aof缺点" class="headerlink" title="aof缺点"></a>aof缺点</h4><ol><li>文件比价大</li><li></li></ol><h3 id="生产配置持久化建议"><a href="#生产配置持久化建议" class="headerlink" title="生产配置持久化建议"></a>生产配置持久化建议</h3><p>（1）官方建议：是同时开启两种持久化策略。因为有时需要RDB快照是进行数据库备份，更快重启以及发生AOF引擎错误的解决办法。（换句话就是通过RDB来多备份一份数据总是好的）</p><p>（2） 因为RDB文件只用作后备用途，建议只在Slave上持久化RDB文件，而且只要15分钟备份一次就够了，只保留save 900 1这条规则。</p><p>（3）如果选择AOF，只要硬盘许可，应该尽量减少AOF rewrite的频率。因为一是带来了持续的IO，二是AOF rewrite的最后将rewrite过程中产生的新数据写到新文件造成的阻塞几乎是不可避免的。AOF重写的基础大小默认值64M太小了，可以设到2G以上。</p>]]></content>
     
     
+    <categories>
+      
+      <category>redis</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>redis基础知识</tag>
+      
+      <tag>redis面试相关问题</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>面试问题</title>
+    <link href="/2024/05/05/%E9%9D%A2%E8%AF%95/%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/"/>
+    <url>/2024/05/05/%E9%9D%A2%E8%AF%95/%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<ol><li>arraylist 和 linketlist 的区别</li><li>spring cloud 和 dubbo的优缺点</li><li>easyexcel是如何复杂表头</li><li>说一下 easyexcel 优缺点</li><li>mysql如何优化查询</li><li>hashmap 底层数据结构</li><li>redis 数据类型： list 和 set 什么区别</li><li>docker 命令</li><li>linux查询日志相关命令</li><li>rocket mq 实现原理</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>面试</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>java</tag>
+      
+      <tag>面试</tag>
+      
+    </tags>
     
   </entry>
   
@@ -34,6 +75,31 @@
     <tags>
       
       <tag>IntelliJ IDEA</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Java基础</title>
+    <link href="/2024/03/05/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/"/>
+    <url>/2024/03/05/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/</url>
+    
+    <content type="html"><![CDATA[<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="ArrayList和LinkedList区别"><a href="#ArrayList和LinkedList区别" class="headerlink" title="ArrayList和LinkedList区别"></a>ArrayList和LinkedList区别</h2><ol><li>arrayList实现是基于数据，linkedlist实现是基于双向链表</li><li>随机访问，arraylist会通过下标直接定位，而linkedlist 每一个元素都依靠指针和它后一个元素连接</li><li>插入和删除操作，linkedlist优于arraylist，因为arraylist添加需要重新计算大小更新索引</li><li>linkedlist比arraylist更占内存</li></ol><h2 id="hashmap底层实现"><a href="#hashmap底层实现" class="headerlink" title="hashmap底层实现"></a>hashmap底层实现</h2><ol><li>数据结构：数据+链表+红黑树， 链表达到一定长度后会转为红黑树</li><li></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>java</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java基础</tag>
       
     </tags>
     

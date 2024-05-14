@@ -16,21 +16,21 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   
-    <meta name="description" content="apache.commons.text引用              org.apache.commons         commons-text         1.6        1234567891011121314import org.apache.commons.text.StringSubstitutor;public class Demo&amp;#123;        public">
+    <meta name="description" content="ArrayList和LinkedList区别 arrayList实现是基于数据，linkedlist实现是基于双向链表 随机访问，arraylist会通过下标直接定位，而linkedlist 每一个元素都依靠指针和它后一个元素连接 插入和删除操作，linkedlist优于arraylist，因为arraylist添加需要重新计算大小更新索引 linkedlist比arraylist更占内存  ha">
 <meta property="og:type" content="article">
-<meta property="og:title" content="占位符替换方式">
-<meta property="og:url" content="https://dl-xuyongqing.github.io/2024/02/27/%E4%B8%9A%E5%8A%A1%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/%E5%8D%A0%E4%BD%8D%E7%AC%A6%E6%9B%BF%E6%8D%A2%E6%96%B9%E5%BC%8F/index.html">
+<meta property="og:title" content="Java基础">
+<meta property="og:url" content="https://dl-xuyongqing.github.io/2024/03/05/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="apache.commons.text引用              org.apache.commons         commons-text         1.6        1234567891011121314import org.apache.commons.text.StringSubstitutor;public class Demo&amp;#123;        public">
+<meta property="og:description" content="ArrayList和LinkedList区别 arrayList实现是基于数据，linkedlist实现是基于双向链表 随机访问，arraylist会通过下标直接定位，而linkedlist 每一个元素都依靠指针和它后一个元素连接 插入和删除操作，linkedlist优于arraylist，因为arraylist添加需要重新计算大小更新索引 linkedlist比arraylist更占内存  ha">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-02-27T06:53:00.000Z">
-<meta property="article:modified_time" content="2024-02-28T02:00:03.570Z">
-<meta property="article:tag" content="commons-text">
+<meta property="article:published_time" content="2024-03-05T05:48:12.000Z">
+<meta property="article:modified_time" content="2024-05-14T06:58:15.300Z">
+<meta property="article:tag" content="Java基础">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>占位符替换方式 - </title>
+  <title>Java基础 - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="占位符替换方式"></span>
+            <span id="subtitle" data-typed-text="Java基础"></span>
           
         </div>
 
@@ -207,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-27 14:53" pubdate>
-          2024年2月27日 下午
+        <time datetime="2024-03-05 13:48" pubdate>
+          2024年3月5日 下午
         </time>
       </span>
     
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          232 字
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          12 分钟
+          2 分钟
         
       </span>
     
@@ -267,22 +267,21 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">占位符替换方式</h1>
+            <h1 id="seo-header">Java基础</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="apache-commons-text"><a href="#apache-commons-text" class="headerlink" title="apache.commons.text"></a>apache.commons.text</h1><h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><dependencies>
-    <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-text</artifactId>
-        <version>1.6</version>
-    </dependency>
-</dependencies>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.apache.commons.text.StringSubstitutor;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span>&#123;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">parseFormat</span><span class="hljs-params">(String text, Map&lt;String, Object&gt; param)</span>&#123;<br>      <span class="hljs-type">StringSubstitutor</span> <span class="hljs-variable">sub</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringSubstitutor</span>(param);<br>      <span class="hljs-type">String</span> <span class="hljs-variable">context</span> <span class="hljs-operator">=</span> sub.replace(text);<br>      System.err.println(context);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">//text = $&#123;userName&#125; 你好, 申请密码已经变更</span><br><span class="hljs-comment">//param = &#123;&quot;userName&quot;:&quot;xuyongqing&quot;&#125;</span><br><br><span class="hljs-comment">//输出结果：xuyongqing 你好, 申请密码已经变更</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="基本方式"><a href="#基本方式" class="headerlink" title="基本方式"></a>基本方式</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span>&#123;<br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 模板解析</span><br><span class="hljs-comment">   *</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@param</span> template   模板字符串 如：My name is $&#123;name&#125;, i am $&#123;age&#125; years old! $&#123;sayHai&#125;</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@param</span> properties map接口的集合，如： &#123;name: &quot;azi&quot;, age: 18, sex: &quot;man&quot;&#125;</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@return</span>: 解析后的字符串，如： My name is azi, i am 18 years old!</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@author</span>: 若非</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@date</span>: 2021/8/19 3:03</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">parseTemplate</span><span class="hljs-params">(String template, Map properties)</span> &#123;<br>    <span class="hljs-keyword">if</span> (template == <span class="hljs-literal">null</span> || template.isEmpty() || properties == <span class="hljs-literal">null</span>) &#123;<br>      <span class="hljs-keyword">return</span> template;<br>    &#125;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">r</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;\\$\\&#123;([^\\&#125;]+)\\&#125;&quot;</span>;<br>    <span class="hljs-type">Pattern</span> <span class="hljs-variable">pattern</span> <span class="hljs-operator">=</span> Pattern.compile(r);<br>    <span class="hljs-type">Matcher</span> <span class="hljs-variable">matcher</span> <span class="hljs-operator">=</span> pattern.matcher(template);<br>    <span class="hljs-keyword">while</span> (matcher.find()) &#123;<br>      <span class="hljs-type">String</span> <span class="hljs-variable">group</span> <span class="hljs-operator">=</span> matcher.group();<br>      <span class="hljs-type">Object</span> <span class="hljs-variable">o</span> <span class="hljs-operator">=</span> properties.get(group.replaceAll(r, <span class="hljs-string">&quot;$1&quot;</span>));<br>      <span class="hljs-keyword">if</span> (o != <span class="hljs-literal">null</span>) &#123;<br>        template = template.replace(group, String.valueOf(o));<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        template = template.replace(group, <span class="hljs-string">&quot;&quot;</span>);<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> template;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+                <h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="ArrayList和LinkedList区别"><a href="#ArrayList和LinkedList区别" class="headerlink" title="ArrayList和LinkedList区别"></a>ArrayList和LinkedList区别</h2><ol>
+<li>arrayList实现是基于数据，linkedlist实现是基于双向链表</li>
+<li>随机访问，arraylist会通过下标直接定位，而linkedlist 每一个元素都依靠指针和它后一个元素连接</li>
+<li>插入和删除操作，linkedlist优于arraylist，因为arraylist添加需要重新计算大小更新索引</li>
+<li>linkedlist比arraylist更占内存</li>
+</ol>
+<h2 id="hashmap底层实现"><a href="#hashmap底层实现" class="headerlink" title="hashmap底层实现"></a>hashmap底层实现</h2><ol>
+<li>数据结构：数据+链表+红黑树， 链表达到一定长度后会转为红黑树</li>
+<li></li>
+</ol>
 
                 
               </div>
@@ -316,7 +315,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/commons-text/" class="print-no-link">#commons-text</a>
+        <a href="/tags/Java%E5%9F%BA%E7%A1%80/" class="print-no-link">#Java基础</a>
       
     </div>
   
@@ -328,15 +327,15 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>占位符替换方式</div>
-      <div>https://dl-xuyongqing.github.io/2024/02/27/业务实现方式/占位符替换方式/</div>
+      <div>Java基础</div>
+      <div>https://dl-xuyongqing.github.io/2024/03/05/开发框架/基础/基础/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年2月27日</div>
+          <div>2024年3月5日</div>
         </div>
       
       
@@ -368,9 +367,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/03/05/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E5%9F%BA%E7%A1%80/%E5%9F%BA%E7%A1%80/" title="Java基础">
+                      <a href="/2024/03/05/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/idea/" title="IntelliJ IDEA">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java基础</span>
+                        <span class="hidden-mobile">IntelliJ IDEA</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -378,8 +377,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/20/%E5%A4%A7%E8%BF%9E%E6%B8%B8%E7%8E%A9%E6%99%AF%E7%82%B9/%E5%A4%A7%E8%BF%9E%E7%BA%A6%E4%BC%9A%E9%A1%B9%E7%9B%AE/" title="大连游玩项目">
-                        <span class="hidden-mobile">大连游玩项目</span>
+                      <a href="/2024/02/27/%E4%B8%9A%E5%8A%A1%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F/%E5%8D%A0%E4%BD%8D%E7%AC%A6%E6%9B%BF%E6%8D%A2%E6%96%B9%E5%BC%8F/" title="占位符替换方式">
+                        <span class="hidden-mobile">占位符替换方式</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
