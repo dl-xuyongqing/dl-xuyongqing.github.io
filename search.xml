@@ -4,11 +4,24 @@
   
     
     <entry>
-      <title>Java基础</title>
+      <title></title>
+      <link href="/2024/05/14/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E7%BC%93%E5%AD%98/redis/"/>
+      <url>/2024/05/14/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E7%BC%93%E5%AD%98/redis/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>IntelliJ IDEA</title>
       <link href="/2024/03/05/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/idea/"/>
       <url>/2024/03/05/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/idea/</url>
       
-        <content type="html"><![CDATA[<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h1 id="ArrayList-和-LinkedList-的区别"><a href="#ArrayList-和-LinkedList-的区别" class="headerlink" title="ArrayList 和 LinkedList 的区别"></a>ArrayList 和 LinkedList 的区别</h1>]]></content>
+        <content type="html"><![CDATA[<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h1 id="IntelliJ-IDEA"><a href="#IntelliJ-IDEA" class="headerlink" title="IntelliJ IDEA"></a>IntelliJ IDEA</h1><p>New Project -&gt; Spring Initializr 不能选择java8<br>更换Server URL &#x3D; start.aliyun.com 即可</p>]]></content>
       
       
       <categories>
@@ -20,7 +33,7 @@
       
         <tags>
             
-            <tag> Java基础必备 </tag>
+            <tag> IntelliJ IDEA </tag>
             
         </tags>
       
