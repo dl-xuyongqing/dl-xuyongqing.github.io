@@ -24,7 +24,7 @@
 <meta property="og:description" content="redis面试相关redis哪些好处 答：数据存放在内存中，支持5种数据类型，string，list，set，sort set，hash string基础用法 list链表 set集合，可以用于交集并集等等 hash存放对象内容 sort set 增加权重 score    redis为啥这么快 数据存放在内存中，不需要访问磁盘，降低访问延迟， 单线程，避免多线程上下文切换 高效数据结构 非阻塞i">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-05T03:18:12.000Z">
-<meta property="article:modified_time" content="2024-05-14T06:57:39.292Z">
+<meta property="article:modified_time" content="2024-05-29T02:07:59.977Z">
 <meta property="article:tag" content="redis基础知识">
 <meta property="article:tag" content="redis面试相关问题">
 <meta name="twitter:card" content="summary_large_image">
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1.3k 字
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          10 分钟
+          12 分钟
         
       </span>
     
@@ -333,6 +333,16 @@
 <h3 id="生产配置持久化建议"><a href="#生产配置持久化建议" class="headerlink" title="生产配置持久化建议"></a>生产配置持久化建议</h3><p>（1）官方建议：是同时开启两种持久化策略。因为有时需要RDB快照是进行数据库备份，更快重启以及发生AOF引擎错误的解决办法。（换句话就是通过RDB来多备份一份数据总是好的）</p>
 <p>（2） 因为RDB文件只用作后备用途，建议只在Slave上持久化RDB文件，而且只要15分钟备份一次就够了，只保留save 900 1这条规则。</p>
 <p>（3）如果选择AOF，只要硬盘许可，应该尽量减少AOF rewrite的频率。因为一是带来了持续的IO，二是AOF rewrite的最后将rewrite过程中产生的新数据写到新文件造成的阻塞几乎是不可避免的。AOF重写的基础大小默认值64M太小了，可以设到2G以上。</p>
+<h2 id="缓存三大问题"><a href="#缓存三大问题" class="headerlink" title="缓存三大问题"></a>缓存三大问题</h2><h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><p>查询数据不存在</p>
+<h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><p>缓存过期，伴随大量对该key得请求</p>
+<h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>同一时间大批量得key过期</p>
+<h3 id="如何保证原子性"><a href="#如何保证原子性" class="headerlink" title="如何保证原子性"></a>如何保证原子性</h3><p>redis是单线程，所以redis停工得api也是原子性</p>
+<p>但是我们业务中常常先有get，在 set业务导致，数据一致性</p>
+<h3 id="一致性问题"><a href="#一致性问题" class="headerlink" title="一致性问题"></a>一致性问题</h3><ol>
+<li>使用 incr，descr，setnx等原子操作</li>
+<li>客户端加锁</li>
+<li>使用lua脚本实现cas操作</li>
+</ol>
 
                 
               </div>
