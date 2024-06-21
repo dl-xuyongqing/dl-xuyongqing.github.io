@@ -16,22 +16,21 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   
-    <meta name="description" content="redis面试相关redis哪些好处 答：数据存放在内存中，支持5种数据类型，string，list，set，sort set，hash string基础用法 list链表 set集合，可以用于交集并集等等 hash存放对象内容 sort set 增加权重 score    redis为啥这么快 数据存放在内存中，不需要访问磁盘，降低访问延迟， 单线程，避免多线程上下文切换 高效数据结构 非阻塞i">
+    <meta name="description" content="Git命令常用命令123456789101112131415161718192021222324--初始化仓库git init --绑定远程分支git remote add 本地分支名称 远程仓库地址-- 绑定错误 or  绑定多个，通过 remove 移除git remote remove 分支名称git commit -m &quot;提交日志&quot;--将本地分支提交到远程分支git p">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis相关">
-<meta property="og:url" content="https://dl-xuyongqing.github.io/2024/05/05/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E7%BC%93%E5%AD%98/redis/index.html">
+<meta property="og:title" content="git命令用法">
+<meta property="og:url" content="https://dl-xuyongqing.github.io/2024/06/21/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/git/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="redis面试相关redis哪些好处 答：数据存放在内存中，支持5种数据类型，string，list，set，sort set，hash string基础用法 list链表 set集合，可以用于交集并集等等 hash存放对象内容 sort set 增加权重 score    redis为啥这么快 数据存放在内存中，不需要访问磁盘，降低访问延迟， 单线程，避免多线程上下文切换 高效数据结构 非阻塞i">
+<meta property="og:description" content="Git命令常用命令123456789101112131415161718192021222324--初始化仓库git init --绑定远程分支git remote add 本地分支名称 远程仓库地址-- 绑定错误 or  绑定多个，通过 remove 移除git remote remove 分支名称git commit -m &quot;提交日志&quot;--将本地分支提交到远程分支git p">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-05-05T03:18:12.000Z">
-<meta property="article:modified_time" content="2024-05-29T02:07:59.977Z">
-<meta property="article:tag" content="redis基础知识">
-<meta property="article:tag" content="redis面试相关问题">
+<meta property="article:published_time" content="2024-06-21T01:34:00.000Z">
+<meta property="article:modified_time" content="2024-06-21T01:47:39.137Z">
+<meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Redis相关 - </title>
+  <title>git命令用法 - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Redis相关"></span>
+            <span id="subtitle" data-typed-text="git"></span>
           
         </div>
 
@@ -208,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-05 11:18" pubdate>
-          2024年5月5日 上午
+        <time datetime="2024-06-21 09:34" pubdate>
+          2024年6月21日 上午
         </time>
       </span>
     
@@ -220,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          446 字
         
       </span>
     
@@ -231,7 +230,7 @@
         
         
         
-          12 分钟
+          4 分钟
         
       </span>
     
@@ -268,81 +267,27 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Redis相关</h1>
+            <h1 id="seo-header">git</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h1><h2 id="面试相关"><a href="#面试相关" class="headerlink" title="面试相关"></a>面试相关</h2><h3 id="redis哪些好处"><a href="#redis哪些好处" class="headerlink" title="redis哪些好处"></a>redis哪些好处</h3><ul>
-<li>答：数据存放在内存中，支持5种数据类型，string，list，set，sort set，hash<ul>
-<li>string基础用法</li>
-<li>list链表</li>
-<li>set集合，可以用于交集并集等等</li>
-<li>hash存放对象内容</li>
-<li>sort set 增加权重 score</li>
-</ul>
-</li>
-</ul>
-<h3 id="redis为啥这么快"><a href="#redis为啥这么快" class="headerlink" title="redis为啥这么快"></a>redis为啥这么快</h3><ul>
-<li>数据存放在内存中，不需要访问磁盘，降低访问延迟，</li>
-<li>单线程，避免多线程上下文切换</li>
-<li>高效数据结构</li>
-<li>非阻塞i&#x2F;o多路复用机制</li>
-</ul>
-<h2 id="重点难点-尽量理解"><a href="#重点难点-尽量理解" class="headerlink" title="重点难点(尽量理解)"></a>重点难点(尽量理解)</h2><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/DCVZWAc_XgbmZ5KFOQEsAw">参考内容</a></p>
-<p>redis 持久化 rdb aof</p>
-<h3 id="持久化方式"><a href="#持久化方式" class="headerlink" title="持久化方式"></a>持久化方式</h3><ol>
-<li>快照</li>
-<li>文件追加方式</li>
-<li>混合持久化方式</li>
-</ol>
-<h4 id="什么是rdb，rdb如何持久话"><a href="#什么是rdb，rdb如何持久话" class="headerlink" title="什么是rdb，rdb如何持久话"></a>什么是rdb，rdb如何持久话</h4><ol>
-<li><p>某一个时间点，将内存中的数据存放到磁盘上</p>
-</li>
-<li><p>触发方式</p>
-<ol>
-<li>手动 save ，bgsave，save阻塞主线程，bgsave fork一个子线程</li>
-<li>自动 - 需要修改配置</li>
-</ol>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#900秒内有1个key发生了变化，</span><br>save 900 1 <br><span class="hljs-comment">#服务器在300秒内呗修改10次 </span><br>save 300 10 <br><span class="hljs-comment">##服务器在60秒内呗修改10000 次</span><br>save 60 10000 <br><br><span class="hljs-comment">#如果想禁用快照保存的功能，可以通过注释掉所有&quot;save&quot;配置达到，或者在最后一条&quot;save&quot;配置后添加如下的配置：</span><br>save <span class="hljs-string">&quot;&quot;</span><br></code></pre></td></tr></table></figure></li>
-</ol>
-<h4 id="什么是aof，aof如何实现持久化"><a href="#什么是aof，aof如何实现持久化" class="headerlink" title="什么是aof，aof如何实现持久化"></a>什么是aof，aof如何实现持久化</h4><p>以日志的形势记录<strong>每个写操作</strong></p>
-<p>持久化流程：client 命令 -&gt; redis server -&gt; aof 缓存区 -&gt; aof 文件 -&gt; aof重写 -&gt;</p>
-<p>aof 缓存区 -&gt; aof 文件 策略方式</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#always表示每次写入都执行fsync，以保证数据同步到磁盘</span><br>appendfsync always<br><span class="hljs-comment">#everysec表示每秒执行一次fsync，可能会导致丢失这1s数据</span><br>appendfsynv everysec<br><span class="hljs-comment">#no表示不执行fsync，由操作系统保证数据同步到磁盘，速度最快</span><br>appendfsync no <br></code></pre></td></tr></table></figure>
+                <h3 id=""><a href="#" class="headerlink" title=""></a></h3><h1 id="Git命令"><a href="#Git命令" class="headerlink" title="Git命令"></a>Git命令</h1><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs shell">--初始化仓库<br>git init <br><br>--绑定远程分支<br>git remote add 本地分支名称 远程仓库地址<br><br>-- 绑定错误 or  绑定多个，通过 remove 移除<br>git remote remove 分支名称<br><br>git commit -m &quot;提交日志&quot;<br><br>--将本地分支提交到远程分支<br>git push localBranchName originBranchName<br>--<br>git push --set-upstream zuiye zuiye<br><br>--显示文件状态<br>git status<br><br>--显示具体得文件路径下 or 文件变更状态<br>git status 文件名称 or 文件路径<br><br>--比较不同点<br>git diff 文件名称<br></code></pre></td></tr></table></figure>
 
 
 
-<h3 id="rdb和aof各自优缺点"><a href="#rdb和aof各自优缺点" class="headerlink" title="rdb和aof各自优缺点"></a>rdb和aof各自优缺点</h3><h4 id="rdb的优点"><a href="#rdb的优点" class="headerlink" title="rdb的优点"></a>rdb的优点</h4><ol>
-<li>启动速度快</li>
-<li>适合用于备份</li>
-<li>性能好</li>
-</ol>
-<h4 id="rdb缺点"><a href="#rdb缺点" class="headerlink" title="rdb缺点"></a>rdb缺点</h4><ol>
-<li>容易数据丢失</li>
-<li>数据来比较大，fork产生子进程过程会堵塞主线程</li>
-</ol>
-<h4 id="aof优点"><a href="#aof优点" class="headerlink" title="aof优点"></a>aof优点</h4><ol>
-<li>更高数据安全性</li>
-<li></li>
-</ol>
-<h4 id="aof缺点"><a href="#aof缺点" class="headerlink" title="aof缺点"></a>aof缺点</h4><ol>
-<li>文件比价大</li>
-<li></li>
-</ol>
-<h3 id="生产配置持久化建议"><a href="#生产配置持久化建议" class="headerlink" title="生产配置持久化建议"></a>生产配置持久化建议</h3><p>（1）官方建议：是同时开启两种持久化策略。因为有时需要RDB快照是进行数据库备份，更快重启以及发生AOF引擎错误的解决办法。（换句话就是通过RDB来多备份一份数据总是好的）</p>
-<p>（2） 因为RDB文件只用作后备用途，建议只在Slave上持久化RDB文件，而且只要15分钟备份一次就够了，只保留save 900 1这条规则。</p>
-<p>（3）如果选择AOF，只要硬盘许可，应该尽量减少AOF rewrite的频率。因为一是带来了持续的IO，二是AOF rewrite的最后将rewrite过程中产生的新数据写到新文件造成的阻塞几乎是不可避免的。AOF重写的基础大小默认值64M太小了，可以设到2G以上。</p>
-<h2 id="缓存三大问题"><a href="#缓存三大问题" class="headerlink" title="缓存三大问题"></a>缓存三大问题</h2><h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><p>查询数据不存在</p>
-<h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><p>缓存过期，伴随大量对该key得请求</p>
-<h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>同一时间大批量得key过期</p>
-<h3 id="如何保证原子性"><a href="#如何保证原子性" class="headerlink" title="如何保证原子性"></a>如何保证原子性</h3><p>redis是单线程，所以redis停工得api也是原子性</p>
-<p>但是我们业务中常常先有get，在 set业务导致，数据一致性</p>
-<h3 id="一致性问题"><a href="#一致性问题" class="headerlink" title="一致性问题"></a>一致性问题</h3><ol>
-<li>使用 incr，descr，setnx等原子操作</li>
-<li>客户端加锁</li>
-<li>使用lua脚本实现cas操作</li>
-</ol>
+
+
+<h2 id="参考得其他命令"><a href="#参考得其他命令" class="headerlink" title="参考得其他命令"></a>参考得其他命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">-- 显示当前分支 a 显示所有分支<br>git branch [-a]<br><br>-- 显示当前分支和远程分支绑定状态<br>git remote -v<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><h2 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">--解决命令行显示乱码问题<br>git config --global core.quotepath false<br></code></pre></td></tr></table></figure>
+
+
+
 
                 
               </div>
@@ -361,7 +306,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/redis/" class="category-chain-item">redis</a>
+  <a href="/categories/git/" class="category-chain-item">git</a>
   
   
 
@@ -376,9 +321,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="print-no-link">#redis基础知识</a>
-      
-        <a href="/tags/redis%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" class="print-no-link">#redis面试相关问题</a>
+        <a href="/tags/git/" class="print-no-link">#git</a>
       
     </div>
   
@@ -390,15 +333,15 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Redis相关</div>
-      <div>https://dl-xuyongqing.github.io/2024/05/05/开发框架/缓存/redis/</div>
+      <div>git命令用法</div>
+      <div>https://dl-xuyongqing.github.io/2024/06/21/开发框架/开发工具/git/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年5月5日</div>
+          <div>2024年6月21日</div>
         </div>
       
       
@@ -430,18 +373,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/06/21/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/git/" title="git命令用法">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">git命令用法</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/05/%E9%9D%A2%E8%AF%95/%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98/" title="面试问题">
-                        <span class="hidden-mobile">面试问题</span>
+                      <a href="/2024/05/05/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E7%BC%93%E5%AD%98/redis/" title="Redis相关">
+                        <span class="hidden-mobile">Redis相关</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
