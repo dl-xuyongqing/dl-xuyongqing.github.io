@@ -16,22 +16,21 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   
-    <meta name="description" content="代码规范使用@Builder 必须同时使用 @NoArgsConstructor，@AllArgsConstructor 类命.buider() 之后换行， .build(); 必须在最后一行  spring - eventApplicationEventPublisher前景123456789@Getterpublic class MessageSendEvent extends Applica">
+    <meta name="description" content="java14特性关键字record解释：Java中的record是在Java 14版本中引入的新特性，它是一种 轻量级 的数据封装类型，用于定义不可变的数据对象 特性 不可变性：record的实例是不可变的，一旦创建，就不能修改其状态。 自动生成方法：record自动提供了equals()、hashCode()、toString()等方法的实现。 紧凑的语法：record的定义非常简洁，可以节省大">
 <meta property="og:type" content="article">
-<meta property="og:title" content="spring">
-<meta property="og:url" content="https://dl-xuyongqing.github.io/2023/08/21/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/Spring/spring/index.html">
+<meta property="og:title" content="Java特性">
+<meta property="og:url" content="https://dl-xuyongqing.github.io/2024/07/02/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/java%E7%89%B9%E6%80%A7/java%E7%89%B9%E6%80%A7/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="代码规范使用@Builder 必须同时使用 @NoArgsConstructor，@AllArgsConstructor 类命.buider() 之后换行， .build(); 必须在最后一行  spring - eventApplicationEventPublisher前景123456789@Getterpublic class MessageSendEvent extends Applica">
+<meta property="og:description" content="java14特性关键字record解释：Java中的record是在Java 14版本中引入的新特性，它是一种 轻量级 的数据封装类型，用于定义不可变的数据对象 特性 不可变性：record的实例是不可变的，一旦创建，就不能修改其状态。 自动生成方法：record自动提供了equals()、hashCode()、toString()等方法的实现。 紧凑的语法：record的定义非常简洁，可以节省大">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-08-21T08:47:08.000Z">
-<meta property="article:modified_time" content="2024-02-28T01:05:32.009Z">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="spring">
+<meta property="article:published_time" content="2024-07-02T05:24:10.000Z">
+<meta property="article:modified_time" content="2024-07-02T05:31:21.979Z">
+<meta property="article:tag" content="java14特性">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>spring - </title>
+  <title>Java特性 - </title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Spring相关记录"></span>
+            <span id="subtitle" data-typed-text="Java特性"></span>
           
         </div>
 
@@ -208,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-21 16:47" pubdate>
-          2023年8月21日 下午
+        <time datetime="2024-07-02 13:24" pubdate>
+          2024年7月2日 下午
         </time>
       </span>
     
@@ -220,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          621 字
         
       </span>
     
@@ -231,7 +230,7 @@
         
         
         
-          19 分钟
+          6 分钟
         
       </span>
     
@@ -268,31 +267,22 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Spring相关记录</h1>
+            <h1 id="seo-header">Java特性</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h2><h3 id="使用-Builder"><a href="#使用-Builder" class="headerlink" title="使用@Builder"></a>使用@Builder</h3><ol>
-<li>必须同时使用 @NoArgsConstructor，@AllArgsConstructor</li>
-<li>类命.buider() 之后换行， .build(); 必须在最后一行</li>
+                <h1 id="java14特性"><a href="#java14特性" class="headerlink" title="java14特性"></a>java14特性</h1><h2 id="关键字record"><a href="#关键字record" class="headerlink" title="关键字record"></a>关键字record</h2><p>解释：Java中的record是在Java 14版本中引入的新特性，它是一种 轻量级 的数据封装类型，用于定义不可变的数据对象</p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ol>
+<li>不可变性：record的实例是不可变的，一旦创建，就不能修改其状态。</li>
+<li>自动生成方法：record自动提供了equals()、hashCode()、toString()等方法的实现。</li>
+<li>紧凑的语法：record的定义非常简洁，可以节省大量的代码。</li>
 </ol>
-<h1 id="spring-event"><a href="#spring-event" class="headerlink" title="spring - event"></a>spring - event</h1><h2 id="ApplicationEventPublisher"><a href="#ApplicationEventPublisher" class="headerlink" title="ApplicationEventPublisher"></a>ApplicationEventPublisher</h2><h3 id="前景"><a href="#前景" class="headerlink" title="前景"></a>前景</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Getter</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MessageSendEvent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">ApplicationEvent</span> &#123;<br>    <span class="hljs-keyword">private</span> Long msgId;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MessageSendEvent</span><span class="hljs-params">(Object source, Long msgId)</span> &#123;<br>        <span class="hljs-built_in">super</span>(source);<br>        <span class="hljs-built_in">this</span>.msgId = msgId;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span>&#123;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> ApplicationEventPublisher applicationEventPublisher;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">method</span><span class="hljs-params">()</span>&#123;<br>        applicationEventPublisher.publishEvent(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MessageSendEvent</span>(<span class="hljs-built_in">this</span>, insert.getId()));<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h3 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h3><p>创建表示学生信息的record</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">Student</span><span class="hljs-params">(String name, <span class="hljs-type">int</span> age, String major)</span> &#123;<br>    <span class="hljs-comment">// 可以在这里添加其他方法或构造函数</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span>&#123;<br>    <span class="hljs-meta">@TransactionalEventListener(classes = MessageSendEvent.class, fallbackExecution = true)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">messageRoute</span><span class="hljs-params">(MessageSendEvent event)</span> &#123;<br><br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
-
-<h1 id="spring-transaction"><a href="#spring-transaction" class="headerlink" title="spring - transaction"></a>spring - transaction</h1><h2 id="判断当前代码中是否存在事务未提交"><a href="#判断当前代码中是否存在事务未提交" class="headerlink" title="判断当前代码中是否存在事务未提交"></a>判断当前代码中是否存在事务未提交</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Demo</span>&#123;<br>    <span class="hljs-type">boolean</span> <span class="hljs-variable">inTransaction</span> <span class="hljs-operator">=</span> TransactionSynchronizationManager.isActualTransactionActive();<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">messageRoute</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">//非事务状态，直接执行，不做任何保证。</span><br>        <span class="hljs-keyword">if</span> (!inTransaction) &#123;<br>            <span class="hljs-keyword">return</span> joinPoint.proceed();<br>        &#125;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
-
-
-
-
-
-<h1 id="spring-aop"><a href="#spring-aop" class="headerlink" title="spring - aop"></a>spring - aop</h1><h2 id="自定义注解"><a href="#自定义注解" class="headerlink" title="自定义注解"></a>自定义注解</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Target(value = ElementType.METHOD)</span><br><span class="hljs-meta">@Retention(RetentionPolicy.RUNTIME)</span><br><span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> Idempotent &#123;<br><br>    String <span class="hljs-title function_">name</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> <span class="hljs-string">&quot;&quot;</span>;<br><br>    String <span class="hljs-title function_">field</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> <span class="hljs-string">&quot;&quot;</span>;<br><br>    Class <span class="hljs-title function_">type</span><span class="hljs-params">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h2 id="切面类"><a href="#切面类" class="headerlink" title="切面类"></a>切面类</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;<br><span class="hljs-keyword">import</span> org.aspectj.lang.annotation.Around;<br><span class="hljs-keyword">import</span> org.aspectj.lang.annotation.Aspect;<br><span class="hljs-keyword">import</span> org.aspectj.lang.annotation.Pointcut;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-meta">@Aspect</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IdempotentAspect</span> &#123;<br><br>    <span class="hljs-meta">@Pointcut(&quot;@annotation(com.xuyongqing.annotations.Idempotent)&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">idempotent</span><span class="hljs-params">()</span>&#123;<br><br>    &#125;<br>    <span class="hljs-meta">@Around(&quot;idempotent()&quot;)</span><br>    <span class="hljs-keyword">public</span> Object <span class="hljs-title function_">methodAround1</span><span class="hljs-params">(ProceedingJoinPoint joinPoint)</span> <span class="hljs-keyword">throws</span> Throwable&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> com.xuyongqing.annotations.Idempotent;<br><span class="hljs-keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;<br><span class="hljs-keyword">import</span> org.aspectj.lang.annotation.Around;<br><span class="hljs-keyword">import</span> org.aspectj.lang.annotation.Aspect;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-meta">@Aspect</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IdempotentAspect</span> &#123;<br><br>    <span class="hljs-meta">@Around(&quot;@annotation(idempotent))</span><span class="hljs-string">&quot;)</span><br><span class="hljs-string">    public Object methodAround2(ProceedingJoinPoint joinPoint, Idempotent idempotent)&#123;</span><br><span class="hljs-string">        return null;</span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">&#125;</span><br><span class="hljs-string"></span><br></code></pre></td></tr></table></figure>
+<p>使用方式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>        <span class="hljs-type">Student</span> <span class="hljs-variable">student</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Student</span>(<span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-number">20</span>, <span class="hljs-string">&quot;Computer Science&quot;</span>);<br>        System.out.println(student.name()); <span class="hljs-comment">// 输出姓名</span><br>        System.out.println(student.age()); <span class="hljs-comment">// 输出年龄</span><br>        System.out.println(student.major()); <span class="hljs-comment">// 输出专业</span><br>        System.out.println(student); <span class="hljs-comment">// 输出整个对象</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -302,34 +292,11 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/spring/" class="category-chain-item">spring</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/java/" class="print-no-link">#java</a>
-      
-        <a href="/tags/spring/" class="print-no-link">#spring</a>
+        <a href="/tags/java14%E7%89%B9%E6%80%A7/" class="print-no-link">#java14特性</a>
       
     </div>
   
@@ -341,15 +308,15 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>spring</div>
-      <div>https://dl-xuyongqing.github.io/2023/08/21/开发框架/Spring/spring/</div>
+      <div>Java特性</div>
+      <div>https://dl-xuyongqing.github.io/2024/07/02/开发框架/java特性/java特性/</div>
     </div>
     <div class="license-meta">
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年8月21日</div>
+          <div>2024年7月2日</div>
         </div>
       
       
@@ -381,18 +348,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/29/Github%E5%BC%80%E6%BA%90/MallChat/" title="MallChat">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MallChat</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/14/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E7%BD%91%E5%85%B3%E7%9B%B8%E5%85%B3/nginx/" title="nginx">
-                        <span class="hidden-mobile">nginx</span>
+                      <a href="/2024/06/21/%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/git/" title="git命令">
+                        <span class="hidden-mobile">git命令</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
