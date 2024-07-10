@@ -16,15 +16,15 @@
   <meta name="author" content="">
   <meta name="keywords" content="">
   
-    <meta name="description" content="pgsql语法1-- 日期转换    distinct 和 distinct on">
+    <meta name="description" content="pgsql语法1-- 日期转换   distinct 和 distinct on清理归档日志1234567sudo su - postgrespg_controldata# xxx 替换成 pg_controldata 里面的 Latest checkpoint&amp;#x27;s REDO WAL file对应编号## 清理日志归档pg_archivecleanup &#x2F;pgdata&#x2F;pg_wal xx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pg sql">
 <meta property="og:url" content="https://dl-xuyongqing.github.io/2024/07/02/xuyongqing/pg-sql/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="pgsql语法1-- 日期转换    distinct 和 distinct on">
+<meta property="og:description" content="pgsql语法1-- 日期转换   distinct 和 distinct on清理归档日志1234567sudo su - postgrespg_controldata# xxx 替换成 pg_controldata 里面的 Latest checkpoint&amp;#x27;s REDO WAL file对应编号## 清理日志归档pg_archivecleanup &#x2F;pgdata&#x2F;pg_wal xx">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-02T05:51:54.000Z">
-<meta property="article:modified_time" content="2024-07-04T08:35:30.856Z">
+<meta property="article:modified_time" content="2024-07-10T09:03:10.289Z">
 <meta property="article:tag" content="pg sql">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          33 字
+          179 字
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -275,8 +275,9 @@
                 <h1 id="pgsql语法"><a href="#pgsql语法" class="headerlink" title="pgsql语法"></a>pgsql语法</h1><figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs postgresql"><span class="hljs-comment">-- 日期转换</span><br></code></pre></td></tr></table></figure>
 
 
+<h2 id="distinct-和-distinct-on"><a href="#distinct-和-distinct-on" class="headerlink" title="distinct 和 distinct on"></a>distinct 和 distinct on</h2><h2 id="清理归档日志"><a href="#清理归档日志" class="headerlink" title="清理归档日志"></a>清理归档日志</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo su - postgres<br>pg_controldata<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">xxx 替换成 pg_controldata 里面的 Latest checkpoint<span class="hljs-string">&#x27;s REDO WAL file对应编号</span></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-string"># 清理日志归档</span></span><br>pg_archivecleanup /pgdata/pg_wal xxx<br><br></code></pre></td></tr></table></figure>
 
-<h2 id="distinct-和-distinct-on"><a href="#distinct-和-distinct-on" class="headerlink" title="distinct 和 distinct on"></a>distinct 和 distinct on</h2>
+
                 
               </div>
             

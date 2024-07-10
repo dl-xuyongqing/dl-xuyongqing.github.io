@@ -4,6 +4,46 @@
   
     
     <entry>
+      <title>Linux</title>
+      <link href="/2024/07/10/xuyongqing/Linux/"/>
+      <url>/2024/07/10/xuyongqing/Linux/</url>
+      
+        <content type="html"><![CDATA[<p>Linux</p><h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">查看系统内存</span><br>df -h <br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看系统运行程序</span><br>top<br><span class="hljs-meta prompt_">#</span><br></code></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>每天学习一点20240710</title>
+      <link href="/2024/07/10/xuyongqing/%E6%AF%8F%E5%A4%A9%E5%AD%A6%E4%B9%A0%E4%B8%80%E7%82%B920240710/"/>
+      <url>/2024/07/10/xuyongqing/%E6%AF%8F%E5%A4%A9%E5%AD%A6%E4%B9%A0%E4%B8%80%E7%82%B920240710/</url>
+      
+        <content type="html"><![CDATA[<p><a href="/2024/07/10/xuyongqing/Linux/#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">记录Linux常用命令</a><br><a href="/2024/07/02/xuyongqing/pg-sql/#%E6%B8%85%E7%90%86%E5%BD%92%E6%A1%A3%E6%97%A5%E5%BF%97">清理pg-sql的归档日志</a><br><a href="/2024/07/02/xuyongqing/oracle/#%E6%B8%85%E7%90%86%E5%BD%92%E6%A1%A3%E6%97%A5%E5%BF%97">记录Oracle基础语法、查询表空间、添加表分区、添加分区</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 每天一个知识点 </tag>
+            
+            <tag> linux命令 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>RocketMQ</title>
       <link href="/2024/07/04/xuyongqing/%E4%B8%80%E5%A4%A9%E5%AD%A6%E4%B9%A0%E4%B8%80%E7%82%B920240704/"/>
       <url>/2024/07/04/xuyongqing/%E4%B8%80%E5%A4%A9%E5%AD%A6%E4%B9%A0%E4%B8%80%E7%82%B920240704/</url>
@@ -14,9 +54,9 @@
       
         <tags>
             
-            <tag> rocket </tag>
-            
             <tag> 每天一个知识点 </tag>
+            
+            <tag> rocketmq </tag>
             
         </tags>
       
@@ -29,7 +69,7 @@
       <link href="/2024/07/02/xuyongqing/oracle/"/>
       <url>/2024/07/02/xuyongqing/oracle/</url>
       
-        <content type="html"><![CDATA[<h1 id="pgsql语法"><a href="#pgsql语法" class="headerlink" title="pgsql语法"></a>pgsql语法</h1><pre><code class="postgresql">-- 时间转字符串select to_date(date, &#39;yyyy-mm-dd HH24:mi:ss&#39;) from table </code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="ORACLE"><a href="#ORACLE" class="headerlink" title="ORACLE"></a>ORACLE</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs oracle"><br>--时间转化<br>select to_date(&#x27;column1&#x27;, &#x27;yyyy-mm-dd HH24:mi:ss&#x27;) from table_name;<br></code></pre></td></tr></table></figure><h3 id="查询表空间"><a href="#查询表空间" class="headerlink" title="查询表空间"></a>查询表空间</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs oracle">SELECT a.tablespace_name &quot;表空间名&quot;,<br>       total &quot;表空间大小&quot;,<br>       free &quot;表空间剩余大小&quot;,<br>       (total - free) &quot;表占用空间大小&quot;,<br>       ROUND((total - free) / total * 100, 2) || &#x27;%&#x27; &quot;已使用空间百分比&quot;<br>FROM (SELECT tablespace_name, SUM(bytes) / 1024 / 1024 total<br>      FROM dba_data_files<br>      GROUP BY tablespace_name) a,<br>     (SELECT tablespace_name, SUM(bytes) / 1024 / 1024 free<br>      FROM dba_free_space<br>      GROUP BY tablespace_name) b<br>WHERE a.tablespace_name = b.tablespace_name<br><br></code></pre></td></tr></table></figure><h3 id="添加表分区"><a href="#添加表分区" class="headerlink" title="添加表分区"></a>添加表分区</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs oracle">alter tablespace WPPS_TABLESPACE add datafile &#x27;+DATA/wpps/datafile/wpps202405281.dbf&#x27; size 30G;<br><br></code></pre></td></tr></table></figure><h3 id="添加分区"><a href="#添加分区" class="headerlink" title="添加分区"></a>添加分区</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs oracle">ALTER TABLE 表名 add partition 分区名称 VALUES (具体值);<br></code></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -54,7 +94,7 @@
       <link href="/2024/07/02/xuyongqing/pg-sql/"/>
       <url>/2024/07/02/xuyongqing/pg-sql/</url>
       
-        <content type="html"><![CDATA[<h1 id="pgsql语法"><a href="#pgsql语法" class="headerlink" title="pgsql语法"></a>pgsql语法</h1><figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs postgresql"><span class="hljs-comment">-- 日期转换</span><br></code></pre></td></tr></table></figure><h2 id="distinct-和-distinct-on"><a href="#distinct-和-distinct-on" class="headerlink" title="distinct 和 distinct on"></a>distinct 和 distinct on</h2>]]></content>
+        <content type="html"><![CDATA[<h1 id="pgsql语法"><a href="#pgsql语法" class="headerlink" title="pgsql语法"></a>pgsql语法</h1><figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs postgresql"><span class="hljs-comment">-- 日期转换</span><br></code></pre></td></tr></table></figure><h2 id="distinct-和-distinct-on"><a href="#distinct-和-distinct-on" class="headerlink" title="distinct 和 distinct on"></a>distinct 和 distinct on</h2><h2 id="清理归档日志"><a href="#清理归档日志" class="headerlink" title="清理归档日志"></a>清理归档日志</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo su - postgres<br>pg_controldata<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">xxx 替换成 pg_controldata 里面的 Latest checkpoint<span class="hljs-string">&#x27;s REDO WAL file对应编号</span></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-string"># 清理日志归档</span></span><br>pg_archivecleanup /pgdata/pg_wal xxx<br><br></code></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
