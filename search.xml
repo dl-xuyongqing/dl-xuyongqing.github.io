@@ -4,9 +4,55 @@
   
     
     <entry>
+      <title>996-alg</title>
+      <link href="/2024/07/12/xuyongqing/996-alg/"/>
+      <url>/2024/07/12/xuyongqing/996-alg/</url>
+      
+        <content type="html"><![CDATA[<h1 id="alg框架"><a href="#alg框架" class="headerlink" title="alg框架"></a>alg框架</h1><h2 id="如何制作顶部按钮"><a href="#如何制作顶部按钮" class="headerlink" title="如何制作顶部按钮"></a>如何制作顶部按钮</h2><h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h3><ul><li>抽拉动画</li></ul><h3 id="制作步骤"><a href="#制作步骤" class="headerlink" title="制作步骤"></a>制作步骤</h3><p>解释：下面得 [filename] 为相同，可以自定义</p><ul><li>使用可视化工具配置UI，路径 GUIExport&#x2F;alg&#x2F;[filename]&#x2F;</li><li>客户端 alg&#x2F;ui&#x2F;[filename]&#x2F;main.lua</li><li>挂在节点<ul><li>使用alg框架，在主函数里面得有 location 来区分挂载节点</li><li>使用官方，需要在延迟调用里面<a href="#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E9%83%A8%E5%88%86%E4%BB%A3%E7%A0%81">写入</a></li></ul></li><li></li><li><strong>调用在延迟加载里面进行重载</strong><ul><li>在 dev&#x2F;alg&#x2F;dev&#x2F;delay&#x2F;创建文件</li></ul></li><li><a href="#%E5%AE%A2%E6%88%B7%E7%AB%AF-%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE%E5%88%B6%E4%BD%9C">客户端代码</a></li><li><a href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF-%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE%E5%88%B6%E4%BD%9C">服务端代码</a></li><li><h2 id="动画效果制作步骤-使用两个按钮-代码重叠"><a href="#动画效果制作步骤-使用两个按钮-代码重叠" class="headerlink" title="动画效果制作步骤- 使用两个按钮- 代码重叠"></a>动画效果制作步骤<br>- 使用两个按钮<br>- 代码重叠</h2><ul><li></li></ul></li></ul><h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><ul><li>需要修改main.lua里面得node变量，不然和npc会共用</li></ul><h2 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h2><h3 id="客户端-顶部按钮制作"><a href="#客户端-顶部按钮制作" class="headerlink" title="客户端-顶部按钮制作"></a>客户端-顶部按钮制作</h3><h4 id="延迟加载部分代码"><a href="#延迟加载部分代码" class="headerlink" title="延迟加载部分代码"></a>延迟加载部分代码</h4><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">--方式1：使用alg 框架挂载点</span><br>alg:uiopen(<span class="hljs-string">&quot;[filename]&quot;</span>)<br><br><span class="hljs-comment">--方式2：使用官方定位位置后挂在</span><br><span class="hljs-keyword">local</span> right = GUI:Attach_rightTop()<br><span class="hljs-keyword">local</span> have = GUI:GetWindown(right, <span class="hljs-string">&quot;Layout&quot;</span>)<br><span class="hljs-keyword">if</span> have <span class="hljs-keyword">then</span> <br>GUI:removeFromParent(have)    <br><span class="hljs-keyword">end</span><br><span class="hljs-comment">-- alg:uiopenbyparent 会生成全局表</span><br>alg:uiopenbyparent(parent, <span class="hljs-string">&quot;[filename]&quot;</span>)<br><br><span class="hljs-comment">--在 客户端 alg/ui/[filename]/main.lua 中</span><br><span class="hljs-comment">--变量 class = &quot;TopClass&quot;</span><br><br><span class="hljs-built_in">log</span>:<span class="hljs-built_in">debug</span>(TopClass)<br>SL:Sump(TopClass)<br><br></code></pre></td></tr></table></figure><h4 id="动画效果"><a href="#动画效果" class="headerlink" title="动画效果"></a>动画效果</h4><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs lua"><span class="hljs-comment">-- id = buttonLayout 是顶部按钮得容器</span><br><span class="hljs-comment">-- id = autoHide0 是 显示、隐藏按钮</span><br><br><span class="hljs-keyword">local</span> showStatus = <span class="hljs-literal">true</span><br><span class="hljs-keyword">local</span> showPos;<br><span class="hljs-keyword">local</span> lock = <span class="hljs-literal">false</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">autoHide</span><span class="hljs-params">(...)</span></span><br>    <span class="hljs-keyword">if</span> lock <span class="hljs-keyword">then</span><br>        <span class="hljs-keyword">return</span><br>    <span class="hljs-keyword">end</span><br>    <span class="hljs-keyword">local</span> x<br>    <span class="hljs-keyword">if</span> showStatus <span class="hljs-keyword">then</span><br>        x = <span class="hljs-number">999</span><br>    <span class="hljs-keyword">else</span><br>        x = showPos.x<br>    <span class="hljs-keyword">end</span><br>    showStatus = <span class="hljs-keyword">not</span> showStatus<br>    <span class="hljs-comment">--动画完成后回调</span><br>    <span class="hljs-keyword">local</span> backFunc = GUI:CallFunc(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span><br>        lock = <span class="hljs-literal">false</span>   <br>    <span class="hljs-keyword">end</span>)<br>    <span class="hljs-comment">-- 移动动画</span><br>    <span class="hljs-keyword">local</span> action = GUI:ActionMoveTo(<span class="hljs-number">1</span>,x, showPos.y)<br>    <span class="hljs-comment">-- 顺序播放</span><br>    action = GUI:ActionSequence(action, backFunc)<br>    lock = <span class="hljs-literal">true</span><br>    GUI:runAction(_uiDelegate.buttonLayout, action)<br>    GUI:setVisible(_uiDelegate.autoHide0, showStatus)<br>    GUI:setVisible(_uiDelegate.autoHide1, <span class="hljs-keyword">not</span> showStatus)<br><span class="hljs-keyword">end</span><br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span><span class="hljs-params">(var1,var2,var3)</span></span><br>    showPos = GUI:getPosition(_uiDelegate.buttonLayout)<br><br>    GUI:addOnClickEvent(_uiDelegate.autoHide0, autoHide)<br>    GUI:addOnClickEvent(_uiDelegate.autoHide1, autoHide)<br><br>    <span class="hljs-keyword">local</span> pos = GUI:getPosition(_uiDelegate.autoHide0)<br>    GUI:setPosition(_uiDelegate.autoHide1, pos.x, pos.y)<br>    GUI:setPosition(_uiDelegate.autoHide1, <span class="hljs-keyword">not</span> showStatus)<br><span class="hljs-keyword">end</span><br><br><br></code></pre></td></tr></table></figure><h3 id="服务端-顶部按钮制作"><a href="#服务端-顶部按钮制作" class="headerlink" title="服务端-顶部按钮制作"></a>服务端-顶部按钮制作</h3>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Lua </tag>
+            
+            <tag> 996 </tag>
+            
+            <tag> alg框架 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>学习996-alg</title>
+      <link href="/2024/07/12/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA/20240712/"/>
+      <url>/2024/07/12/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA/20240712/</url>
+      
+        <content type="html"><![CDATA[<p><a href="/2024/07/12/xuyongqing/996-alg/#%E9%A1%B6%E9%83%A8%E6%8C%89%E9%92%AE%E5%88%B6%E4%BD%9C">996-alg顶部按钮</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 每天学习一点 </tag>
+            
+            <tag> lua </tag>
+            
+            <tag> alg </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux</title>
-      <link href="/2024/07/10/xuyongqing/Linux/"/>
-      <url>/2024/07/10/xuyongqing/Linux/</url>
+      <link href="/2024/07/10/xuyongqing/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Linux/"/>
+      <url>/2024/07/10/xuyongqing/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Linux/</url>
       
         <content type="html"><![CDATA[<p>Linux</p><h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">查看系统内存</span><br>df -h <br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看系统运行程序</span><br>top<br><span class="hljs-meta prompt_">#</span><br></code></pre></td></tr></table></figure>]]></content>
       
@@ -23,19 +69,23 @@
     
     
     <entry>
-      <title>每天学习一点20240710</title>
-      <link href="/2024/07/10/xuyongqing/%E6%AF%8F%E5%A4%A9%E5%AD%A6%E4%B9%A0%E4%B8%80%E7%82%B920240710/"/>
-      <url>/2024/07/10/xuyongqing/%E6%AF%8F%E5%A4%A9%E5%AD%A6%E4%B9%A0%E4%B8%80%E7%82%B920240710/</url>
+      <title>linux/pg-sql/oracle</title>
+      <link href="/2024/07/10/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA/20240710/"/>
+      <url>/2024/07/10/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA/20240710/</url>
       
-        <content type="html"><![CDATA[<p><a href="/2024/07/10/xuyongqing/Linux/#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">记录Linux常用命令</a><br><a href="/2024/07/02/xuyongqing/pg-sql/#%E6%B8%85%E7%90%86%E5%BD%92%E6%A1%A3%E6%97%A5%E5%BF%97">清理pg-sql的归档日志</a><br><a href="/2024/07/02/xuyongqing/oracle/#%E6%B8%85%E7%90%86%E5%BD%92%E6%A1%A3%E6%97%A5%E5%BF%97">记录Oracle基础语法、查询表空间、添加表分区、添加分区</a></p>]]></content>
+        <content type="html"><![CDATA[<p><a href="/2024/07/10/xuyongqing/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Linux/#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">记录Linux常用命令</a><br><a href="/2024/07/02/xuyongqing/%E6%95%B0%E6%8D%AE%E5%BA%93/postgresql/#%E6%B8%85%E7%90%86%E5%BD%92%E6%A1%A3%E6%97%A5%E5%BF%97">清理postgresql的归档日志</a><br><a href="/2024/07/02/xuyongqing/%E6%95%B0%E6%8D%AE%E5%BA%93/oracle/#%E6%B8%85%E7%90%86%E5%BD%92%E6%A1%A3%E6%97%A5%E5%BF%97">记录Oracle基础语法、查询表空间、添加表分区、添加分区</a></p>]]></content>
       
       
       
         <tags>
             
-            <tag> 每天一个知识点 </tag>
+            <tag> oracle </tag>
             
-            <tag> linux命令 </tag>
+            <tag> 每天学习一点 </tag>
+            
+            <tag> linux </tag>
+            
+            <tag> postgresql </tag>
             
         </tags>
       
@@ -45,8 +95,8 @@
     
     <entry>
       <title>RocketMQ</title>
-      <link href="/2024/07/04/xuyongqing/%E4%B8%80%E5%A4%A9%E5%AD%A6%E4%B9%A0%E4%B8%80%E7%82%B920240704/"/>
-      <url>/2024/07/04/xuyongqing/%E4%B8%80%E5%A4%A9%E5%AD%A6%E4%B9%A0%E4%B8%80%E7%82%B920240704/</url>
+      <link href="/2024/07/04/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA/20240704/"/>
+      <url>/2024/07/04/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA/20240704/</url>
       
         <content type="html"><![CDATA[<h1 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h1><h2 id="核心内容"><a href="#核心内容" class="headerlink" title="核心内容"></a>核心内容</h2><ul><li>基本概念</li><li>发送者和消费者</li><li>高可用和高负载</li><li>消息存储和性能优化</li><li>事务消息和死信队列</li><li>高级特性和运维</li><li>实战问题</li></ul><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="核心组件"><a href="#核心组件" class="headerlink" title="核心组件"></a>核心组件</h3><h4 id="NameServer"><a href="#NameServer" class="headerlink" title="NameServer"></a>NameServer</h4><p>作用：NameServer命名服务和配置中心，维护整个集群得路由信息</p><h4 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h4><p>作用：</p><ul><li>消息存储和转发<ul><li>接受生产者得消息并存储</li><li>为消费者提供消息拉取服务</li></ul></li><li>分Master和Slave两种角色<ul><li>master负责读写</li><li>slave服务master备份，用于故障切换提高可用性</li></ul></li><li>消息持久化存储，消息刷盘策略，消息队列得分批和管理</li></ul><h4 id="Producer"><a href="#Producer" class="headerlink" title="Producer"></a>Producer</h4><p>作用：消息生产者，发送模式：同步发送、异步发送、单向发送</p><h4 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h4><p>作用：消息消费者，从broker拉取消息进行业务逻辑处理</p><ul><li>支持类型<ul><li>广播消费<ul><li>一条消息被所有消费者实例消费</li></ul></li><li>集群消费<ul><li>消费组内一个&#x2F;多个 消费者实例公平消费</li></ul></li></ul></li></ul><h4 id="Filter-Server-可选"><a href="#Filter-Server-可选" class="headerlink" title="Filter Server(可选)"></a>Filter Server(可选)</h4><h4 id="Dashboard-可视化监控界面"><a href="#Dashboard-可视化监控界面" class="headerlink" title="Dashboard(可视化监控界面)"></a>Dashboard(可视化监控界面)</h4><h3 id="支持消费模式"><a href="#支持消费模式" class="headerlink" title="支持消费模式"></a>支持消费模式</h3><h4 id="发布-订阅模式-and-广播消费模式"><a href="#发布-订阅模式-and-广播消费模式" class="headerlink" title="发布&#x2F;订阅模式 and 广播消费模式"></a>发布&#x2F;订阅模式 and 广播消费模式</h4><p>发送者发布消息到主题(topic)，所有订阅该主题消费者都能收到消息，</p><h4 id="集群消费模式"><a href="#集群消费模式" class="headerlink" title="集群消费模式"></a>集群消费模式</h4><p>集群内同一个消费组会共同消费一个主题下得消息，每条消息只会被组内得一个消费者消费</p><h4 id="顺序消费模式"><a href="#顺序消费模式" class="headerlink" title="顺序消费模式"></a>顺序消费模式</h4><p>顺序消息保证同一主题下的消息按照发送顺序进行消费</p><h4 id="事务消息"><a href="#事务消息" class="headerlink" title="事务消息"></a>事务消息</h4><p>实现分布式事务，确保本地消息生产和本地事务原子性，确保消息要么都成功要么都不成功，适用于涉及跨服务的事务处理场景。</p><h4 id="延迟消息"><a href="#延迟消息" class="headerlink" title="延迟消息"></a>延迟消息</h4><p>允许消息在指定的延迟时间后才被消费者消费，适用于如定时任务、消息的有效期控制等场景。</p><h4 id="批量消息"><a href="#批量消息" class="headerlink" title="批量消息"></a>批量消息</h4><p>生产者可以一次性发送一组消息，减少网络交互次数，提高吞吐量，适用于数据聚合或者日志收集等场景。</p><h4 id="过滤消息"><a href="#过滤消息" class="headerlink" title="过滤消息"></a>过滤消息</h4><p>RocketMQ支持基于标签（Tag）或者SQL表达式的消息过滤，允许消费者只接收满足特定条件的消息，提升消息处理的针对性和效率。</p>]]></content>
       
@@ -54,9 +104,9 @@
       
         <tags>
             
-            <tag> 每天一个知识点 </tag>
-            
             <tag> rocketmq </tag>
+            
+            <tag> 每天学习一点 </tag>
             
         </tags>
       
@@ -66,8 +116,8 @@
     
     <entry>
       <title>oracle</title>
-      <link href="/2024/07/02/xuyongqing/oracle/"/>
-      <url>/2024/07/02/xuyongqing/oracle/</url>
+      <link href="/2024/07/02/xuyongqing/%E6%95%B0%E6%8D%AE%E5%BA%93/oracle/"/>
+      <url>/2024/07/02/xuyongqing/%E6%95%B0%E6%8D%AE%E5%BA%93/oracle/</url>
       
         <content type="html"><![CDATA[<h1 id="ORACLE"><a href="#ORACLE" class="headerlink" title="ORACLE"></a>ORACLE</h1><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs oracle"><br>--时间转化<br>select to_date(&#x27;column1&#x27;, &#x27;yyyy-mm-dd HH24:mi:ss&#x27;) from table_name;<br></code></pre></td></tr></table></figure><h3 id="查询表空间"><a href="#查询表空间" class="headerlink" title="查询表空间"></a>查询表空间</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs oracle">SELECT a.tablespace_name &quot;表空间名&quot;,<br>       total &quot;表空间大小&quot;,<br>       free &quot;表空间剩余大小&quot;,<br>       (total - free) &quot;表占用空间大小&quot;,<br>       ROUND((total - free) / total * 100, 2) || &#x27;%&#x27; &quot;已使用空间百分比&quot;<br>FROM (SELECT tablespace_name, SUM(bytes) / 1024 / 1024 total<br>      FROM dba_data_files<br>      GROUP BY tablespace_name) a,<br>     (SELECT tablespace_name, SUM(bytes) / 1024 / 1024 free<br>      FROM dba_free_space<br>      GROUP BY tablespace_name) b<br>WHERE a.tablespace_name = b.tablespace_name<br><br></code></pre></td></tr></table></figure><h3 id="添加表分区"><a href="#添加表分区" class="headerlink" title="添加表分区"></a>添加表分区</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs oracle">alter tablespace WPPS_TABLESPACE add datafile &#x27;+DATA/wpps/datafile/wpps202405281.dbf&#x27; size 30G;<br><br></code></pre></td></tr></table></figure><h3 id="添加分区"><a href="#添加分区" class="headerlink" title="添加分区"></a>添加分区</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs oracle">ALTER TABLE 表名 add partition 分区名称 VALUES (具体值);<br></code></pre></td></tr></table></figure>]]></content>
       
@@ -90,9 +140,9 @@
     
     
     <entry>
-      <title>pg sql</title>
-      <link href="/2024/07/02/xuyongqing/pg-sql/"/>
-      <url>/2024/07/02/xuyongqing/pg-sql/</url>
+      <title>postgresql</title>
+      <link href="/2024/07/02/xuyongqing/%E6%95%B0%E6%8D%AE%E5%BA%93/postgresql/"/>
+      <url>/2024/07/02/xuyongqing/%E6%95%B0%E6%8D%AE%E5%BA%93/postgresql/</url>
       
         <content type="html"><![CDATA[<h1 id="pgsql语法"><a href="#pgsql语法" class="headerlink" title="pgsql语法"></a>pgsql语法</h1><figure class="highlight postgresql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs postgresql"><span class="hljs-comment">-- 日期转换</span><br></code></pre></td></tr></table></figure><h2 id="distinct-和-distinct-on"><a href="#distinct-和-distinct-on" class="headerlink" title="distinct 和 distinct on"></a>distinct 和 distinct on</h2><h2 id="清理归档日志"><a href="#清理归档日志" class="headerlink" title="清理归档日志"></a>清理归档日志</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo su - postgres<br>pg_controldata<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">xxx 替换成 pg_controldata 里面的 Latest checkpoint<span class="hljs-string">&#x27;s REDO WAL file对应编号</span></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-string"># 清理日志归档</span></span><br>pg_archivecleanup /pgdata/pg_wal xxx<br><br></code></pre></td></tr></table></figure>]]></content>
       
@@ -106,7 +156,7 @@
       
         <tags>
             
-            <tag> pg sql </tag>
+            <tag> postgresql </tag>
             
         </tags>
       
@@ -135,8 +185,8 @@
     
     <entry>
       <title>git命令</title>
-      <link href="/2024/06/21/xuyongqing/git/"/>
-      <url>/2024/06/21/xuyongqing/git/</url>
+      <link href="/2024/06/21/xuyongqing/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/git/"/>
+      <url>/2024/06/21/xuyongqing/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/git/</url>
       
         <content type="html"><![CDATA[<h1 id="Git命令"><a href="#Git命令" class="headerlink" title="Git命令"></a>Git命令</h1><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs shell">--初始化仓库<br>git init <br><br>--绑定远程分支<br>git remote add 本地分支名称 远程仓库地址<br><br>-- 绑定错误 or  绑定多个，通过 remove 移除<br>git remote remove 分支名称<br><br>git commit -m &quot;提交日志&quot;<br><br>--将本地分支提交到远程分支<br>git push localBranchName originBranchName<br>--<br>git push --set-upstream zuiye zuiye<br><br>--显示文件状态<br>git status<br><br>--显示具体得文件路径下 or 文件变更状态<br>git status 文件名称 or 文件路径<br><br>--比较不同点<br>git diff 文件名称<br></code></pre></td></tr></table></figure><h2 id="修改文件后提交"><a href="#修改文件后提交" class="headerlink" title="修改文件后提交"></a>修改文件后提交</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">--添加到暂存区<br>git add 文件路径<br>-- 提交到本地仓库<br>git commit -m &quot;提交内容&quot;<br>--提交到哪一个分支上面<br>git push zuiye <br></code></pre></td></tr></table></figure><h2 id="参考得其他命令"><a href="#参考得其他命令" class="headerlink" title="参考得其他命令"></a>参考得其他命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell">-- 显示当前分支 a 显示所有分支<br>git branch [-a]<br><br>-- 显示当前分支和远程分支绑定状态<br>git remote -v<br><br>-- 忽略其他修改，关键一步 在 commit 前<br>git stash -u -k  <br><br>-- 恢复之前忽略的文件（非常重要的一步） 在 push 代码后<br>git stash pop <br><br><br></code></pre></td></tr></table></figure><h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">--解决命令行显示乱码问题<br>git config --global core.quotepath false<br></code></pre></td></tr></table></figure>]]></content>
       
@@ -151,33 +201,6 @@
         <tags>
             
             <tag> git </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Redis相关</title>
-      <link href="/2024/05/05/xuyongqing/redis/"/>
-      <url>/2024/05/05/xuyongqing/redis/</url>
-      
-        <content type="html"><![CDATA[<h1 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h1><h2 id="面试相关"><a href="#面试相关" class="headerlink" title="面试相关"></a>面试相关</h2><h3 id="redis哪些好处"><a href="#redis哪些好处" class="headerlink" title="redis哪些好处"></a>redis哪些好处</h3><ul><li>答：数据存放在内存中，支持5种数据类型，string，list，set，sort set，hash<ul><li>string基础用法</li><li>list链表</li><li>set集合，可以用于交集并集等等</li><li>hash存放对象内容</li><li>sort set 增加权重 score</li></ul></li></ul><h3 id="redis为啥这么快"><a href="#redis为啥这么快" class="headerlink" title="redis为啥这么快"></a>redis为啥这么快</h3><ul><li>数据存放在内存中，不需要访问磁盘，降低访问延迟，</li><li>单线程，避免多线程上下文切换</li><li>高效数据结构</li><li>非阻塞i&#x2F;o多路复用机制</li></ul><h2 id="重点难点-尽量理解"><a href="#重点难点-尽量理解" class="headerlink" title="重点难点(尽量理解)"></a>重点难点(尽量理解)</h2><p><a href="https://mp.weixin.qq.com/s/DCVZWAc_XgbmZ5KFOQEsAw">参考内容</a></p><p>redis 持久化 rdb aof</p><h3 id="持久化方式"><a href="#持久化方式" class="headerlink" title="持久化方式"></a>持久化方式</h3><ol><li>快照</li><li>文件追加方式</li><li>混合持久化方式</li></ol><h4 id="什么是rdb，rdb如何持久话"><a href="#什么是rdb，rdb如何持久话" class="headerlink" title="什么是rdb，rdb如何持久话"></a>什么是rdb，rdb如何持久话</h4><ol><li><p>某一个时间点，将内存中的数据存放到磁盘上</p></li><li><p>触发方式</p><ol><li>手动 save ，bgsave，save阻塞主线程，bgsave fork一个子线程</li><li>自动 - 需要修改配置</li></ol> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#900秒内有1个key发生了变化，</span><br>save 900 1 <br><span class="hljs-comment">#服务器在300秒内呗修改10次 </span><br>save 300 10 <br><span class="hljs-comment">##服务器在60秒内呗修改10000 次</span><br>save 60 10000 <br><br><span class="hljs-comment">#如果想禁用快照保存的功能，可以通过注释掉所有&quot;save&quot;配置达到，或者在最后一条&quot;save&quot;配置后添加如下的配置：</span><br>save <span class="hljs-string">&quot;&quot;</span><br></code></pre></td></tr></table></figure></li></ol><h4 id="什么是aof，aof如何实现持久化"><a href="#什么是aof，aof如何实现持久化" class="headerlink" title="什么是aof，aof如何实现持久化"></a>什么是aof，aof如何实现持久化</h4><p>以日志的形势记录<strong>每个写操作</strong></p><p>持久化流程：client 命令 -&gt; redis server -&gt; aof 缓存区 -&gt; aof 文件 -&gt; aof重写 -&gt;</p><p>aof 缓存区 -&gt; aof 文件 策略方式</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#always表示每次写入都执行fsync，以保证数据同步到磁盘</span><br>appendfsync always<br><span class="hljs-comment">#everysec表示每秒执行一次fsync，可能会导致丢失这1s数据</span><br>appendfsynv everysec<br><span class="hljs-comment">#no表示不执行fsync，由操作系统保证数据同步到磁盘，速度最快</span><br>appendfsync no <br></code></pre></td></tr></table></figure><h3 id="rdb和aof各自优缺点"><a href="#rdb和aof各自优缺点" class="headerlink" title="rdb和aof各自优缺点"></a>rdb和aof各自优缺点</h3><h4 id="rdb的优点"><a href="#rdb的优点" class="headerlink" title="rdb的优点"></a>rdb的优点</h4><ol><li>启动速度快</li><li>适合用于备份</li><li>性能好</li></ol><h4 id="rdb缺点"><a href="#rdb缺点" class="headerlink" title="rdb缺点"></a>rdb缺点</h4><ol><li>容易数据丢失</li><li>数据来比较大，fork产生子进程过程会堵塞主线程</li></ol><h4 id="aof优点"><a href="#aof优点" class="headerlink" title="aof优点"></a>aof优点</h4><ol><li>更高数据安全性</li><li></li></ol><h4 id="aof缺点"><a href="#aof缺点" class="headerlink" title="aof缺点"></a>aof缺点</h4><ol><li>文件比价大</li><li></li></ol><h3 id="生产配置持久化建议"><a href="#生产配置持久化建议" class="headerlink" title="生产配置持久化建议"></a>生产配置持久化建议</h3><p>（1）官方建议：是同时开启两种持久化策略。因为有时需要RDB快照是进行数据库备份，更快重启以及发生AOF引擎错误的解决办法。（换句话就是通过RDB来多备份一份数据总是好的）</p><p>（2） 因为RDB文件只用作后备用途，建议只在Slave上持久化RDB文件，而且只要15分钟备份一次就够了，只保留save 900 1这条规则。</p><p>（3）如果选择AOF，只要硬盘许可，应该尽量减少AOF rewrite的频率。因为一是带来了持续的IO，二是AOF rewrite的最后将rewrite过程中产生的新数据写到新文件造成的阻塞几乎是不可避免的。AOF重写的基础大小默认值64M太小了，可以设到2G以上。</p><h2 id="缓存三大问题"><a href="#缓存三大问题" class="headerlink" title="缓存三大问题"></a>缓存三大问题</h2><h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><p>查询数据不存在</p><h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><p>缓存过期，伴随大量对该key得请求</p><h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>同一时间大批量得key过期</p><h3 id="如何保证原子性"><a href="#如何保证原子性" class="headerlink" title="如何保证原子性"></a>如何保证原子性</h3><p>redis是单线程，所以redis停工得api也是原子性</p><p>但是我们业务中常常先有get，在 set业务导致，数据一致性</p><h3 id="一致性问题"><a href="#一致性问题" class="headerlink" title="一致性问题"></a>一致性问题</h3><ol><li>使用 incr，descr，setnx等原子操作</li><li>客户端加锁</li><li>使用lua脚本实现cas操作</li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> redis </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> redis基础知识 </tag>
-            
-            <tag> redis面试相关问题 </tag>
             
         </tags>
       
@@ -213,23 +236,25 @@
     
     
     <entry>
-      <title>IntelliJ IDEA</title>
-      <link href="/2024/03/05/xuyongqing/idea/"/>
-      <url>/2024/03/05/xuyongqing/idea/</url>
+      <title>Redis相关</title>
+      <link href="/2024/05/05/xuyongqing/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/"/>
+      <url>/2024/05/05/xuyongqing/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</url>
       
-        <content type="html"><![CDATA[<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h1 id="IntelliJ-IDEA"><a href="#IntelliJ-IDEA" class="headerlink" title="IntelliJ IDEA"></a>IntelliJ IDEA</h1><p>New Project -&gt; Spring Initializr 不能选择java8<br>更换Server URL &#x3D; start.aliyun.com 即可</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h1><h2 id="面试相关"><a href="#面试相关" class="headerlink" title="面试相关"></a>面试相关</h2><h3 id="redis哪些好处"><a href="#redis哪些好处" class="headerlink" title="redis哪些好处"></a>redis哪些好处</h3><ul><li>答：数据存放在内存中，支持5种数据类型，string，list，set，sort set，hash<ul><li>string基础用法</li><li>list链表</li><li>set集合，可以用于交集并集等等</li><li>hash存放对象内容</li><li>sort set 增加权重 score</li></ul></li></ul><h3 id="redis为啥这么快"><a href="#redis为啥这么快" class="headerlink" title="redis为啥这么快"></a>redis为啥这么快</h3><ul><li>数据存放在内存中，不需要访问磁盘，降低访问延迟，</li><li>单线程，避免多线程上下文切换</li><li>高效数据结构</li><li>非阻塞i&#x2F;o多路复用机制</li></ul><h2 id="重点难点-尽量理解"><a href="#重点难点-尽量理解" class="headerlink" title="重点难点(尽量理解)"></a>重点难点(尽量理解)</h2><p><a href="https://mp.weixin.qq.com/s/DCVZWAc_XgbmZ5KFOQEsAw">参考内容</a></p><p>redis 持久化 rdb aof</p><h3 id="持久化方式"><a href="#持久化方式" class="headerlink" title="持久化方式"></a>持久化方式</h3><ol><li>快照</li><li>文件追加方式</li><li>混合持久化方式</li></ol><h4 id="什么是rdb，rdb如何持久话"><a href="#什么是rdb，rdb如何持久话" class="headerlink" title="什么是rdb，rdb如何持久话"></a>什么是rdb，rdb如何持久话</h4><ol><li><p>某一个时间点，将内存中的数据存放到磁盘上</p></li><li><p>触发方式</p><ol><li>手动 save ，bgsave，save阻塞主线程，bgsave fork一个子线程</li><li>自动 - 需要修改配置</li></ol> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#900秒内有1个key发生了变化，</span><br>save 900 1 <br><span class="hljs-comment">#服务器在300秒内呗修改10次 </span><br>save 300 10 <br><span class="hljs-comment">##服务器在60秒内呗修改10000 次</span><br>save 60 10000 <br><br><span class="hljs-comment">#如果想禁用快照保存的功能，可以通过注释掉所有&quot;save&quot;配置达到，或者在最后一条&quot;save&quot;配置后添加如下的配置：</span><br>save <span class="hljs-string">&quot;&quot;</span><br></code></pre></td></tr></table></figure></li></ol><h4 id="什么是aof，aof如何实现持久化"><a href="#什么是aof，aof如何实现持久化" class="headerlink" title="什么是aof，aof如何实现持久化"></a>什么是aof，aof如何实现持久化</h4><p>以日志的形势记录<strong>每个写操作</strong></p><p>持久化流程：client 命令 -&gt; redis server -&gt; aof 缓存区 -&gt; aof 文件 -&gt; aof重写 -&gt;</p><p>aof 缓存区 -&gt; aof 文件 策略方式</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#always表示每次写入都执行fsync，以保证数据同步到磁盘</span><br>appendfsync always<br><span class="hljs-comment">#everysec表示每秒执行一次fsync，可能会导致丢失这1s数据</span><br>appendfsynv everysec<br><span class="hljs-comment">#no表示不执行fsync，由操作系统保证数据同步到磁盘，速度最快</span><br>appendfsync no <br></code></pre></td></tr></table></figure><h3 id="rdb和aof各自优缺点"><a href="#rdb和aof各自优缺点" class="headerlink" title="rdb和aof各自优缺点"></a>rdb和aof各自优缺点</h3><h4 id="rdb的优点"><a href="#rdb的优点" class="headerlink" title="rdb的优点"></a>rdb的优点</h4><ol><li>启动速度快</li><li>适合用于备份</li><li>性能好</li></ol><h4 id="rdb缺点"><a href="#rdb缺点" class="headerlink" title="rdb缺点"></a>rdb缺点</h4><ol><li>容易数据丢失</li><li>数据来比较大，fork产生子进程过程会堵塞主线程</li></ol><h4 id="aof优点"><a href="#aof优点" class="headerlink" title="aof优点"></a>aof优点</h4><ol><li>更高数据安全性</li><li></li></ol><h4 id="aof缺点"><a href="#aof缺点" class="headerlink" title="aof缺点"></a>aof缺点</h4><ol><li>文件比价大</li><li></li></ol><h3 id="生产配置持久化建议"><a href="#生产配置持久化建议" class="headerlink" title="生产配置持久化建议"></a>生产配置持久化建议</h3><p>（1）官方建议：是同时开启两种持久化策略。因为有时需要RDB快照是进行数据库备份，更快重启以及发生AOF引擎错误的解决办法。（换句话就是通过RDB来多备份一份数据总是好的）</p><p>（2） 因为RDB文件只用作后备用途，建议只在Slave上持久化RDB文件，而且只要15分钟备份一次就够了，只保留save 900 1这条规则。</p><p>（3）如果选择AOF，只要硬盘许可，应该尽量减少AOF rewrite的频率。因为一是带来了持续的IO，二是AOF rewrite的最后将rewrite过程中产生的新数据写到新文件造成的阻塞几乎是不可避免的。AOF重写的基础大小默认值64M太小了，可以设到2G以上。</p><h2 id="缓存三大问题"><a href="#缓存三大问题" class="headerlink" title="缓存三大问题"></a>缓存三大问题</h2><h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><p>查询数据不存在</p><h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><p>缓存过期，伴随大量对该key得请求</p><h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>同一时间大批量得key过期</p><h3 id="如何保证原子性"><a href="#如何保证原子性" class="headerlink" title="如何保证原子性"></a>如何保证原子性</h3><p>redis是单线程，所以redis停工得api也是原子性</p><p>但是我们业务中常常先有get，在 set业务导致，数据一致性</p><h3 id="一致性问题"><a href="#一致性问题" class="headerlink" title="一致性问题"></a>一致性问题</h3><ol><li>使用 incr，descr，setnx等原子操作</li><li>客户端加锁</li><li>使用lua脚本实现cas操作</li></ol>]]></content>
       
       
       <categories>
           
-          <category> java </category>
+          <category> redis </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> IntelliJ IDEA </tag>
+            <tag> redis基础知识 </tag>
+            
+            <tag> redis面试相关问题 </tag>
             
         </tags>
       
@@ -255,6 +280,31 @@
         <tags>
             
             <tag> Java基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>IntelliJ IDEA</title>
+      <link href="/2024/03/05/xuyongqing/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/idea/"/>
+      <url>/2024/03/05/xuyongqing/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/idea/</url>
+      
+        <content type="html"><![CDATA[<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h1 id="IntelliJ-IDEA"><a href="#IntelliJ-IDEA" class="headerlink" title="IntelliJ IDEA"></a>IntelliJ IDEA</h1><p>New Project -&gt; Spring Initializr 不能选择java8<br>更换Server URL &#x3D; start.aliyun.com 即可</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IntelliJ IDEA </tag>
             
         </tags>
       
@@ -338,31 +388,6 @@
     
     
     <entry>
-      <title>GBase</title>
-      <link href="/2023/09/11/xuyongqing/gbase/"/>
-      <url>/2023/09/11/xuyongqing/gbase/</url>
-      
-        <content type="html"><![CDATA[<h1 id="GBase"><a href="#GBase" class="headerlink" title="GBase"></a>GBase</h1><h2 id="客户端工具"><a href="#客户端工具" class="headerlink" title="客户端工具"></a>客户端工具</h2><p>链接：<a href="https://pan.baidu.com/s/1K80jHrb88_yA_f4_1FVZEA">https://pan.baidu.com/s/1K80jHrb88_yA_f4_1FVZEA</a><br>提取码：d2rb </p><h2 id="客户端工具使用GBase方式"><a href="#客户端工具使用GBase方式" class="headerlink" title="客户端工具使用GBase方式"></a>客户端工具使用GBase方式</h2><p><a href="https://blog.csdn.net/ilovefaust/article/details/133296295">https://blog.csdn.net/ilovefaust/article/details/133296295</a></p><h2 id="jar地址"><a href="#jar地址" class="headerlink" title="jar地址"></a>jar地址</h2><p>链接：<a href="https://pan.baidu.com/s/1kiH0wRr6pgjy-pWJpBTOVQ">https://pan.baidu.com/s/1kiH0wRr6pgjy-pWJpBTOVQ</a><br>提取码：qp29 </p><h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><ul><li>to_char(column) 将字段类型转为字符串</li><li>gbase_to_char(datetime, ‘%Y-%m-%s’) 将时间格式化</li><li>to_date(‘datetime’, ‘YYYY-MM-DD’) 将其他类型时间转为为指定时间格式 ,’HH24:MI:SS’</li></ul><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">--分组后排序</span><br><span class="hljs-keyword">select</span> <br>column1, <span class="hljs-built_in">max</span>(column2) column2<br><span class="hljs-keyword">from</span> <span class="hljs-keyword">table</span> <br><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> column1<br><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> column2;<br><br><br><span class="hljs-comment">--支持子查询</span><br></code></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> java </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> GBase </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>hutool</title>
       <link href="/2023/09/11/xuyongqing/hutool/"/>
       <url>/2023/09/11/xuyongqing/hutool/</url>
@@ -388,9 +413,34 @@
     
     
     <entry>
+      <title>GBase</title>
+      <link href="/2023/09/11/xuyongqing/%E6%95%B0%E6%8D%AE%E5%BA%93/gbase/"/>
+      <url>/2023/09/11/xuyongqing/%E6%95%B0%E6%8D%AE%E5%BA%93/gbase/</url>
+      
+        <content type="html"><![CDATA[<h1 id="GBase"><a href="#GBase" class="headerlink" title="GBase"></a>GBase</h1><h2 id="客户端工具"><a href="#客户端工具" class="headerlink" title="客户端工具"></a>客户端工具</h2><p>链接：<a href="https://pan.baidu.com/s/1K80jHrb88_yA_f4_1FVZEA">https://pan.baidu.com/s/1K80jHrb88_yA_f4_1FVZEA</a><br>提取码：d2rb </p><h2 id="客户端工具使用GBase方式"><a href="#客户端工具使用GBase方式" class="headerlink" title="客户端工具使用GBase方式"></a>客户端工具使用GBase方式</h2><p><a href="https://blog.csdn.net/ilovefaust/article/details/133296295">https://blog.csdn.net/ilovefaust/article/details/133296295</a></p><h2 id="jar地址"><a href="#jar地址" class="headerlink" title="jar地址"></a>jar地址</h2><p>链接：<a href="https://pan.baidu.com/s/1kiH0wRr6pgjy-pWJpBTOVQ">https://pan.baidu.com/s/1kiH0wRr6pgjy-pWJpBTOVQ</a><br>提取码：qp29 </p><h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><ul><li>to_char(column) 将字段类型转为字符串</li><li>gbase_to_char(datetime, ‘%Y-%m-%s’) 将时间格式化</li><li>to_date(‘datetime’, ‘YYYY-MM-DD’) 将其他类型时间转为为指定时间格式 ,’HH24:MI:SS’</li></ul><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">--分组后排序</span><br><span class="hljs-keyword">select</span> <br>column1, <span class="hljs-built_in">max</span>(column2) column2<br><span class="hljs-keyword">from</span> <span class="hljs-keyword">table</span> <br><span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> column1<br><span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> column2;<br><br><br><span class="hljs-comment">--支持子查询</span><br></code></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GBase </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>mysql</title>
-      <link href="/2023/09/11/xuyongqing/mysql/"/>
-      <url>/2023/09/11/xuyongqing/mysql/</url>
+      <link href="/2023/09/11/xuyongqing/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/"/>
+      <url>/2023/09/11/xuyongqing/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/</url>
       
         <content type="html"><![CDATA[<h3 id="行转列"><a href="#行转列" class="headerlink" title="行转列"></a>行转列</h3><p>表名 student 字段 name,age<br>现有数据十条</p><table><thead><tr><th>name</th><th>age</th></tr></thead><tbody><tr><td>A</td><td>10</td></tr><tr><td>B</td><td>11</td></tr><tr><td>C</td><td>12</td></tr><tr><td>D</td><td>13</td></tr><tr><td>E</td><td>14</td></tr><tr><td>F</td><td>15</td></tr><tr><td>G</td><td>16</td></tr><tr><td>H</td><td>17</td></tr><tr><td>I</td><td>18</td></tr><tr><td>J</td><td>19</td></tr></tbody></table><p>最终呈现效果</p><table><thead><tr><th>name</th><th>age</th><th>name1</th><th>age1</th></tr></thead><tbody><tr><td>J</td><td>19</td><td>E</td><td>14</td></tr><tr><td>I</td><td>18</td><td>D</td><td>13</td></tr><tr><td>H</td><td>17</td><td>C</td><td>12</td></tr><tr><td>G</td><td>16</td><td>B</td><td>11</td></tr><tr><td>F</td><td>15</td><td>A</td><td>10</td></tr></tbody></table><p>代码展示</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span><br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&lt;</span> <span class="hljs-number">6</span> <span class="hljs-keyword">THEN</span> c.`name` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `name`,<br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&lt;</span> <span class="hljs-number">6</span> <span class="hljs-keyword">THEN</span> c.`age` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `age`,<br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span> <span class="hljs-keyword">THEN</span> c.`name` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `name1`,<br><span class="hljs-built_in">max</span>( <span class="hljs-keyword">CASE</span> <span class="hljs-keyword">WHEN</span> c.rw <span class="hljs-operator">&gt;</span> <span class="hljs-number">5</span> <span class="hljs-keyword">THEN</span> c.`age` <span class="hljs-keyword">ELSE</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">END</span> ) `age1` <br><span class="hljs-keyword">FROM</span><br>(<br><span class="hljs-keyword">SELECT</span><br>a.`name`,<br>a.`age`,<br>( <span class="hljs-variable">@rownum</span> :<span class="hljs-operator">=</span> <span class="hljs-variable">@rownum</span> <span class="hljs-operator">+</span> <span class="hljs-number">1</span> ) rw,<br>( <span class="hljs-variable">@rownum</span> <span class="hljs-operator">%</span> <span class="hljs-number">5</span> ) rn <br><span class="hljs-keyword">FROM</span><br>( <span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> student a <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> age <span class="hljs-keyword">DESC</span> LIMIT <span class="hljs-number">10</span> ) a,<br>( <span class="hljs-keyword">SELECT</span> <span class="hljs-variable">@rownum</span> :<span class="hljs-operator">=</span> <span class="hljs-number">0</span> ) b <br>) c #### 前提条件<br><br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span><br>c.rn <br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span><br>c.rw<br></code></pre></td></tr></table></figure><p><img src="/./images/mysql/image-20230912112554648.png" alt="image-20230912112554648"></p><p><img src="/images/mysql/image-20230912112604334.png" alt="image-20230912112604334"></p>]]></content>
       
@@ -414,8 +464,8 @@
     
     <entry>
       <title>MallChat</title>
-      <link href="/2023/08/29/xuyongqing/MallChat/"/>
-      <url>/2023/08/29/xuyongqing/MallChat/</url>
+      <link href="/2023/08/29/xuyongqing/github/MallChat/"/>
+      <url>/2023/08/29/xuyongqing/github/MallChat/</url>
       
         <content type="html"><![CDATA[<h1 id="MallChat"><a href="#MallChat" class="headerlink" title="MallChat"></a><a href="https://github.com/zongzibinbin/MallChat">MallChat</a></h1><h2 id="禁止"><a href="#禁止" class="headerlink" title="禁止"></a>禁止</h2><ol><li>禁止在代码中出现 return fail info</li><li>禁止在代码中出现魔法数值</li></ol><h2 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h2><p>具体代码</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@PostMapping(&quot;/msg&quot;)</span><br><span class="hljs-meta">@ApiOperation(&quot;发送消息&quot;)</span><br><span class="hljs-meta">@FrequencyControl(time = 5, count = 3, target = FrequencyControl.Target.UID)</span><br><span class="hljs-meta">@FrequencyControl(time = 30, count = 5, target = FrequencyControl.Target.UID)</span><br><span class="hljs-meta">@FrequencyControl(time = 60, count = 10, target = FrequencyControl.Target.UID)</span><br><span class="hljs-keyword">public</span> ApiResult&lt;ChatMessageResp&gt; <span class="hljs-title function_">sendMsg</span><span class="hljs-params">(<span class="hljs-meta">@Valid</span> <span class="hljs-meta">@RequestBody</span> ChatMessageReq request)</span> &#123;<span class="hljs-comment">//todo 发送给单聊</span><br><span class="hljs-type">Long</span> <span class="hljs-variable">msgId</span> <span class="hljs-operator">=</span> chatService.sendMsg(request, RequestHolder.get().getUid());<br><span class="hljs-comment">//返回完整消息格式，方便前端展示</span><br><span class="hljs-keyword">return</span> ApiResult.success(chatService.getMsgResp(msgId, RequestHolder.get().getUid()));<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h3><ol><li><a href="#%E9%A2%91%E6%8E%A7">频控</a></li><li>在登录过程中将用户信息存放打ThreadLocal中后，通过ReqyestHolder.get()方法获取<ol><li>实现方式 继承 HandlerInterceptor 重写 preHandle() 和 afterCompletion()方法</li><li>实现 WebMvcConfiguration 重写 addInterceptors 将 step1的类 加入到 InterceptorRegistry</li></ol></li></ol><h4 id="发送消息具体处理"><a href="#发送消息具体处理" class="headerlink" title="发送消息具体处理"></a>发送消息具体处理</h4><p>具体代码</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 发送消息</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Override</span><br><span class="hljs-meta">@Transactional</span><br><span class="hljs-keyword">public</span> Long <span class="hljs-title function_">sendMsg</span><span class="hljs-params">(ChatMessageReq request, Long uid)</span> &#123;<br>    check(request, uid);<br>    <span class="hljs-type">AbstractMsgHandler</span> <span class="hljs-variable">msgHandler</span> <span class="hljs-operator">=</span> MsgHandlerFactory.getStrategyNoNull(request.getMsgType());<span class="hljs-comment">//todo 这里先不扩展，后续再改</span><br>    msgHandler.checkMsg(request, uid);<br>    <span class="hljs-comment">//同步获取消息的跳转链接标题</span><br>    <span class="hljs-type">Message</span> <span class="hljs-variable">insert</span> <span class="hljs-operator">=</span> MessageAdapter.buildMsgSave(request, uid);<br>    messageDao.save(insert);<br>    msgHandler.saveMsg(insert, request);<br>    <span class="hljs-comment">//发布消息发送事件</span><br>    applicationEventPublisher.publishEvent(<span class="hljs-keyword">new</span> <span class="hljs-title class_">MessageSendEvent</span>(<span class="hljs-built_in">this</span>, insert.getId()));<br>    <span class="hljs-keyword">return</span> insert.getId();<br>&#125;<br></code></pre></td></tr></table></figure><p>代码解释</p><ol><li><p>MsgHandlerFactory.getStrategyNoNull(request.getMsgType())</p><ol><li>具体实现方法是通过 具体的消息利用spring注入实例化的方式，将</li></ol></li><li><p>发布消息发送事件</p><ol><li><p>利用spring 事件发布</p></li><li><p>MessageSendEvent 需要继承 ApplicationEvent</p></li><li><p>对应方法需要这么使用 </p><ol><li><pre><code class="java">@TransactionalEventListener(phase = TransactionPhase.BEFORE_COMMIT, classes = MessageSendEvent.class, fallbackExecution = true)    public void messageRoute(MessageSendEvent event) &#123;        Long msgId = event.getMsgId();        mqProducer.sendSecureMsg(MQConstant.SEND_MSG_TOPIC, new MsgSendMessageDTO(msgId), msgId);    &#125;</code></pre></li></ol></li></ol></li></ol><h2 id="频控"><a href="#频控" class="headerlink" title="频控"></a>频控</h2><p>解释：控制访问次数</p><h3 id="1-注解"><a href="#1-注解" class="headerlink" title="1.注解"></a>1.注解</h3>]]></content>
       
@@ -465,34 +515,9 @@
     
     
     <entry>
-      <title>Doris</title>
-      <link href="/2023/08/14/xuyongqing/Doris/"/>
-      <url>/2023/08/14/xuyongqing/Doris/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Doris"><a href="#Doris" class="headerlink" title="Doris"></a>Doris</h1><h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a><a href="https://doris.apache.org/zh-CN/docs/dev/get-starting/quick-start/">Getting Started</a></h2>]]></content>
-      
-      
-      <categories>
-          
-          <category> SQL </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> doris </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>nginx</title>
-      <link href="/2023/08/14/xuyongqing/nginx/"/>
-      <url>/2023/08/14/xuyongqing/nginx/</url>
+      <link href="/2023/08/14/xuyongqing/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/nginx/"/>
+      <url>/2023/08/14/xuyongqing/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/nginx/</url>
       
         <content type="html"><![CDATA[<h1 id="本地接口通过外网访问"><a href="#本地接口通过外网访问" class="headerlink" title="本地接口通过外网访问"></a>本地接口通过外网访问</h1><h2 id="查看nginx是否启动"><a href="#查看nginx是否启动" class="headerlink" title="查看nginx是否启动"></a>查看nginx是否启动</h2><h3 id="window环境下"><a href="#window环境下" class="headerlink" title="window环境下"></a>window环境下</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">tasklist /fi <span class="hljs-string">&quot;imagename eq nginx.exe&quot;</span><br></code></pre></td></tr></table></figure><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol><li>代理软件：可以代理本地接口能通过外网访问</li><li>nginx</li><li>本地服务</li></ol><h2 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a>详细说明</h2><h3 id="本地接口通过外网访问-1"><a href="#本地接口通过外网访问-1" class="headerlink" title="本地接口通过外网访问"></a>本地接口通过外网访问</h3><ol><li>natapp 80 -&gt; 8080</li><li>nginx 8080 -&gt; 4000</li><li>本地启动 4000端口</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">server &#123;<br>    listen 8080;<br>    server_name your-domain.com;<br>    location / &#123;<br>        proxy_pass http://localhost:4000;<br>        proxy_set_header Host <span class="hljs-variable">$host</span>;<br>        proxy_set_header X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="如何开启集群"><a href="#如何开启集群" class="headerlink" title="如何开启集群"></a>如何开启集群</h3><p>在下面的配置中，<code>upstream backend</code> 定义了一个名为 <code>backend</code> 的后端服务器集群，其中包含了多个服务器的地址和端口。你可以根据实际情况添加更多的后端服务器。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">http &#123;<br>    upstream backend &#123;<br>        server 192.168.0.178:8081;<br>        server 192.168.0.179:8081;<br>        <span class="hljs-comment"># 添加更多的后端服务器地址和端口</span><br>    &#125;<br>    server &#123;<br>        listen 80;<br>        server_name your-domain.com;<br>        location / &#123;<br>            proxy_pass http://backend;<br>            proxy_set_header Host <span class="hljs-variable">$host</span>;<br>            proxy_set_header X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
       
@@ -507,6 +532,31 @@
         <tags>
             
             <tag> nginx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Doris</title>
+      <link href="/2023/08/14/xuyongqing/%E6%95%B0%E6%8D%AE%E5%BA%93/Doris/"/>
+      <url>/2023/08/14/xuyongqing/%E6%95%B0%E6%8D%AE%E5%BA%93/Doris/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Doris"><a href="#Doris" class="headerlink" title="Doris"></a>Doris</h1><h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a><a href="https://doris.apache.org/zh-CN/docs/dev/get-starting/quick-start/">Getting Started</a></h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> SQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> doris </tag>
             
         </tags>
       
