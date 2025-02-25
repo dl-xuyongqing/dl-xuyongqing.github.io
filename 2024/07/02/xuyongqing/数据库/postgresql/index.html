@@ -24,7 +24,7 @@
 <meta property="og:description" content="pgsql语法常用关键字1-- 日期转换 with1234with tt1 as (    select * from table1)select * from table2 tt2 inner join tt1 on tt1.column1 &#x3D; tt2.column1  distinctdistinct: 去重distinct on(column..): 通过分组取最顶层数据 123--根据ta">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-02T05:51:54.000Z">
-<meta property="article:modified_time" content="2024-09-11T01:36:17.254Z">
+<meta property="article:modified_time" content="2025-02-25T01:38:04.927Z">
 <meta property="article:tag" content="postgresql">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          666 字
+          842 字
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          6 分钟
+          8 分钟
         
       </span>
     
@@ -282,6 +282,10 @@
 <h3 id="日期字符串转时间类型"><a href="#日期字符串转时间类型" class="headerlink" title="日期字符串转时间类型"></a>日期字符串转时间类型</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 字符转时间</span><br><span class="hljs-keyword">select</span> <span class="hljs-string">&#x27;2024-09-11&#x27;</span>::<span class="hljs-type">date</span><br><span class="hljs-comment">--天数+1</span><br><span class="hljs-keyword">select</span> <span class="hljs-string">&#x27;2024-09-11&#x27;</span>::<span class="hljs-type">date</span> <span class="hljs-operator">+</span> <span class="hljs-type">interval</span> <span class="hljs-string">&#x27;1 day&#x27;</span><br><span class="hljs-comment">-- 时间转字符串</span><br><span class="hljs-keyword">select</span> to_char(datetime, <span class="hljs-string">&#x27;YYYY-MM-DD HH24:MI:SS&#x27;</span>) <span class="hljs-keyword">from</span> <span class="hljs-keyword">table</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="清理归档日志"><a href="#清理归档日志" class="headerlink" title="清理归档日志"></a>清理归档日志</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo su - postgres<br>pg_controldata<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">xxx 替换成 pg_controldata 里面的 Latest checkpoint<span class="hljs-string">&#x27;s REDO WAL file对应编号</span></span><br><span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-string"># 清理日志归档</span></span><br>pg_archivecleanup /pgdata/pg_wal xxx<br><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="查询数据库中长连接"><a href="#查询数据库中长连接" class="headerlink" title="查询数据库中长连接"></a>查询数据库中长连接</h2><h3 id="数据库中查询时间超过1分钟"><a href="#数据库中查询时间超过1分钟" class="headerlink" title="数据库中查询时间超过1分钟"></a>数据库中查询时间超过1分钟</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span><br><span class="hljs-keyword">FROM</span>	pg_stat_activity <br><span class="hljs-keyword">WHERE</span><br>	( now( ) <span class="hljs-operator">-</span> pg_stat_activity.query_start ) <span class="hljs-operator">&gt;</span> <span class="hljs-type">INTERVAL</span> <span class="hljs-string">&#x27;1 minutes&#x27;</span> <br>	<span class="hljs-keyword">AND</span> STATE <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;active&#x27;</span>;<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span><br>	duration <span class="hljs-keyword">DESC</span><br></code></pre></td></tr></table></figure>
 
 
                 
