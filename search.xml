@@ -109,7 +109,7 @@
       <link href="/2024/07/19/xuyongqing/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/window/"/>
       <url>/2024/07/19/xuyongqing/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/window/</url>
       
-        <content type="html"><![CDATA[<h1 id="window命令"><a href="#window命令" class="headerlink" title="window命令"></a>window命令</h1><h2 id="查关键字命令"><a href="#查关键字命令" class="headerlink" title="查关键字命令"></a>查关键字命令</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">select-string</span> <span class="hljs-literal">-path</span> 文件路径 <span class="hljs-literal">-pattern</span> 关键字 <span class="hljs-literal">-context</span> 前行数,后行数<br></code></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<h1 id="window命令"><a href="#window命令" class="headerlink" title="window命令"></a>window命令</h1><h2 id="查关键字命令"><a href="#查关键字命令" class="headerlink" title="查关键字命令"></a>查关键字命令</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">select-string</span> <span class="hljs-literal">-path</span> 文件路径 <span class="hljs-literal">-pattern</span> 关键字 <span class="hljs-literal">-context</span> 前行数,后行数<br><br><span class="hljs-built_in">Get-Content</span> 文件 <span class="hljs-literal">-Tail</span> <span class="hljs-number">0</span> <span class="hljs-literal">-Wait</span><br><br></code></pre></td></tr></table></figure>]]></content>
       
       
       
