@@ -1,0 +1,630 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/b43b34945713385a687a74fab43457d.jpg">
+  <link rel="icon" href="/img/b43b34945713385a687a74fab43457d.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="IGix使用心得(仅供赵冲峦使用)，目的：提升效率使用方法简单介绍业务实现 工作流实现流程结束后将审批意见写入表单 操作流程：VO新增视图对象操作 -&gt; 新增内部服务 -&gt; 新增远程调用代理构件 -&gt; 流程设计(活动构件: 选择远程调用代理构件)     JAVA代码基础代码用法 具体用法参考父类提供什么方法  1234567891011121314151617181920212">
+<meta property="og:type" content="article">
+<meta property="og:title" content="igix">
+<meta property="og:url" content="https://dl-xuyongqing.github.io/2026/04/10/xuyongqing/%E6%B5%AA%E6%BD%AE%E4%BD%8E%E4%BB%A3%E7%A0%81/%E5%B8%B8%E7%94%A8/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="IGix使用心得(仅供赵冲峦使用)，目的：提升效率使用方法简单介绍业务实现 工作流实现流程结束后将审批意见写入表单 操作流程：VO新增视图对象操作 -&gt; 新增内部服务 -&gt; 新增远程调用代理构件 -&gt; 流程设计(活动构件: 选择远程调用代理构件)     JAVA代码基础代码用法 具体用法参考父类提供什么方法  1234567891011121314151617181920212">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-10T06:30:30.000Z">
+<meta property="article:modified_time" content="2026-04-10T06:53:06.819Z">
+<meta property="article:tag" content="igix">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>igix - </title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"dl-xuyongqing.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>DL-XUYONGQING</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="igix"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-04-10 14:30" pubdate>
+          2026年4月10日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          72 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">igix</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="IGix使用心得-仅供赵冲峦使用-，目的：提升效率"><a href="#IGix使用心得-仅供赵冲峦使用-，目的：提升效率" class="headerlink" title="IGix使用心得(仅供赵冲峦使用)，目的：提升效率"></a>IGix使用心得(仅供赵冲峦使用)，目的：提升效率</h1><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h3><h4 id="业务实现"><a href="#业务实现" class="headerlink" title="业务实现"></a>业务实现</h4><ol>
+<li>工作流实现流程结束后将审批意见写入表单<ol>
+<li>操作流程：VO新增视图对象操作 -&gt; 新增内部服务 -&gt; 新增远程调用代理构件 -&gt; 流程设计(活动构件: 选择远程调用代理构件)</li>
+</ol>
+</li>
+<li></li>
+</ol>
+<h2 id="JAVA代码"><a href="#JAVA代码" class="headerlink" title="JAVA代码"></a>JAVA代码</h2><h3 id="基础代码用法"><a href="#基础代码用法" class="headerlink" title="基础代码用法"></a>基础代码用法</h3><blockquote>
+<p>具体用法参考父类提供什么方法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> com.inspur.edp.bef.core.LcpUtil;<br><span class="hljs-keyword">import</span> com.inspur.edp.bef.api.lcp.IStandardLcp;<br><span class="hljs-keyword">import</span> com.inspur.edp.bef.engine.entity.AssociationInfo;<br><br><span class="hljs-keyword">import</span> com.inspur.edp.cef.entity.changeset.ModifyChangeDetail;<br><span class="hljs-keyword">import</span> com.inspur.edp.cef.entity.entity.IEntityData;<br><span class="hljs-keyword">import</span> com.inspur.edp.cef.entity.entity.IEntityDataCollection;<br><br><span class="hljs-keyword">import</span> com.inspur.edp.cef.entity.condition.*;<br><span class="hljs-keyword">import</span> io.iec.edp.caf.boot.context.CAFContext;<br><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">VoAction</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">execute</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-comment">//获取操作be节点</span><br>        <span class="hljs-type">IStandardLcp</span> <span class="hljs-variable">standardLcp</span> <span class="hljs-operator">=</span> LcpUtil.getLcp(<span class="hljs-string">&quot;com.inspur.gs.szzxqyy.ywxtktsp.ywxtktsp.ywxtktsp.back.BusinessApplicat&quot;</span>);<br>        <span class="hljs-comment">//查询单挑数据通过ID</span><br>        <span class="hljs-type">IEntityData</span> <span class="hljs-variable">entityData</span> <span class="hljs-operator">=</span> standardLcp.retrieve(dataId).getData();<br>        <br>        <span class="hljs-comment">//获取当前上下文信息</span><br>		<span class="hljs-type">String</span> <span class="hljs-variable">userId</span> <span class="hljs-operator">=</span> CAFContext.current.getCurrentSession().getUserId();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">userCode</span> <span class="hljs-operator">=</span> CAFContext.current.getCurrentSession().getUserCode();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">userName</span> <span class="hljs-operator">=</span> CAFContext.current.getCurrentSession().getUserName();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">orgId</span> <span class="hljs-operator">=</span> CAFContext.current.getCurrentSession().getSysOrgId();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">orgCode</span> <span class="hljs-operator">=</span> CAFContext.current.getCurrentSession().getSysOrgCode();<br>        <span class="hljs-type">String</span> <span class="hljs-variable">orgName</span> <span class="hljs-operator">=</span> CAFContext.current.getCurrentSession().getSysOrgName();<br><br>        <span class="hljs-comment">//获取主表字段值</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">unitArr</span> <span class="hljs-operator">=</span> entityData.getValue(<span class="hljs-string">&quot;UnitId&quot;</span>).toString();<br>        <br>        <span class="hljs-comment">//获取关联字段值 SystemName关联字段，SystemName_AppSysName 关联字段值</span><br>		<span class="hljs-type">String</span> <span class="hljs-variable">appName</span> <span class="hljs-operator">=</span> (String)((AssociationInfo) entityData.getValue(<span class="hljs-string">&quot;SystemName&quot;</span>)).getValue(<span class="hljs-string">&quot;SystemName_AppSysName&quot;</span>);<br><br>        <span class="hljs-comment">//获取子表数据 UserItem子表</span><br>        <span class="hljs-type">IEntityDataCollection</span> <span class="hljs-variable">userItemList</span> <span class="hljs-operator">=</span>entityData.getChilds().get(<span class="hljs-string">&quot;UserItem&quot;</span>);<br>        <br>        <span class="hljs-comment">//获取寄存的查询条件</span><br>        <span class="hljs-type">EntityFilter</span> <span class="hljs-variable">entityFilter</span> <span class="hljs-operator">=</span> getQueryContext().getFilter();<br><br>        <span class="hljs-comment">//定义新的查询条件</span><br>        <span class="hljs-type">FilterCondition</span> <span class="hljs-variable">condition</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">FilterCondition</span>(<br>                <span class="hljs-number">0</span>,<br>                <span class="hljs-string">&quot;字段名字&quot;</span>,<br>                ExpressCompareType.Equal,<br>                <span class="hljs-string">&quot;值&quot;</span>,<br>                <span class="hljs-number">0</span>,<br>                ExpressRelationType.Empty,<br>                ExpressValueType.Value<br>        );<br>        <span class="hljs-comment">//添加条件</span><br>        entityFilter.addFilterCondition(condition);<br><br>        <br>        <span class="hljs-comment">//结果集</span><br>   		<span class="hljs-type">ModifyChangeDetail</span> <span class="hljs-variable">modifyChangeDetail</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ModifyChangeDetail</span>(dataId);<br>        <span class="hljs-comment">//更新数据</span><br>        standardLcp.modify(modifyChangeDetail);<br><br>        <span class="hljs-comment">//保存数据</span><br>		standardLcp.save();<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="视图-拓展操作-查询时"><a href="#视图-拓展操作-查询时" class="headerlink" title="视图-拓展操作-查询时"></a>视图-拓展操作-查询时</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.inspur.gs.szzxqyy.ywxtktsp.ywxtktsp.ywxtktsp.front.projectinfo.voactions;<br><br><span class="hljs-keyword">import</span> com.alibaba.fastjson.JSONObject;<br><span class="hljs-keyword">import</span> com.inspur.edp.bff.api.manager.context.QueryContext;<br><span class="hljs-keyword">import</span> com.inspur.edp.bff.spi.action.query.AbstractQueryAction;<br><span class="hljs-keyword">import</span> com.inspur.edp.cef.entity.entity.IEntityData;<br><span class="hljs-keyword">import</span> lombok.extern.slf4j.Slf4j;<br><br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><span class="hljs-keyword">import</span> java.util.HashMap;<br><span class="hljs-keyword">import</span> java.util.List;<br><br><span class="hljs-meta">@Slf4j</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ProjectInfoQueryDataVOAction</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AbstractQueryAction</span> &#123;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">ProjectInfoQueryDataVOAction</span><span class="hljs-params">(QueryContext context)</span>&#123;<br>		<span class="hljs-built_in">super</span>(context);<br>	&#125;<br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">execute</span><span class="hljs-params">()</span> &#123;<br><br>		ArrayList&lt;IEntityData&gt; entityDataList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>		<span class="hljs-type">HashMap</span> <span class="hljs-variable">queryResult</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;String, ArrayList&lt;IEntityData&gt;&gt;();<br>        <span class="hljs-comment">//ProjectInfoQueryDataMapping为数据Mapping中同名字段</span><br>		queryResult.put(<span class="hljs-string">&quot;ProjectInfoQueryDataMapping&quot;</span>,entityDataList);<br>		setResult(queryResult);<br>        <span class="hljs-comment">//http接口处理的数据模拟</span><br>		List&lt;JSONObject&gt; dataList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>		dataList.forEach(data -&gt; &#123;<br><br>			<span class="hljs-type">IEntityData</span> <span class="hljs-variable">entityData</span> <span class="hljs-operator">=</span> getContext().createData();<br>            <span class="hljs-comment">//视图定义字段</span><br>			entityData.setValue(<span class="hljs-string">&quot;ID&quot;</span>, data.get(<span class="hljs-string">&quot;id&quot;</span>));<br>			entityData.setValue(<span class="hljs-string">&quot;ProjectName&quot;</span>, data.get(<span class="hljs-string">&quot;projectName&quot;</span>));<br>			entityData.setValue(<span class="hljs-string">&quot;BuildType&quot;</span>, data.get(<span class="hljs-string">&quot;buildType&quot;</span>));<br>			entityData.setValue(<span class="hljs-string">&quot;Filler&quot;</span>, data.get(<span class="hljs-string">&quot;filler&quot;</span>));<br>			entityData.setValue(<span class="hljs-string">&quot;Confirmor&quot;</span>, data.get(<span class="hljs-string">&quot;confirmor&quot;</span>));<br>			entityDataList.add(entityData);<br>		&#125;);<br><br>	&#125;<br><br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="视图查询-拓展-数据Mapping"><a href="#视图查询-拓展-数据Mapping" class="headerlink" title="视图查询-拓展-数据Mapping"></a>视图查询-拓展-数据Mapping</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.inspur.gs.szzxqyy.ywxtktsp.ywxtktsp.ywxtktsp.front.projectinfo.voactions;<br><span class="hljs-keyword">import</span> com.inspur.edp.bff.api.manager.context.DataMapperContext;<br><span class="hljs-keyword">import</span> com.inspur.edp.bff.spi.action.datamapping.DataMappingAction;<br><span class="hljs-keyword">import</span> com.inspur.edp.cef.entity.entity.IEntityData;<br><br><span class="hljs-keyword">import</span> java.util.ArrayList;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ProjectInfoQueryDataMappingVOAction</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">DataMappingAction</span> &#123;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-title function_">ProjectInfoQueryDataMappingVOAction</span><span class="hljs-params">(DataMapperContext context)</span>&#123;<br>		<span class="hljs-built_in">super</span>(context);<br>	&#125;<br>	<span class="hljs-meta">@Override</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">execute</span><span class="hljs-params">()</span> &#123;<br>		ArrayList&lt;IEntityData&gt; entityData = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>		<span class="hljs-keyword">if</span>(getMapContext().getSourceData().containsKey(<span class="hljs-string">&quot;ProjectInfoQueryDataMapping&quot;</span>))&#123;<br>			entityData = getMapContext().getSourceData().get(<span class="hljs-string">&quot;ProjectInfoQueryDataMapping&quot;</span>);<br>		&#125;<br>		getMapContext().setTargetResult(entityData);<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="表单-常用操作"><a href="#表单-常用操作" class="headerlink" title="表单-常用操作"></a>表单-常用操作</h3><figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 表单关闭事件</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title function_">modalBeforeClose</span>(): <span class="hljs-built_in">any</span> &#123;<br>    <span class="hljs-keyword">const</span> eventParams = (<span class="hljs-variable language_">this</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-title function_">getEventParams</span>();<br>    <span class="hljs-comment">//如果是点击取消按钮或关闭按钮，则直接关闭</span><br>    <span class="hljs-keyword">const</span> closeType = eventParams.<span class="hljs-property">payload</span>.<span class="hljs-property">closeType</span>;<br>    <span class="hljs-comment">//取消的时候直接关闭</span><br>    <span class="hljs-keyword">if</span> (closeType === <span class="hljs-string">&#x27;cancel&#x27;</span>) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <span class="hljs-comment">//弹窗组件</span><br>    <span class="hljs-keyword">const</span> modalId = <span class="hljs-string">&#x27;EmployeeOnDutyInfoForm-pzej&#x27;</span>;<br>    <span class="hljs-keyword">const</span> modalRootId = <span class="hljs-string">&#x27;root-component&#x27;</span>;<br>    <span class="hljs-keyword">const</span> <span class="hljs-attr">modALViewModel</span>: <span class="hljs-title class_">ViewModel</span>&lt;<span class="hljs-title class_">ViewModelState</span>&gt; = (<span class="hljs-variable language_">this</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">contextService</span>.<span class="hljs-title function_">getModalViewModelById</span>(modalId, modalRootId);<br>    <span class="hljs-keyword">return</span> modALViewModel[<span class="hljs-string">&quot;Save1&quot;</span>]().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">commandService</span>.<span class="hljs-title function_">execute</span>(<span class="hljs-string">&#x27;Load1&#x27;</span>);<br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;)<br>  &#125;<br><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 打开弹窗事件</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@remarks</span> </span><br><span class="hljs-comment">   * <span class="hljs-doctag">@returns</span> </span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-title function_">responsetoolbaritemOnClick</span>(eventAction): <span class="hljs-built_in">any</span> &#123;<br><br>    <span class="hljs-comment">// 组织参数，向弹窗传递报销人ID</span><br>    <span class="hljs-keyword">const</span> modalConfig = <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">const</span> modalId = <span class="hljs-string">&#x27;EmployeeOnDutyInfoForm-pzej&#x27;</span>;<span class="hljs-comment">//隐藏弹窗的标识</span><br>    <span class="hljs-keyword">const</span> modalParams = &#123;<br>      <span class="hljs-attr">id</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">getValueByPath</span>(<span class="hljs-string">&#x27;/id&#x27;</span>),<br>      <span class="hljs-attr">action</span>: eventAction<span class="hljs-comment">//打开弹窗要执行的方法 LoadAndView1 or LoadAndEdit1</span><br>    &#125;;<br>    <span class="hljs-comment">// 打开弹窗</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">dialogService</span>.<span class="hljs-title function_">openModal</span>(modalConfig, modalId, modalParams);<br>  &#125;<br><br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * datagrid选中行事件, 将id逗号拼接到某个字段上，配合批量删除实现批量删除</span><br><span class="hljs-comment">   * 批量删除控件 在 高级列卡控制器</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@remarks</span> </span><br><span class="hljs-comment">   * <span class="hljs-doctag">@returns</span> </span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-title function_">datagridOnSelectItem</span>(): <span class="hljs-built_in">any</span> &#123;<br>    <span class="hljs-keyword">const</span> viewModel =  <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-title function_">getModule</span>().<span class="hljs-title function_">getViewModel</span>(<span class="hljs-string">&#x27;detail-form-component&#x27;</span>);<br>    <span class="hljs-comment">// const relationSkill =  viewModel.entityStore.getValueByPath(&quot;/relationTag&quot;);</span><br>    <span class="hljs-keyword">const</span> eventParam = <span class="hljs-variable language_">this</span>[<span class="hljs-string">&#x27;context&#x27;</span>];<br>    <span class="hljs-keyword">const</span> state = eventParam.<span class="hljs-property">uiStore</span>.<span class="hljs-title function_">getState</span>();<br>    <span class="hljs-keyword">const</span> idsStr = state.<span class="hljs-property">ids</span>.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27;,&#x27;</span>)<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(idsStr);<br><br>    <span class="hljs-comment">//多选删除</span><br>    viewModel.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">setValueByPath</span>(<span class="hljs-string">&#x27;/relationTag&#x27;</span>, idsStr);<br><br><br>  &#125;<br><br><br> <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 子表数据编辑后查询数据业务实现</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@remarks</span> </span><br><span class="hljs-comment">   * <span class="hljs-doctag">@returns</span> </span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-title function_">datagridOnEndEditCell</span>(obj): <span class="hljs-built_in">any</span> &#123;<br>    <span class="hljs-keyword">const</span> userCode = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(obj).<span class="hljs-property">userAccount</span><br>    <span class="hljs-keyword">const</span> id = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(obj).<span class="hljs-property">id</span><br>    <span class="hljs-keyword">const</span> currentUserCode = <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">getValueByPath</span>(<span class="hljs-string">&#x27;/applicantId/applicantId_code&#x27;</span>)<br>    <span class="hljs-keyword">if</span> (currentUserCode == userCode) &#123;<br>      <span class="hljs-keyword">const</span> currentUserId = <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">getValueByPath</span>(<span class="hljs-string">&#x27;/applicantId/applicantId&#x27;</span>)<br>      <span class="hljs-keyword">const</span> currentUserName = <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">getValueByPath</span>(<span class="hljs-string">&#x27;/applicantId/applicantId_name&#x27;</span>)<br>      <span class="hljs-keyword">const</span> currentSysOrgName = <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">getValueByPath</span>(<span class="hljs-string">&#x27;/applicantId/applicantId_sysorgid_name&#x27;</span>)<br><br>      <span class="hljs-keyword">const</span> currentData = <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">getCurrentEntity</span>();<br>      <span class="hljs-keyword">const</span> path = <span class="hljs-string">&#x27;/[&#x27;</span> + currentData.<span class="hljs-property">idValue</span> + <span class="hljs-string">&#x27;]/userItems/[&#x27;</span> + id + <span class="hljs-string">&#x27;]/&#x27;</span><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">setValueByPath</span>(path + <span class="hljs-string">&#x27;userAccount&#x27;</span>, currentUserCode);<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">setValueByPath</span>(path + <span class="hljs-string">&#x27;userId&#x27;</span>, currentUserId);<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">setValueByPath</span>(path + <span class="hljs-string">&#x27;userName&#x27;</span>, currentUserName);<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">setValueByPath</span>(path + <span class="hljs-string">&#x27;sysOrgName&#x27;</span>, currentSysOrgName);<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">setValueByPath</span>(path + <span class="hljs-string">&#x27;orgNamePath&#x27;</span>, <span class="hljs-string">&quot;&quot;</span>);<br>      <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-keyword">const</span> repository = <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">repository</span> <span class="hljs-keyword">as</span> <span class="hljs-title class_">BefRepository</span>&lt;<span class="hljs-built_in">any</span>&gt;;<br>    <span class="hljs-keyword">const</span> requestInfo = <span class="hljs-title class_">RequestInfoUtil</span>.<span class="hljs-title function_">buildRequestInfo</span>(repository);<br>    <span class="hljs-keyword">const</span> requestConfig = &#123;<br>      <span class="hljs-attr">body</span>: <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(&#123;<br>          <span class="hljs-comment">//id:&quot;值&quot;,</span><br>          <span class="hljs-comment">//status:&quot;值&quot;</span><br>      &#125;, requestInfo)<br>    &#125;;<br>    <span class="hljs-keyword">const</span> queryParam = &#123; <span class="hljs-attr">code</span>: userCode &#125;;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(queryParam));<br>    <span class="hljs-keyword">const</span> uri = <span class="hljs-string">&#x27;/api/runtime/sys/v1.0/users?param=&#x27;</span> + <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(queryParam);<br>    repository.<span class="hljs-property">apiProxy</span>.<span class="hljs-title function_">request</span>(<span class="hljs-title class_">HttpMethods</span>.<span class="hljs-property">GET</span>, uri, requestConfig).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">if</span> (result.<span class="hljs-property">totalCount</span> != <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">return</span>;<br>      &#125;<br>      <span class="hljs-keyword">const</span> currentData = <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">getCurrentEntity</span>();<br>      <span class="hljs-keyword">const</span> path = <span class="hljs-string">&#x27;/[&#x27;</span> + currentData.<span class="hljs-property">idValue</span> + <span class="hljs-string">&#x27;]/userItems/[&#x27;</span> + id + <span class="hljs-string">&#x27;]/&#x27;</span><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">setValueByPath</span>(path + <span class="hljs-string">&#x27;userAccount&#x27;</span>, result.<span class="hljs-property">data</span>[<span class="hljs-number">0</span>].<span class="hljs-property">code</span> + <span class="hljs-string">&quot; &quot;</span>);<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">setValueByPath</span>(path + <span class="hljs-string">&#x27;userId&#x27;</span>, result.<span class="hljs-property">data</span>[<span class="hljs-number">0</span>].<span class="hljs-property">id</span>);<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">setValueByPath</span>(path + <span class="hljs-string">&#x27;userName&#x27;</span>, result.<span class="hljs-property">data</span>[<span class="hljs-number">0</span>].<span class="hljs-property">name</span>);<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">setValueByPath</span>(path + <span class="hljs-string">&#x27;sysOrgName&#x27;</span>, result.<span class="hljs-property">data</span>[<span class="hljs-number">0</span>].<span class="hljs-property">sysOrgName</span>);<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">viewModel</span>.<span class="hljs-property">entityStore</span>.<span class="hljs-title function_">setValueByPath</span>(path + <span class="hljs-string">&#x27;orgNamePath&#x27;</span>, result.<span class="hljs-property">data</span>[<span class="hljs-number">0</span>].<span class="hljs-property">orgNamePath</span>);<br>    &#125;);<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/igix/" class="print-no-link">#igix</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>igix</div>
+      <div>https://dl-xuyongqing.github.io/2026/04/10/xuyongqing/浪潮低代码/常用/</div>
+    </div>
+    <div class="license-meta">
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年4月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/05/%E5%88%86%E4%BA%AB%E9%93%BE%E6%8E%A5/" title="分享链接">
+                        <span class="hidden-mobile">分享链接</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
